@@ -8,3 +8,4 @@ doc:
 clean:
 	rm casos_de_uso.png diagrama_de_clases.png casos_de_uso.pdf \
 		modelo_bd.pdf acta_constitucion.pdf
+	rm *~
