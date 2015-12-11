@@ -1,22 +1,25 @@
-doc: casos_de_uso.png diagrama_de_clases.png casos_de_uso.pdf modelo_bd.pdf \
-	acta_constitucion.pdf
+DEST_DIR="./generated"
 
-casos_de_uso.png: casos_de_uso.dia
-	dia -e casos_de_uso.png -t png casos_de_uso.dia
+DOC_FILES=$(DEST_DIR)/casos_de_uso.png $(DEST_DIR)/diagrama_de_clases.png \
+	$(DEST_DIR)/casos_de_uso.pdf $(DEST_DIR)/modelo_bd.pdf \
+	$(DEST_DIR)/acta_constitucion.pdf
 
-diagrama_de_clases.png: diagrama_de_clases.dia
-	dia -e diagrama_de_clases.png -t png diagrama_de_clases.dia
+doc: $(DOC_FILES)
 
-casos_de_uso.pdf: casos_de_uso.odt
-	libreoffice --convert-to pdf casos_de_uso.odt
+$(DEST_DIR)/casos_de_uso.png: casos_de_uso.dia
+	dia -e $(DEST_DIR)/casos_de_uso.png -t png casos_de_uso.dia
 
-modelo_bd.pdf: modelo_bd.odt
-	libreoffice --convert-to pdf modelo_bd.odt
+$(DEST_DIR)/diagrama_de_clases.png: diagrama_de_clases.dia
+	dia -e $(DEST_DIR)/diagrama_de_clases.png -t png diagrama_de_clases.dia
 
-acta_constitucion.pdf: acta_constitucion.odt
-	libreoffice --convert-to pdf acta_constitucion.odt
+$(DEST_DIR)/casos_de_uso.pdf: casos_de_uso.odt
+	libreoffice --convert-to pdf --outdir $(DEST_DIR) casos_de_uso.odt
+
+$(DEST_DIR)/modelo_bd.pdf: modelo_bd.odt
+	libreoffice --convert-to pdf --outdir $(DEST_DIR) modelo_bd.odt
+
+$(DEST_DIR)/acta_constitucion.pdf: acta_constitucion.odt
+	libreoffice --convert-to pdf --outdir $(DEST_DIR) acta_constitucion.odt
 
 clean:
-	rm casos_de_uso.png diagrama_de_clases.png casos_de_uso.pdf \
-		modelo_bd.pdf acta_constitucion.pdf
-	rm *~
+	rm *~ $(DOC_FILES)
