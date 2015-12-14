@@ -1,1 +1,3 @@
-doc/generated
+.gradle
+/build
+/doc/generated
