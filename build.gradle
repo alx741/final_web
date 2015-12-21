@@ -7,3 +7,12 @@ sourceSets {
         }
     }
 }
+
+task doc(type:Exec) {
+    workingDir 'doc/'
+    commandLine 'make'
+}
+
+clean.doFirst {
+    delete "${rootDir}/doc/generated"
+}
