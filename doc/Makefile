@@ -22,4 +22,4 @@ $(DEST_DIR)/acta_constitucion.pdf: acta_constitucion.odt
 	libreoffice --convert-to pdf --outdir $(DEST_DIR) acta_constitucion.odt
 
 clean:
-	rm $(addprefix $(DEST_DIR)/, $(DOC_FILES))
+	rm -rf $(DEST_DIR)
