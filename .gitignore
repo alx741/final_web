@@ -1,3 +1,6 @@
 .gradle
 /build
 /doc/generated
+/src/ui/web/InterfazGrafica/nbproject/private/
+/src/ui/web/nbproject/private/
+/src/ui/web/build/
