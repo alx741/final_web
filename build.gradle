@@ -13,6 +13,11 @@ task doc(type:Exec) {
     commandLine 'make'
 }
 
-clean.doFirst {
-    delete "${rootDir}/doc/generated"
+task clean_doc(type:Exec) {
+    workingDir 'doc/'
+    commandLine 'make', 'clean'
 }
+
+clean.finalizedBy(clean_doc)
+
+build.finalizedBy(doc)
