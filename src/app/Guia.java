@@ -12,4 +12,8 @@ public class Guia
     private Date fecha_salida;
     private Date fecha_llegada;
     private Evento eventos[];
+
+    public Guia()
+    {
+    }
 }
