@@ -6,3 +6,5 @@
 /src/web/build/
 /src/web/dist/
 /src/app/*.class
+/src/webP/build/
+/src/webP/dist/
