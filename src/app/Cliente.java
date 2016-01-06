@@ -11,7 +11,7 @@ public class Cliente
     public Cliente(String ruc_empresa)
     {}
 
-    public void crear (String ruc_empresa, String nombre_empresa, String
+    public void registrar(String ruc_empresa, String nombre_empresa, String
             cedula_representante, String nombre_representante, String telefono,
             String direccion, String password)
     {
