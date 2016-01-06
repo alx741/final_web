@@ -23,6 +23,11 @@ task web(type:Exec) {
     commandLine 'make'
 }
 
-clean.finalizedBy(clean_doc)
+task clean_web(type:Exec) {
+    workingDir 'src/web'
+    commandLine 'make', 'clean'
+}
+
+clean.finalizedBy(clean_doc, clean_web)
 
 build.finalizedBy(doc)
