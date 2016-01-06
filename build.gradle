@@ -19,7 +19,7 @@ task clean_doc(type:Exec) {
 }
 
 task web(type:Exec) {
-    workingDir 'src/ui/web'
+    workingDir 'src/web'
     commandLine 'make'
 }
 
