@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf12839225897960" configfile="/OTV_JSF2_Hibernate3_PrimeFaces/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="payment.xhtml" x="122" y="433" id="pf128417776012122" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="payment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" x="122" y="1073" id="pf128417779137424" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" path="register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="page2.xhtml" x="122" y="2109" id="pf128430768814316" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="page2.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/index.xhtml" id="pf13176601503780" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13176601503791 pf13176708779695" path="/pages/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/welcome.xhtml" id="pf13176601503793" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13176601503791" path="/pages/welcome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/error.xhtml" id="pf13176708779696" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13176708779695" path="/pages/error.xhtml"/>
+  <links id="pf13176601503791" target="pf13176601503793" source="pf13176601503780" outcome="success"/>
+  <links id="pf13176708779695" target="pf13176708779696" source="pf13176601503780" outcome="error"/>
+</pageflow:Pageflow>

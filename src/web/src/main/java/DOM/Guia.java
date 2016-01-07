@@ -9,6 +9,7 @@ package DOM;
  *
  * @author Cristina
  */
+import hbm.Empleado;
 import java.util.Date;
 
 public class Guia

@@ -3,20 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DOM;
+package hbm;
 
 /**
  *
  * @author Cristina
  */
 public class Empleado {
+    private int id;
     private String cedula;
     private String nombre;
 
-    public Empleado(String cedula, String nombre)
+    public Empleado(){}
+
+
+    public int getId()
     {
-        this.cedula = cedula;
-        this.nombre = nombre;
+        return this.id;
+    }
+
+    private void setId(int id)
+    {
+        this.id = id;
     }
 
     public String getCedula()
@@ -27,5 +35,15 @@ public class Empleado {
     public String getNombre()
     {
         return this.nombre;
+    }
+
+    public void setCedula(String cedula)
+    {
+        this.cedula = cedula;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
     }
 }
