@@ -5,6 +5,6 @@
 /src/web/nbproject/private/
 /src/web/build/
 /src/web/dist/
-/src/app/*.class
-/src/webP/build/
-/src/webP/dist/
+/src/web/src/java/*.class
+/src/web/src/java/DOM/*.class
+/src/web/src/java/DAO/*.class
