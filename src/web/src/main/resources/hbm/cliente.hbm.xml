@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="hbm.Cliente" table="clientes">
+        <id name="id" column="id_cliente">
+            <generator class="increment"/>
+        </id>
+
+        <property name="nombre_empresa">
+            <column name="nombre_empresa"/>
+        </property>
+
+        <property name="cedula_representante">
+            <column name="cedula_representante"/>
+        </property>
+
+        <property name="nombre_representante">
+            <column name="nombre_representante"/>
+        </property>
+
+        <property name="telefono">
+            <column name="telefono"/>
+        </property>
+
+        <property name="direccion">
+            <column name="direccion"/>
+        </property>
+
+        <property name="password">
+            <column name="password"/>
+        </property>
+    </class>
+
+</hibernate-mapping>

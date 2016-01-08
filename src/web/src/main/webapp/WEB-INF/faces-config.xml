@@ -12,6 +12,13 @@
 	
 		<managed-bean-scope>request</managed-bean-scope>
         </managed-bean>
+        
+        <managed-bean>
+		<managed-bean-name>clienteMBean</managed-bean-name>
+		<managed-bean-class>DOM.ClienteManagedBean</managed-bean-class>
+	
+		<managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
 	
 	<navigation-rule>
 	    <from-view-id>/pages/index.xhtml</from-view-id> 

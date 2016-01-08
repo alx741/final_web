@@ -12,7 +12,7 @@
         <property name="cedula">
             <column name="cedula"/>
         </property>
-        
+
         <property name="nombre">
             <column name="nombre"/>
         </property>

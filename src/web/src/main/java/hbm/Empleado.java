@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hbm;
 
-/**
- *
- * @author Cristina
- */
-public class Empleado {
+public class Empleado
+{
     private int id;
     private String cedula;
     private String nombre;
 
-    public Empleado(){}
+    public Empleado() {}
 
 
     public int getId()
