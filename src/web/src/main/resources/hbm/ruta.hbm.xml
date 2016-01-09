@@ -5,38 +5,21 @@
 
 <hibernate-mapping>
 
-    <class name="hbm.Cliente" table="clientes">
-        <id name="id" column="id_cliente">
+    <class name="hbm.Ruta" table="rutas">
+        <id name="id" column="id_ruta">
             <generator class="increment"/>
         </id>
 
-        <property name="ruc_empresa">
-            <column name="ruc_empresa"/>
+        <property name="tarifa">
+            <column name="tarifa"/>
         </property>
 
-        <property name="nombre_empresa">
-            <column name="nombre_empresa"/>
+        <property name="descripcion">
+            <column name="descripcion"/>
         </property>
 
-        <property name="cedula_representante">
-            <column name="cedula_representante"/>
+        <property name="habilitado">
+            <column name="habilitado"/>
         </property>
-
-        <property name="nombre_representante">
-            <column name="nombre_representante"/>
-        </property>
-
-        <property name="telefono">
-            <column name="telefono"/>
-        </property>
-
-        <property name="direccion">
-            <column name="direccion"/>
-        </property>
-
-        <property name="password">
-            <column name="password"/>
-        </property>
-    </class>
 
 </hibernate-mapping>
