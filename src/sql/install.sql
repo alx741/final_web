@@ -11,7 +11,8 @@ CREATE OR REPLACE TABLE `empleados`
 CREATE OR REPLACE TABLE `clientes`
 (
     `id_cliente`           integer,
-    `nombre_empresa`       varchar(10) NOT NULL,
+    `ruc_empresa`          varchar(50) NOT NULL,
+    `nombre_empresa`       varchar(50) NOT NULL,
     `cedula_representante` varchar(50) NOT NULL,
     `nombre_representante` varchar(50) NOT NULL,
     `telefono`             varchar(50) NOT NULL,

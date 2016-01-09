@@ -10,6 +10,10 @@
             <generator class="increment"/>
         </id>
 
+        <property name="ruc_empresa">
+            <column name="ruc_empresa"/>
+        </property>
+
         <property name="nombre_empresa">
             <column name="nombre_empresa"/>
         </property>

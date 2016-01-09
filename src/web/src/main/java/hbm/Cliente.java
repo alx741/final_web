@@ -3,6 +3,7 @@ package hbm;
 public class Cliente
 {
 
+    private int id;
     private String ruc_empresa;
     private String nombre_empresa;
     private String cedula_representante;
@@ -14,6 +15,17 @@ public class Cliente
 
     public Cliente()
     {}
+
+    public int getId()
+    {
+        return this.id;
+    }
+
+    private void setId(int id)
+    {
+        this.id = id;
+    }
+
 
     public String getRuc_empresa()
     {
