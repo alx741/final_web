@@ -1,25 +1,14 @@
-<html xmlns="http://www.w3.org/1999/xhtml"  
-     xmlns:h="http://java.sun.com/jsf/html"      
-      xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">  
-   
- <h:head><title>Paqueteria</title></h:head>  
- <body>
-     <h:form>      
-	     <table> 
-		     <tr>
-		     	<td><h:outputLabel for="cedula" value="Cedula:" /></td>
-		     	<td><p:inputText id="cedula" value="#{empleadoMBean.cedula}"/></td>
-		     </tr>
-		     <tr>
-		     	<td><h:outputLabel for="nombre" value="Nombre:" /></td>   
-		     	<td><p:inputText id="nombre" value="#{empleadoMBean.nombre}"/> </td>    
-		     </tr>            
-	         <tr>
-		     	<td><p:commandButton id="submit" value="Guardar" action="#{empleadoMBean.save()}" ajax="false"/></td>
-		     	<td><p:commandButton id="reset" value="Resetear" action="#{empleadoMBean.reset()}" ajax="false"/></td>
-		     </tr>   
-	     </table>
-     </h:form>      
-</body>    
-</html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head><title>Paqueteria</title></h:head>
+    <body>
+
+        <a href="pages/agregar-empleado.xhtml">Agregar Empleado</a><br/>
+        <a href="pages/agregar-cliente.xhtml">Agregar Cliente</a><br/>
+        <a href="pages/listar-empleados.xhtml">Listar empleados</a><br/>
+
+    </body>
+</html>
