@@ -9,6 +9,7 @@ package DOM;
  *
  * @author Cristina
  */
+import hbm.Recurso;
 import hbm.Cliente;
 import hbm.Empleado;
 import java.util.Date;

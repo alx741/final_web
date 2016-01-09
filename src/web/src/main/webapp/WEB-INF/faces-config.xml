@@ -2,26 +2,30 @@
 <faces-config
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
-        
+
         <managed-bean>
-		<managed-bean-name>empleadoMBean</managed-bean-name>
-		<managed-bean-class>DOM.EmpleadoManagedBean</managed-bean-class>
-	
-		<managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-name>empleadoMBean</managed-bean-name>
+        <managed-bean-class>DOM.EmpleadoManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
         </managed-bean>
-        
+
         <managed-bean>
-		<managed-bean-name>clienteMBean</managed-bean-name>
-		<managed-bean-class>DOM.ClienteManagedBean</managed-bean-class>
-	
-		<managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-name>clienteMBean</managed-bean-name>
+        <managed-bean-class>DOM.ClienteManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
         </managed-bean>
-	
-	<navigation-rule>
-	    <from-view-id>/pages/agregar-empleado.xhtml</from-view-id> 
+
+        <managed-bean>
+        <managed-bean-name>rutaMBean</managed-bean-name>
+        <managed-bean-class>DOM.RutaManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/pages/agregar-empleado.xhtml</from-view-id>
             <navigation-case>
                 <from-outcome>success</from-outcome>
                 <to-view-id>/pages/index.xhtml</to-view-id>
@@ -31,9 +35,9 @@
                 <to-view-id>/pages/error.xhtml</to-view-id>
             </navigation-case>
         </navigation-rule>
-        
+
         <navigation-rule>
-	    <from-view-id>/pages/agregar-cliente.xhtml</from-view-id> 
+        <from-view-id>/pages/agregar-cliente.xhtml</from-view-id>
             <navigation-case>
                 <from-outcome>success</from-outcome>
                 <to-view-id>/pages/index.xhtml</to-view-id>
@@ -43,5 +47,5 @@
                 <to-view-id>/pages/error.xhtml</to-view-id>
             </navigation-case>
         </navigation-rule>
-    
+
 </faces-config>
