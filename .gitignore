@@ -3,8 +3,5 @@
 /doc/generated
 /src/web/InterfazGrafica/nbproject/private/
 /src/web/nbproject/private/
-/src/web/src/java/*.class
-/src/web/src/java/DOM/*.class
-/src/web/src/java/DAO/*.class
 /src/web/target/
 *.class

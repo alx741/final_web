@@ -14,5 +14,6 @@
   <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
   <!-- Mapping files -->
   <mapping resource="hbm/empleado.hbm.xml"/>
+  <mapping resource="hbm/cliente.hbm.xml"/>
 </session-factory>
 </hibernate-configuration>

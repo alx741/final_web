@@ -12,17 +12,36 @@
 	
 		<managed-bean-scope>request</managed-bean-scope>
         </managed-bean>
+        
+        <managed-bean>
+		<managed-bean-name>clienteMBean</managed-bean-name>
+		<managed-bean-class>DOM.ClienteManagedBean</managed-bean-class>
+	
+		<managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
 	
 	<navigation-rule>
 	    <from-view-id>/pages/index.xhtml</from-view-id> 
-	    <navigation-case>
-	        <from-outcome>success</from-outcome>
-            <to-view-id>/pages/welcome.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-	        <from-outcome>error</from-outcome>
-            <to-view-id>/pages/error.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/welcome.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>error</from-outcome>
+                <to-view-id>/pages/error.xhtml</to-view-id>
+            </navigation-case>
+        </navigation-rule>
+        
+        <navigation-rule>
+	    <from-view-id>/pages/agregar-cliente.xhtml</from-view-id> 
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/index.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>error</from-outcome>
+                <to-view-id>/pages/error.xhtml</to-view-id>
+            </navigation-case>
+        </navigation-rule>
     
 </faces-config>

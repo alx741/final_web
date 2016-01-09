@@ -3,9 +3,21 @@ USE `paqueteria`;
 
 CREATE OR REPLACE TABLE `empleados`
 (
-    `id_empleado`  integer,
-    `cedula`       varchar(10) NOT NULL,
+    `id_empleado` integer,
+    `cedula`      varchar(10) NOT NULL,
     `nombre`      varchar(50) NOT NULL
+) ENGINE = InnoDB;
+
+CREATE OR REPLACE TABLE `clientes`
+(
+    `id_cliente`           integer,
+    `ruc_empresa`          varchar(50) NOT NULL,
+    `nombre_empresa`       varchar(50) NOT NULL,
+    `cedula_representante` varchar(50) NOT NULL,
+    `nombre_representante` varchar(50) NOT NULL,
+    `telefono`             varchar(50) NOT NULL,
+    `direccion`            varchar(50) NOT NULL,
+    `password`             varchar(50) NOT NULL
 ) ENGINE = InnoDB;
 
 
