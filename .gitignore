@@ -7,3 +7,4 @@
 /src/web/src/java/DOM/*.class
 /src/web/src/java/DAO/*.class
 /src/web/target/
+*.class
