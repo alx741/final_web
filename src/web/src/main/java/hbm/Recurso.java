@@ -1,23 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hbm;
 
-/**
- *
- * @author Cristina
- */
 public abstract class Recurso
 {
     private int id;
     private float tarifa;
     private String descripcion;
     private boolean habilitado;
-    
-    public Recurso(){}
-    
+
+    public Recurso() {}
+
     /*
     public abstract boolean existe(String id);
 
