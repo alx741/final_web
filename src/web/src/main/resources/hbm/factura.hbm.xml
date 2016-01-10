@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="hbm.Factura" table="facturas">
+        <id name="id" column="id_factura">
+            <generator class="increment"/>
+        </id>
+
+        <property name="fecha" type="date">
+            <column name="fecha"/>
+        </property>
+
+        <property name="valor" type="float">
+            <column name="valor"/>
+        </property>
+
+        <property name="pagado" type="boolean">
+            <column name="pagado"/>
+        </property>
+    </class>
+
+</hibernate-mapping>
