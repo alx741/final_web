@@ -19,7 +19,9 @@ public class RutaManagedBean implements Serializable
     private static final String ERROR   = "error";
 
     private float tarifa;
-    private String descripcion;
+    private String origen;
+    private String destino;
+    private String transporte;
     private boolean habilitado;
 
     public float getTarifa()
@@ -32,14 +34,35 @@ public class RutaManagedBean implements Serializable
         this.tarifa = tarifa;
     }
 
-    public String getDescripcion()
+
+    public String getOrigen()
     {
-        return descripcion;
+        return origen;
     }
 
-    public void setDescripcion(String descripcion)
+    public void setOrigen(String origen)
     {
-        this.descripcion = descripcion;
+        this.origen = origen;
+    }
+
+    public String getDestino()
+    {
+        return destino;
+    }
+
+    public void setDestino(String destino)
+    {
+        this.destino = destino;
+    }
+
+    public String getTransporte()
+    {
+        return transporte;
+    }
+
+    public void setTransporte(String transporte)
+    {
+        this.transporte = transporte;
     }
 
     public boolean isHabilitado()
@@ -60,7 +83,8 @@ public class RutaManagedBean implements Serializable
 
         Ruta ruta = new Ruta();
         ruta.setTarifa(this.getTarifa());
-        ruta.setDescripcion(this.getDescripcion());
+        ruta.setDescripcion(this.getOrigen() + " - " + this.getDestino() + " ["
+                + this.getTransporte() + "]");
         ruta.setHabilitado(true);
 
         Transaction tx = null;
@@ -100,7 +124,9 @@ public class RutaManagedBean implements Serializable
     public void reset()
     {
         this.setTarifa(0);
-        this.setDescripcion("");
+        this.setOrigen("");
+        this.setDestino("");
+        this.setTransporte("");
         this.setHabilitado(true);
     }
 }
