@@ -2,6 +2,7 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -59,9 +60,9 @@ public class FacturaManagedBean implements Serializable
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         Factura factura = new Factura();
-        factura.setFecha(this.getFecha());
+        factura.setFecha(new Date());
         factura.setValor(this.getValor());
-        factura.setPagado(this.getPagado());
+        factura.setPagado(false);
 
         Transaction tx = null;
 
@@ -98,7 +99,7 @@ public class FacturaManagedBean implements Serializable
 
     public void reset()
     {
-        this.setFecha(0);
+        this.setFecha(new Date());
         this.setValor(0);
         this.setPagado(false);
     }
