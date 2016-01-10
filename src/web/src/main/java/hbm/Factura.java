@@ -8,7 +8,7 @@ public class Factura
     private int id;
     private Date fecha;
     private float valor;
-    private boolean estado_pagado;
+    private boolean pagado;
 
     public Factura()
     {
@@ -44,13 +44,13 @@ public class Factura
         this.valor = valor;
     }
 
-    public boolean isEstado_pagado()
+    public boolean isPagado()
     {
-        return estado_pagado;
+        return pagado;
     }
 
-    public void setEstado_pagado(boolean estado_pagado)
+    public void setPagado(boolean pagado)
     {
-        this.estado_pagado = estado_pagado;
+        this.pagado = pagado;
     }
 }
