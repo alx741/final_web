@@ -1,5 +1,8 @@
 package hbm;
 
+import java.util.Set;
+import java.util.HashSet;
+
 public class Cliente
 {
 
@@ -12,6 +15,7 @@ public class Cliente
     private String direccion;
     // TODO: Si alcanza el tiempo, almacenar esto como se debe!
     private String password;
+    private Set facturas = new HashSet();
 
     public Cliente()
     {}
@@ -97,4 +101,13 @@ public class Cliente
         this.password = password;
     }
 
+    public Set getFacturas()
+    {
+        return facturas;
+    }
+
+    public void setFacturas(Set facturas)
+    {
+        this.facturas = facturas;
+    }
 }
