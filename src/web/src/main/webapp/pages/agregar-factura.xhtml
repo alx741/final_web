@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+
+        <h1>
+            Esta pagina es usada unicamente como mecanismo de pruebas manual.
+            Las facturas deben ser creadas de forma automatica durante la
+            transacción de un nuevo envio!
+        </h1><br/><br/>
+
+
+    <p:panel header="Agregar Factura">
+    <h:form>
+         <table>
+             <tr>
+                 <td>La fecha será la fecha actual</td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="valor" value="Valor:" /></td>
+                <td><p:inputText id="valor" value="#{facturaMBean.valor}"/></td>
+             </tr>
+             <tr>
+                <td>El estado de pagado sera «falso»</td>
+             </tr>
+
+
+             <tr>
+                <td><p:commandButton id="submit" value="Guardar" action="#{facturaMBean.save()}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Resetear" action="#{facturaMBean.reset()}" ajax="false"/></td>
+             </tr>
+         </table>
+     </h:form>
+     </p:panel>
+</body>
+</html>
