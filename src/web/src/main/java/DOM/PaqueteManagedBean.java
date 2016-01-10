@@ -55,7 +55,7 @@ public class PaqueteManagedBean implements Serializable
         this.desde = desde;
     }
 
-    public String getHasta()
+    public float getHasta()
     {
         return hasta;
     }
@@ -125,9 +125,9 @@ public class PaqueteManagedBean implements Serializable
     public void reset()
     {
         this.setTarifa(0);
-        this.setOrigen("");
-        this.setDestino("");
-        this.setTransporte("");
+        this.setDescripcion("");
+        this.setDesde(0);
+        this.setHasta(0);
         this.setHabilitado(true);
     }
 }
