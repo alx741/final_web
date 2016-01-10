@@ -15,7 +15,7 @@ public class Cliente
     private String direccion;
     // TODO: Si alcanza el tiempo, almacenar esto como se debe!
     private String password;
-    private Set facturas = new HashSet();
+    private Set<Factura> facturas = new HashSet<Factura>();
 
     public Cliente()
     {}
@@ -106,7 +106,7 @@ public class Cliente
         return facturas;
     }
 
-    public void setFacturas(Set facturas)
+    public void setFacturas(Set<Factura> facturas)
     {
         this.facturas = facturas;
     }

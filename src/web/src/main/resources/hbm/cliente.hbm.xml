@@ -40,7 +40,7 @@
 
         <set name="facturas" table="facturas_clientes">
             <key column="id_cliente"/>
-            <many-to-many column="id_factura" class="Factura"/>
+            <many-to-many column="id_factura" class="hbm.Factura"/>
         </set>
 
     </class>
