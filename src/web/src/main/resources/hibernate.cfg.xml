@@ -16,5 +16,6 @@
   <mapping resource="hbm/empleado.hbm.xml"/>
   <mapping resource="hbm/cliente.hbm.xml"/>
   <mapping resource="hbm/ruta.hbm.xml"/>
+  <mapping resource="hbm/paquete.hbm.xml"/>
 </session-factory>
 </hibernate-configuration>
