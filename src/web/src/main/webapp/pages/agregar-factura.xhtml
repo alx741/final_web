@@ -17,14 +17,18 @@
     <h:form>
          <table>
              <tr>
-                 <td>La fecha será la fecha actual</td>
+                 <td>La fecha será la fecha actual<br/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="ruc_empresa" value="Ruc Empresa:" /></td>
+                <td><p:inputText id="ruc_empresa" value="#{facturaMBean.ruc_empresa}"/></td>
              </tr>
              <tr>
                 <td><h:outputLabel for="valor" value="Valor:" /></td>
                 <td><p:inputText id="valor" value="#{facturaMBean.valor}"/></td>
              </tr>
              <tr>
-                <td>El estado de pagado sera «falso»</td>
+                 <td><br/>El estado de pagado sera «falso»</td>
              </tr>
 
 

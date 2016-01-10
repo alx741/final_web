@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import hbm.Factura;
+import hbm.Cliente;
 import util.HibernateUtil;
 
 public class FacturaManagedBean implements Serializable
@@ -19,9 +20,31 @@ public class FacturaManagedBean implements Serializable
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
 
+    private String ruc_empresa;
+    private int id_cliente;
     private Date fecha;
     private float valor;
     private boolean pagado;
+
+    public String getRuc_empresa()
+    {
+        return this.ruc_empresa;
+    }
+
+    public void setRuc_empresa(String ruc_empresa)
+    {
+        this.ruc_empresa = ruc_empresa;
+    }
+
+    public int getId_cliente()
+    {
+        return this.id_cliente;
+    }
+
+    public void setId_cliente(int id_cliente)
+    {
+        this.id_cliente = id_cliente;
+    }
 
     public void setFecha(Date fecha)
     {
@@ -64,6 +87,11 @@ public class FacturaManagedBean implements Serializable
         factura.setValor(this.getValor());
         factura.setPagado(false);
 
+        // Agregar factura al cliente
+        Cliente cliente = (Cliente) session.load(Cliente.class,
+                this.getIdCliente(this.getRuc_empresa()));
+        cliente.getFacturas().add(factura);
+
         Transaction tx = null;
 
         try
@@ -95,6 +123,22 @@ public class FacturaManagedBean implements Serializable
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<Factura>  facturaList = session.createCriteria(Factura.class).list();
         return facturaList;
+    }
+
+    public int getIdCliente(String ruc_empresa)
+    {
+        ClienteManagedBean cmb = new ClienteManagedBean();
+        List<Cliente> clientes = cmb.getClientes();
+
+        for (Cliente cliente : clientes)
+        {
+            if (cliente.getRuc_empresa().equals(ruc_empresa))
+            {
+                return cliente.getId();
+            }
+        }
+
+        return 0;
     }
 
     public void reset()
