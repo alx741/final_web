@@ -59,8 +59,8 @@ public class RutaManagedBean implements Serializable
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         Ruta ruta = new Ruta();
-        ruta.setTarifa(0);
-        ruta.setDescripcion("");
+        ruta.setTarifa(this.getTarifa());
+        ruta.setDescripcion(this.getDescripcion());
         ruta.setHabilitado(true);
 
         Transaction tx = null;

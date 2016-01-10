@@ -21,5 +21,6 @@
         <property name="habilitado">
             <column name="habilitado"/>
         </property>
+    </class>
 
 </hibernate-mapping>
