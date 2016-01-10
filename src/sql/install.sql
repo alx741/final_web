@@ -36,6 +36,14 @@ CREATE OR REPLACE TABLE `paquetes`
     `habilitado`  boolean NOT NULL
 ) ENGINE = InnoDB;
 
+CREATE OR REPLACE TABLE `facturas`
+(
+    `id_factura` integer,
+    `fecha`      date NOT NULL,
+    `valor`      float NOT NULL,
+    `pagado`     boolean NOT NULL
+) ENGINE = InnoDB;
+
 
 CREATE OR REPLACE USER 'usuario'@'localhost' identified by '1234';
 grant all privileges on paqueteria.* to 'usuario'@'localhost';
