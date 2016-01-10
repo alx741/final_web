@@ -24,6 +24,12 @@
         <managed-bean-scope>request</managed-bean-scope>
         </managed-bean>
 
+        <managed-bean>
+        <managed-bean-name>paqueteMBean</managed-bean-name>
+        <managed-bean-class>DOM.PaqueteManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+
     <navigation-rule>
         <from-view-id>/pages/agregar-empleado.xhtml</from-view-id>
             <navigation-case>
@@ -47,9 +53,21 @@
                 <to-view-id>/pages/error.xhtml</to-view-id>
             </navigation-case>
         </navigation-rule>
-        
+
         <navigation-rule>
         <from-view-id>/pages/agregar-ruta.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/pages/index.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>error</from-outcome>
+                <to-view-id>/pages/error.xhtml</to-view-id>
+            </navigation-case>
+        </navigation-rule>
+
+        <navigation-rule>
+        <from-view-id>/pages/agregar-paquete.xhtml</from-view-id>
             <navigation-case>
                 <from-outcome>success</from-outcome>
                 <to-view-id>/pages/index.xhtml</to-view-id>
