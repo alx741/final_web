@@ -82,16 +82,19 @@ public class FacturaManagedBean implements Serializable
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        // Cliente
         ClienteManagedBean cmb = new ClienteManagedBean();
+        Cliente cliente = (Cliente) session.load(Cliente.class,
+                cmb.getIdCliente(this.getRuc_empresa()));
+
 
         Factura factura = new Factura();
         factura.setFecha(new Date());
         factura.setValor(this.getValor());
         factura.setPagado(false);
+        factura.setCliente(cliente);
 
         // Agregar factura al cliente
-        Cliente cliente = (Cliente) session.load(Cliente.class,
-                cmb.getIdCliente(this.getRuc_empresa()));
         cliente.getFacturas().add(factura);
 
         Transaction tx = null;

@@ -6,9 +6,20 @@ import java.util.Date;
 public class Factura
 {
     private int id;
+    private Cliente cliente;
     private Date fecha;
     private float valor;
     private boolean pagado;
+
+    public void setCliente(Cliente cliente)
+    {
+        this.cliente = cliente;
+    }
+
+    public Cliente getCliente()
+    {
+        return this.cliente;
+    }
 
     public Factura()
     {
