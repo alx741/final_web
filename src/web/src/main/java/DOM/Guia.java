@@ -23,7 +23,7 @@ public class Guia
     private Empleado empleado;
     private Factura factura;
     private String descripcion_contenido;
-    private Date fecha_creación;
+    private Date fecha_creacion;
     private Date fecha_salida;
     private Date fecha_llegada;
     private Evento eventos[];
