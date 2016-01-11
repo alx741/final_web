@@ -96,6 +96,20 @@ public class ClienteManagedBean implements Serializable
         this.password = password;
     }
 
+    public int getIdCliente(String ruc_empresa)
+    {
+        List<Cliente> clientes = getClientes();
+
+        for (Cliente cliente : clientes)
+        {
+            if (cliente.getRuc_empresa().equals(ruc_empresa))
+            {
+                return cliente.getId();
+            }
+        }
+
+        return 0;
+    }
 
 
     public String save()

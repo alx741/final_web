@@ -82,6 +82,8 @@ public class FacturaManagedBean implements Serializable
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        ClienteManagedBean cmb = new ClienteManagedBean();
+
         Factura factura = new Factura();
         factura.setFecha(new Date());
         factura.setValor(this.getValor());
@@ -89,7 +91,7 @@ public class FacturaManagedBean implements Serializable
 
         // Agregar factura al cliente
         Cliente cliente = (Cliente) session.load(Cliente.class,
-                this.getIdCliente(this.getRuc_empresa()));
+                cmb.getIdCliente(this.getRuc_empresa()));
         cliente.getFacturas().add(factura);
 
         Transaction tx = null;
@@ -125,23 +127,7 @@ public class FacturaManagedBean implements Serializable
         return facturaList;
     }
 
-    public int getIdCliente(String ruc_empresa)
-    {
-        ClienteManagedBean cmb = new ClienteManagedBean();
-        List<Cliente> clientes = cmb.getClientes();
-
-        for (Cliente cliente : clientes)
-        {
-            if (cliente.getRuc_empresa().equals(ruc_empresa))
-            {
-                return cliente.getId();
-            }
-        }
-
-        return 0;
-    }
-
-    public void reset()
+public void reset()
     {
         this.setFecha(new Date());
         this.setValor(0);
