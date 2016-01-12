@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="index.xhtml" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="bodyJSF">
+        <h:form>      
+	     <table> 
+		     <tr>
+		     	<td><h:outputLabel for="cedula" value="Cedula:" /></td>
+		     	<td><p:inputText id="cedula" value="#{empleadoMBean.cedula}"/></td>
+		     </tr>
+		     <tr>
+		     	<td><h:outputLabel for="nombre" value="Nombre:" /></td>   
+		     	<td><p:inputText id="nombre" value="#{empleadoMBean.nombre}"/> </td>    
+		     </tr>            
+	         <tr>
+		     	<td><p:commandButton id="submit" value="Guardar" action="#{empleadoMBean.save}" ajax="false"/></td>
+		     	<td><p:commandButton id="reset" value="Resetear" action="#{empleadoMBean.reset}" ajax="false"/></td>
+		     </tr>   
+	     </table>
+     </h:form>
+    </ui:define>
+</ui:composition>
+

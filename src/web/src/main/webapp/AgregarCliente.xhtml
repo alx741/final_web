@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="index.xhtml" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+   
+ <ui:define name="bodyJSF">
+    <p:panel header="Nuevo Cliente">
+    <h:form>
+         <table>
+             <tr>
+                <td><h:outputLabel for="ruc_empresa" value="Ruc empresarial:" /></td>
+                <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="nombre_empresa" value="Nombre empresa:" /></td>
+                <td><p:inputText id="nombre_empresa" value="#{clienteMBean.nombre_empresa}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="cedula_representante" value="Cedula representante:" /></td>
+                <td><p:inputText id="cedula_representante" value="#{clienteMBean.cedula_representante}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="nombre_representante" value="Nombre representante:" /></td>
+                <td><p:inputText id="nombre_representante" value="#{clienteMBean.nombre_representante}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="telefono" value="Teléfono:" /></td>
+                <td><p:inputText id="telefono" value="#{clienteMBean.telefono}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="direccion" value="Dirección:" /></td>
+                <td><p:inputText id="direccion" value="#{clienteMBean.direccion}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="password" value="Contraseña:" /></td>
+                <td><p:inputText id="password" value="#{clienteMBean.password}"/></td>
+             </tr>
+
+
+             <tr>
+                <td><p:commandButton id="submit" value="Guardar" action="#{clienteMBean.save}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/></td>
+             </tr>
+         </table>
+     </h:form>
+     </p:panel>
+ </ui:define>
+</ui:composition>
+

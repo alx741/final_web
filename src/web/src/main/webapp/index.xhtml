@@ -1,33 +1,69 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:head><title>Pagina de Inicio</title></h:head>
+    <h:head><title>Pagina de Inicio</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <style>
+      #leftPanel {z-index:2 !important; }
+      #leftPanel div{overflow:visible;}
+   </style>
+        
+    </h:head>
+    
+<h:body>
+
+     <p:layout fullPage="true">
+    <p:layoutUnit position="west" size="310" header="Minimizar" id="leftPanel"
+         resizable="true" collapsible="true">
+        <div >
     <h:form>
     <p:growl autoUpdate="true"/>
- 
     <p:panelMenu style="width:300px">
         <p:submenu label="Cliente">
-            <p:menuitem value="Ingresar Cliente"  icon="ui-icon-disk" />
-            <p:menuitem value="Modificar Cliente"   icon="ui-icon-arrowrefresh-1-w" />
-            <p:menuitem value="Eliminar Cliente"   icon="ui-icon-arrowrefresh-1-w" />
+            <p:menuitem value="Ingresar Cliente" url="AgregarCliente.faces" icon="ui-icon-disk" />
+            <p:menuitem value="Modificar Cliente"   icon="ui-icon-pencil" />
+            <p:menuitem value="Eliminar Cliente"   icon="ui-icon-closethick" />
+            <p:menuitem value="Listar Cliente"   icon="ui-icon-grip-solid-horizontal" />
+            <p:menuitem value="Buscar Cliente"   icon="ui-icon-search" />
+
         </p:submenu>
-        <p:submenu label="Non-Ajax Menuitem">
-            <p:menuitem value="Delete"   ajax="false" icon="ui-icon-close"/>
+        <p:submenu label="Paquete">
+            <p:menuitem value="Crear Paquete"   icon="ui-icon-disk" />
+            <p:menuitem value="Modificar Paquete"   icon="ui-icon-pencil" />
+            <p:menuitem value="Eliminar Paquete"   icon="ui-icon-closethick" />
+            <p:menuitem value="Listar Paquete"   icon="ui-icon-grip-solid-horizontal" />
+            <p:menuitem value="Buscar Paquete"   icon="ui-icon-search" />
         </p:submenu>
         <p:separator />
-        
+        <p:submenu label="Ruta">
+            <p:menuitem value="Crear Ruta"  url="AgregarRuta.faces" icon="ui-icon-disk" />
+            <p:menuitem value="Modificar Ruta"   icon="ui-icon-pencil" />
+            <p:menuitem value="Eliminar Ruta"   icon="ui-icon-closethick" />
+            <p:menuitem value="Listar Ruta"   icon="ui-icon-grip-solid-horizontal" />
+            <p:menuitem value="Buscar Ruta"   icon="ui-icon-search" />
+        </p:submenu>
+        <p:separator />
+        <p:submenu label="Empleado">
+            <p:menuitem value="Crear Empleado" url="AgregarEmpleado.faces"  icon="ui-icon-disk" />
+            <p:menuitem value="Modificar Empleado"   icon="ui-icon-pencil" />
+            <p:menuitem value="Eliminar Empleado"   icon="ui-icon-closethick" />
+            <p:menuitem value="Listar Empleados"   icon="ui-icon-grip-solid-horizontal" />
+            <p:menuitem value="Buscar Empleado"   icon="ui-icon-search" />
+        </p:submenu>
+        <p:separator />
     </p:panelMenu>
 </h:form>
-    <body>
-
-        <a href="agregar-empleado.xhtml">Agregar Empleado</a><br/>
-        <a href="agregar-cliente.xhtml">Agregar Cliente</a><br/>
-        <a href="agregar-ruta.xhtml">Agregar Ruta</a><br/>
-        <a href="agregar-paquete.xhtml">Agregar paquete</a><br/>
-        <a href="agregar-factura.xhtml">Nueva factura</a><br/>
-        <a href="listar-empleados.xhtml">Listar empleados</a><br/>
-
-    </body>
+</div>   
+    </p:layoutUnit>
+ 
+    <p:layoutUnit position="center">
+        <ui:insert name="bodyJSF">Aqui cambia el contenido</ui:insert>
+    </p:layoutUnit>
+</p:layout>   
+     </h:body>
+  
 </html>
