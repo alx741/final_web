@@ -8,7 +8,6 @@ build: clean
 
 deploy:
 	cp -rfv target/web-1.0-SNAPSHOT $(DEPLOY_DIR)
-	sudo service tomcat-7-test restart
 	mvn clean
 
 clean:
