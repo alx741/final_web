@@ -36,6 +36,12 @@
         <managed-bean-scope>request</managed-bean-scope>
         </managed-bean>
 
+        <managed-bean>
+        <managed-bean-name>eventoMBean</managed-bean-name>
+        <managed-bean-class>DOM.EventoManagedBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        </managed-bean>
+
     <navigation-rule>
         <from-view-id>/agregar-empleado.xhtml</from-view-id>
             <navigation-case>
@@ -86,6 +92,18 @@
 
         <navigation-rule>
         <from-view-id>/agregar-factura.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/index.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>error</from-outcome>
+                <to-view-id>/error.xhtml</to-view-id>
+            </navigation-case>
+        </navigation-rule>
+
+        <navigation-rule>
+        <from-view-id>/agregar-evento.xhtml</from-view-id>
             <navigation-case>
                 <from-outcome>success</from-outcome>
                 <to-view-id>/index.xhtml</to-view-id>
