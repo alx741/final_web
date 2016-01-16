@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="hbm.Evento" table="eventos">
+        <id name="id" column="id_evento">
+            <generator class="increment"/>
+        </id>
+
+        <property name="fecha" type="date">
+            <column name="fecha"/>
+        </property>
+
+        <property name="descripcion">
+            <column name="descripcion"/>
+        </property>
+
+    </class>
+
+</hibernate-mapping>
