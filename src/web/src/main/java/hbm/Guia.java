@@ -13,8 +13,6 @@ public class Guia
 {
     private int id;
     private Date fecha_creacion;
-    private Date fecha_salida;
-    private Date fecha_llegada;
     // private Recurso paquete;
     // private Recurso ruta;
     // private Cliente cliente;
@@ -45,26 +43,6 @@ public class Guia
     public void setFecha_creacion(Date fecha_creacion)
     {
         this.fecha_creacion = fecha_creacion;
-    }
-
-    public Date getFecha_salida()
-    {
-        return fecha_salida;
-    }
-
-    public void setFecha_salida(Date fecha_salida)
-    {
-        this.fecha_salida = fecha_salida;
-    }
-
-    public Date getFecha_llegada()
-    {
-        return fecha_llegada;
-    }
-
-    public void setFecha_llegada(Date fecha_llegada)
-    {
-        this.fecha_llegada = fecha_llegada;
     }
 
     // public Recurso getPaquete()

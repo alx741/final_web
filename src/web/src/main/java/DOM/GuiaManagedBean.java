@@ -21,8 +21,6 @@ public class GuiaManagedBean implements Serializable
     private static final String ERROR   = "error";
 
     private Date fecha_creacion;
-    private Date fecha_salida;
-    private Date fecha_llegada;
 
 
     public Date getFecha_creacion()
@@ -35,25 +33,6 @@ public class GuiaManagedBean implements Serializable
         this.fecha_creacion = fecha_creacion;
     }
 
-    public Date getFecha_salida()
-    {
-        return fecha_salida;
-    }
-
-    public void setFecha_salida(Date fecha_salida)
-    {
-        this.fecha_salida = fecha_salida;
-    }
-
-    public Date getFecha_llegada()
-    {
-        return fecha_llegada;
-    }
-
-    public void setFecha_llegada(Date fecha_llegada)
-    {
-        this.fecha_llegada = fecha_llegada;
-    }
 
 
     public String save()
@@ -69,8 +48,6 @@ public class GuiaManagedBean implements Serializable
 
         Guia guia = new Guia();
         guia.setFecha_creacion(new Date());
-        guia.setFecha_salida(null);
-        guia.setFecha_llegada(null);
 
         // // Agregar guia al cliente
         // cliente.getGuias().add(guia);
@@ -111,7 +88,5 @@ public class GuiaManagedBean implements Serializable
 public void reset()
     {
         this.setFecha_creacion(new Date());
-        this.setFecha_salida(null);
-        this.setFecha_llegada(null);
     }
 }

@@ -14,14 +14,6 @@
             <column name="fecha_creacion"/>
         </property>
 
-        <property name="fecha_salida" type="date">
-            <column name="fecha_salida"/>
-        </property>
-
-        <property name="fecha_llegada" type="date">
-            <column name="fecha_llegada"/>
-        </property>
-
     </class>
 
 </hibernate-mapping>
