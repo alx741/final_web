@@ -1,4 +1,4 @@
-package DOM;
+package hbm;
 
 import java.util.Date;
 
