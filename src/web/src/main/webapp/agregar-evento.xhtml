@@ -7,36 +7,38 @@
  <body>
     <p:panel header="Agregar Evento">
     <h:form>
-         <table>
-             <tr>
-                 <td>La fecha será la fecha actual<br/></td>
-             </tr>
 
-             <tr>
-                 <p:outputLabel for="evento" value="Evento:" />
-                    <p:selectOneRadio id="evento" value="#{eventoMBean.evento}">
-                    <br/>
-                    <f:selectItem itemLabel="Salida" itemValue="Salida"/>
-                    <br/>
-                    <f:selectItem itemLabel="Llegada" itemValue="Llegada"/>
-                    <br/>
-                    <f:selectItem itemLabel="Entregado" itemValue="Entregado"/>
-                    <br/>
-                    <f:selectItem itemLabel="Aprobado" itemValue="Aprobado"/>
-                </p:selectOneRadio>
-            </tr>
+            <br/>
+            La fecha será la fecha actual<br/>
 
-             <tr>
-                <td><h:outputLabel for="descripcion" value="Descripción:" /></td>
-                <td><p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/></td>
-             </tr>
+            <br/>
+            <hr/>
+            <br/>
+            <p:outputLabel for="evento" value="Evento:" />
+            <p:selectOneRadio id="evento" value="#{eventoMBean.evento}">
+                <br/>
+                <f:selectItem itemLabel="Salida" itemValue="Salida"/>
+                <br/>
+                <f:selectItem itemLabel="Llegada" itemValue="Llegada"/>
+                <br/>
+                <f:selectItem itemLabel="Entregado" itemValue="Entregado"/>
+                <br/>
+                <f:selectItem itemLabel="Aprobado" itemValue="Aprobado"/>
+            </p:selectOneRadio>
+
+            <br/>
+            <hr/>
+            <br/>
+            <h:outputLabel for="descripcion" value="Descripción [opcional]:" />
+            <p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/>
 
 
-             <tr>
-                <td><p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save()}" ajax="false"/></td>
-                <td><p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset()}" ajax="false"/></td>
-             </tr>
-         </table>
+            <br/>
+            <hr/>
+            <br/>
+            <p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save()}" ajax="false"/>
+            <p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset()}" ajax="false"/>
+
      </h:form>
      </p:panel>
 </body>
