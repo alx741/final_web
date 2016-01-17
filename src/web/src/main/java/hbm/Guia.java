@@ -13,12 +13,12 @@ public class Guia
 {
     private int id;
     private Date fecha_creacion;
+    private String detalle;
     private Recurso paquete;
     private Recurso ruta;
     private Cliente cliente;
     // private Empleado empleado;
     // private Factura factura;
-    // private String descripcion_contenido;
     // private Evento eventos[];
 
     public Guia()
@@ -73,5 +73,15 @@ public class Guia
     public void setCliente(Cliente cliente)
     {
         this.cliente = cliente;
+    }
+
+    public String getDetalle()
+    {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle)
+    {
+        this.detalle = detalle;
     }
 }

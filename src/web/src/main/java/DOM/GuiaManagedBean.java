@@ -29,6 +29,7 @@ public class GuiaManagedBean implements Serializable
     private ClienteManagedBean cmb = new ClienteManagedBean();
 
     private Date fecha_creacion;
+    private String detalle;
     private String paquete;
     private String ruta;
     private String cliente;
@@ -74,6 +75,16 @@ public class GuiaManagedBean implements Serializable
         this.cliente = cliente;
     }
 
+    public String getDetalle()
+    {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle)
+    {
+        this.detalle = detalle;
+    }
+
 
 
 
@@ -92,6 +103,7 @@ public class GuiaManagedBean implements Serializable
 
         Guia guia = new Guia();
         guia.setFecha_creacion(new Date());
+        guia.setDetalle(this.getDetalle());
         guia.setPaquete(pmb.getPaqueteByID(this.getPaquete()));
         guia.setRuta(rmb.getRutaByID(this.getRuta()));
         guia.setCliente(cmb.getClienteByRuc(this.getCliente()));
