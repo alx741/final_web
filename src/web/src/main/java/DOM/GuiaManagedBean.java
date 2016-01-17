@@ -25,9 +25,11 @@ public class GuiaManagedBean implements Serializable
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
     private PaqueteManagedBean pmb = new PaqueteManagedBean();
+    private RutaManagedBean rmb = new RutaManagedBean();
 
     private Date fecha_creacion;
     private String paquete;
+    private String ruta;
 
 
     public Date getFecha_creacion()
@@ -50,6 +52,16 @@ public class GuiaManagedBean implements Serializable
         this.paquete = paquete;
     }
 
+    public String getRuta()
+    {
+        return ruta;
+    }
+
+    public void setRuta(String ruta)
+    {
+        this.ruta = ruta;
+    }
+
 
     public String save()
     {
@@ -65,6 +77,7 @@ public class GuiaManagedBean implements Serializable
         Guia guia = new Guia();
         guia.setFecha_creacion(new Date());
         guia.setPaquete(pmb.getPaqueteByID(this.getPaquete()));
+        guia.setRuta(rmb.getRutaByID(this.getRuta()));
 
         // // Agregar guia al cliente
         // cliente.getGuias().add(guia);
@@ -121,6 +134,19 @@ public class GuiaManagedBean implements Serializable
         for (Paquete p : paqueteList)
         {
            descripciones.put(p.getDescripcion(), Integer.toString(p.getId()));
+        }
+
+        return descripciones;
+    }
+
+    public Map<String, String> getRutasDescripcion()
+    {
+        List<Ruta>  rutaList = rmb.getRutas();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Ruta r : rutaList)
+        {
+           descripciones.put(r.getDescripcion(), Integer.toString(r.getId()));
         }
 
         return descripciones;

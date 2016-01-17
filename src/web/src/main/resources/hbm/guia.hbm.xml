@@ -17,6 +17,9 @@
         <many-to-one name="paquete" column="paquete" unique="true"
             class="hbm.Paquete" not-null="true"/>
 
+        <many-to-one name="ruta" column="ruta" unique="true"
+            class="hbm.Ruta" not-null="true"/>
+
     </class>
 
 </hibernate-mapping>

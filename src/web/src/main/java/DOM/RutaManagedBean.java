@@ -129,4 +129,25 @@ public class RutaManagedBean implements Serializable
         this.setTransporte("");
         this.setHabilitado(true);
     }
+
+
+
+
+
+
+
+    public Ruta getRutaByID(String id)
+    {
+        List<Ruta> rutas = getRutas();
+
+        for (Ruta ruta : rutas)
+        {
+            if (ruta.getId() == Integer.parseInt(id))
+            {
+                return ruta;
+            }
+        }
+
+        return null;
+    }
 }

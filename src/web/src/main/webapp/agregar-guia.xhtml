@@ -23,6 +23,17 @@
         <br/> <br/> <h:outputText value="paquete: "></h:outputText>
         <h:outputText value="#{guiaMBean.paquete}"></h:outputText><br/>
 
+    <br/>
+    <hr/>
+    <br/>
+        <p:outputLabel for="ruta" value="Tipo de ruta: " />
+        <br/>
+        <p:selectOneMenu id="ruta" value="#{guiaMBean.ruta}" style="width:150px">
+            <f:selectItems value="#{guiaMBean.getRutasDescripcion()}" />
+        </p:selectOneMenu>
+        <br/> <br/> <h:outputText value="ruta: "></h:outputText>
+        <h:outputText value="#{guiaMBean.ruta}"></h:outputText><br/>
+
 
 
     <br/>
