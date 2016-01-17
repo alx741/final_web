@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+<h:head><title>Paqueteria</title></h:head>
+<body>
+
+    <p:panel header="Crear Guia">
+    <h:form>
+
+    <br/>
+        <h:outputText value="Fecha de creación será la fecha actual"></h:outputText>
+        <h:outputText value="Fecha de salida será indefinida"></h:outputText>
+        <h:outputText value="Fecha de llegada será indefinida"></h:outputText>
+
+    <br/>
+    <br/>
+        <p:commandButton id="submit" value="Guardar" action="#{guiaMBean.save()}" ajax="false"/>
+        <p:commandButton id="reset" value="Resetear" action="#{guiaMBean.reset()}" ajax="false"/>
+
+     </h:form>
+     </p:panel>
+
+</body>
+</html>
