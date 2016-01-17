@@ -5,24 +5,32 @@
 
  <h:head><title>Paqueteria</title></h:head>
  <body>
-
-        <h1>
-            Esta pagina es usada unicamente como mecanismo de pruebas manual.
-            Los eventos deben ser creados de forma automatica durante la
-            transacción de un nuevo envio!
-        </h1><br/><br/>
-
-
     <p:panel header="Agregar Evento">
     <h:form>
          <table>
              <tr>
                  <td>La fecha será la fecha actual<br/></td>
              </tr>
+
+             <tr>
+                 <p:outputLabel for="evento" value="Evento:" />
+                    <p:selectOneRadio id="evento" value="#{eventoMBean.evento}">
+                    <br/>
+                    <f:selectItem itemLabel="Salida" itemValue="Salida"/>
+                    <br/>
+                    <f:selectItem itemLabel="Llegada" itemValue="Llegada"/>
+                    <br/>
+                    <f:selectItem itemLabel="Entregado" itemValue="Entregado"/>
+                    <br/>
+                    <f:selectItem itemLabel="Aprobado" itemValue="Aprobado"/>
+                </p:selectOneRadio>
+            </tr>
+
              <tr>
                 <td><h:outputLabel for="descripcion" value="Descripción:" /></td>
                 <td><p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/></td>
              </tr>
+
 
              <tr>
                 <td><p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save()}" ajax="false"/></td>

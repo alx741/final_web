@@ -22,6 +22,7 @@ public class EventoManagedBean implements Serializable
 
     private int id;
     private Date fecha;
+    private String evento;
     private String descripcion;
 
     public int getId()
@@ -42,6 +43,16 @@ public class EventoManagedBean implements Serializable
     public void setFecha(Date fecha)
     {
         this.fecha = fecha;
+    }
+
+    public String getEvento()
+    {
+        return evento;
+    }
+
+    public void setEvento(String evento)
+    {
+        this.evento = evento;
     }
 
     public String getDescripcion()
@@ -68,7 +79,8 @@ public class EventoManagedBean implements Serializable
 
         Evento evento = new Evento();
         evento.setFecha(new Date());
-        evento.setDescripcion(this.getDescripcion());
+        evento.setDescripcion("[" + this.getEvento() + "] " +
+                this.getDescripcion());
 
         // // Agregar evento al cliente
         // cliente.getEventos().add(evento);
@@ -80,7 +92,8 @@ public class EventoManagedBean implements Serializable
             tx = session.beginTransaction();
             session.save(evento);
             tx.commit();
-            log.debug("Nuevo registro : " + evento + ", realizado : " + tx.wasCommitted());
+            log.debug("Nuevo registro : " + evento + ", realizado : " +
+                    tx.wasCommitted());
             result = SUCCESS;
         }
         catch (Exception e)
