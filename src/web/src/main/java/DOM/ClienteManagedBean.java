@@ -2,12 +2,17 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import hbm.Cliente;
+import hbm.Factura;
 import util.HibernateUtil;
 
 public class ClienteManagedBean implements Serializable
@@ -198,5 +203,32 @@ public class ClienteManagedBean implements Serializable
     public Cliente getClienteByRuc(String ruc)
     {
         return getClienteByID(String.valueOf(getIdCliente(ruc)));
+    }
+
+    public Factura createUnpaidFactura(Cliente cliente)
+    {
+        Set<Factura> facturasCliente = cliente.getFacturas();
+
+        // Obtener factura no pagada
+        Iterator<Factura> itr = facturasCliente.iterator();
+        Factura factura = null;
+        while (itr.hasNext())
+        {
+            factura = itr.next();
+
+            if (!factura.isPagado())
+            {
+                return factura;
+            }
+        }
+
+        factura = new Factura();
+        factura.setFecha(new Date());
+        factura.setValor(0);
+        factura.setPagado(false);
+        factura.setCliente(cliente);
+        cliente.getFacturas().add(factura);
+
+        return factura;
     }
 }

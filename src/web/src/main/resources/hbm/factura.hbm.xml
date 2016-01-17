@@ -21,6 +21,12 @@
         <property name="pagado" type="boolean">
             <column name="pagado"/>
         </property>
+
+        <set name="guias" table="guias_facturas">
+            <key column="id_factura"/>
+            <many-to-many column="id_guia" class="hbm.Guia"/>
+        </set>
+
     </class>
 
 </hibernate-mapping>

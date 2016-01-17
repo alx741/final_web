@@ -13,6 +13,7 @@ import org.hibernate.Transaction;
 import hbm.Guia;
 import hbm.Recurso;
 import hbm.Paquete;
+import hbm.Factura;
 import hbm.Ruta;
 import hbm.Cliente;
 import util.HibernateUtil;
@@ -33,6 +34,8 @@ public class GuiaManagedBean implements Serializable
     private String paquete;
     private String ruta;
     private String cliente;
+    // private Empleado empleado;
+    private String factura;
 
 
     public Date getFecha_creacion()
@@ -85,6 +88,16 @@ public class GuiaManagedBean implements Serializable
         this.detalle = detalle;
     }
 
+    public String getFactura()
+    {
+        return factura;
+    }
+
+    public void setFactura(String factura)
+    {
+        this.factura = factura;
+    }
+
 
 
 
@@ -95,21 +108,33 @@ public class GuiaManagedBean implements Serializable
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        // // Cliente
-        // ClienteManagedBean cmb = new ClienteManagedBean();
-        // Cliente cliente = (Cliente) session.load(Cliente.class,
-        //         cmb.getIdCliente(this.getRuc_empresa()));
 
+        // Paquete
+        Recurso paquete = pmb.getPaqueteByID(this.getPaquete());
+        // Ruta
+        Recurso ruta = rmb.getRutaByID(this.getRuta());
+
+        // Factura
+        Factura factura =
+            cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
+
+        Factura factura_h = (Factura) session.load(Factura.class,
+                factura.getId());
+
+        float nuevoValor = paquete.getTarifa() + ruta.getTarifa();
+        factura_h.setValor(factura.getValor() + nuevoValor);
 
         Guia guia = new Guia();
         guia.setFecha_creacion(new Date());
         guia.setDetalle(this.getDetalle());
-        guia.setPaquete(pmb.getPaqueteByID(this.getPaquete()));
-        guia.setRuta(rmb.getRutaByID(this.getRuta()));
+        guia.setPaquete(paquete);
+        guia.setRuta(ruta);
         guia.setCliente(cmb.getClienteByRuc(this.getCliente()));
+        guia.setFactura(factura);
 
-        // // Agregar guia al cliente
-        // cliente.getGuias().add(guia);
+        // Agregar guia a la factura
+        factura_h.getGuias().add(guia);
+
 
         Transaction tx = null;
 

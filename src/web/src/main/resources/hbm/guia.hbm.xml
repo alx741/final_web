@@ -27,6 +27,9 @@
         <many-to-one name="cliente" column="cliente" unique="true"
             class="hbm.Cliente" not-null="true"/>
 
+        <many-to-one name="factura" column="factura" unique="true"
+            class="hbm.Factura" not-null="true"/>
+
     </class>
 
 </hibernate-mapping>

@@ -18,7 +18,7 @@ public class Guia
     private Recurso ruta;
     private Cliente cliente;
     // private Empleado empleado;
-    // private Factura factura;
+    private Factura factura;
     // private Evento eventos[];
 
     public Guia()
@@ -83,5 +83,15 @@ public class Guia
     public void setDetalle(String detalle)
     {
         this.detalle = detalle;
+    }
+
+    public Factura getFactura()
+    {
+        return factura;
+    }
+
+    public void setFactura(Factura factura)
+    {
+        this.factura = factura;
     }
 }

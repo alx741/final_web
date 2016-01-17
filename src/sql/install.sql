@@ -64,7 +64,14 @@ CREATE OR REPLACE TABLE `guias`
     `detalle`        varchar(50) NOT NULL,
     `paquete`        integer NOT NULL,
     `ruta`           integer NOT NULL,
-    `cliente`        integer NOT NULL
+    `cliente`        integer NOT NULL,
+    `factura`        integer NOT NULL
+) ENGINE = InnoDB;
+
+CREATE OR REPLACE TABLE `guias_facturas`
+(
+    `id_factura` integer,
+    `id_guia`    integer NOT NULL
 ) ENGINE = InnoDB;
 
 

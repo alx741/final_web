@@ -3,6 +3,11 @@ package hbm;
 
 import java.util.Date;
 
+import hbm.Guia;
+
+import java.util.Set;
+import java.util.HashSet;
+
 public class Factura
 {
     private int id;
@@ -10,6 +15,10 @@ public class Factura
     private Date fecha;
     private float valor;
     private boolean pagado;
+    private Set<Guia> guias = new HashSet<Guia>();
+
+    public Factura()
+    {}
 
     public void setCliente(Cliente cliente)
     {
@@ -19,10 +28,6 @@ public class Factura
     public Cliente getCliente()
     {
         return this.cliente;
-    }
-
-    public Factura()
-    {
     }
 
     public int getId()
@@ -63,5 +68,15 @@ public class Factura
     public void setPagado(boolean pagado)
     {
         this.pagado = pagado;
+    }
+
+    public Set<Guia> getGuias()
+    {
+        return guias;
+    }
+
+    public void setGuias(Set<Guia> guias)
+    {
+        this.guias = guias;
     }
 }
