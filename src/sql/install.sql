@@ -62,7 +62,8 @@ CREATE OR REPLACE TABLE `guias`
     `id_guia`        integer,
     `fecha_creacion` date NOT NULL,
     `paquete`        integer NOT NULL,
-    `ruta`           integer NOT NULL
+    `ruta`           integer NOT NULL,
+    `cliente`        integer NOT NULL
 ) ENGINE = InnoDB;
 
 

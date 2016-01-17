@@ -20,6 +20,9 @@
         <many-to-one name="ruta" column="ruta" unique="true"
             class="hbm.Ruta" not-null="true"/>
 
+        <many-to-one name="cliente" column="cliente" unique="true"
+            class="hbm.Cliente" not-null="true"/>
+
     </class>
 
 </hibernate-mapping>

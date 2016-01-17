@@ -26,10 +26,12 @@ public class GuiaManagedBean implements Serializable
     private static final String ERROR   = "error";
     private PaqueteManagedBean pmb = new PaqueteManagedBean();
     private RutaManagedBean rmb = new RutaManagedBean();
+    private ClienteManagedBean cmb = new ClienteManagedBean();
 
     private Date fecha_creacion;
     private String paquete;
     private String ruta;
+    private String cliente;
 
 
     public Date getFecha_creacion()
@@ -62,6 +64,20 @@ public class GuiaManagedBean implements Serializable
         this.ruta = ruta;
     }
 
+    public String getCliente()
+    {
+        return cliente;
+    }
+
+    public void setCliente(String cliente)
+    {
+        this.cliente = cliente;
+    }
+
+
+
+
+
 
     public String save()
     {
@@ -78,6 +94,7 @@ public class GuiaManagedBean implements Serializable
         guia.setFecha_creacion(new Date());
         guia.setPaquete(pmb.getPaqueteByID(this.getPaquete()));
         guia.setRuta(rmb.getRutaByID(this.getRuta()));
+        guia.setCliente(cmb.getClienteByRuc(this.getCliente()));
 
         // // Agregar guia al cliente
         // cliente.getGuias().add(guia);
