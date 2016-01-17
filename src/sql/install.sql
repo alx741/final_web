@@ -60,7 +60,8 @@ CREATE OR REPLACE TABLE `eventos`
 CREATE OR REPLACE TABLE `guias`
 (
     `id_guia`        integer,
-    `fecha_creacion` date NOT NULL
+    `fecha_creacion` date NOT NULL,
+    `paquete`     integer NOT NULL
 ) ENGINE = InnoDB;
 
 

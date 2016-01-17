@@ -2,6 +2,8 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -9,6 +11,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import hbm.Guia;
+import hbm.Recurso;
+import hbm.Paquete;
+import hbm.Ruta;
 import hbm.Cliente;
 import util.HibernateUtil;
 
@@ -19,8 +24,10 @@ public class GuiaManagedBean implements Serializable
     private static Logger log = Logger.getLogger(GuiaManagedBean.class);
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
+    private PaqueteManagedBean pmb = new PaqueteManagedBean();
 
     private Date fecha_creacion;
+    private String paquete;
 
 
     public Date getFecha_creacion()
@@ -33,6 +40,15 @@ public class GuiaManagedBean implements Serializable
         this.fecha_creacion = fecha_creacion;
     }
 
+    public String getPaquete()
+    {
+        return paquete;
+    }
+
+    public void setPaquete(String paquete)
+    {
+        this.paquete = paquete;
+    }
 
 
     public String save()
@@ -48,6 +64,7 @@ public class GuiaManagedBean implements Serializable
 
         Guia guia = new Guia();
         guia.setFecha_creacion(new Date());
+        guia.setPaquete(pmb.getPaqueteByID(this.getPaquete()));
 
         // // Agregar guia al cliente
         // cliente.getGuias().add(guia);
@@ -85,8 +102,27 @@ public class GuiaManagedBean implements Serializable
         return guiaList;
     }
 
-public void reset()
+    public void reset()
     {
         this.setFecha_creacion(new Date());
+    }
+
+
+
+
+
+
+
+    public Map<String, String> getPaquetesDescripcion()
+    {
+        List<Paquete> paqueteList = pmb.getPaquetes();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Paquete p : paqueteList)
+        {
+           descripciones.put(p.getDescripcion(), Integer.toString(p.getId()));
+        }
+
+        return descripciones;
     }
 }

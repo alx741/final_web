@@ -130,4 +130,24 @@ public class PaqueteManagedBean implements Serializable
         this.setHasta(0);
         this.setHabilitado(true);
     }
+
+
+
+
+
+
+    public Paquete getPaqueteByID(String id)
+    {
+        List<Paquete> paquetes = getPaquetes();
+
+        for (Paquete paquete : paquetes)
+        {
+            if (paquete.getId() == Integer.parseInt(id))
+            {
+                return paquete;
+            }
+        }
+
+        return null;
+    }
 }

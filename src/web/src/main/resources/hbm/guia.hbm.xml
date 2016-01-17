@@ -14,6 +14,9 @@
             <column name="fecha_creacion"/>
         </property>
 
+        <many-to-one name="paquete" column="paquete" unique="true"
+            class="hbm.Paquete" not-null="true"/>
+
     </class>
 
 </hibernate-mapping>
