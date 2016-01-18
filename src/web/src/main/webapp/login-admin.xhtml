@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+     <h:form>
+         <table>
+             <tr>
+                <td><h:outputLabel for="pass" value="Password Administrador:" /></td>
+                <td><p:inputText id="pass" value="#{adminMBean.adminPass}"/> </td>
+             </tr>
+             <tr>
+                 <td><h:outputText value="Es correcto?: " /></td>
+                 <td><h:outputText value="#{adminMBean.isAdminPass}" /></td>
+             </tr>
+             <tr>
+                <td><p:commandButton id="submit" value="Verificar" action="#{adminMBean.checkAdminPassword()}" ajax="false"/></td>
+             </tr>
+         </table>
+     </h:form>
+</body>
+</html>
