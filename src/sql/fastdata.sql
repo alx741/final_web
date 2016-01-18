@@ -1,9 +1,9 @@
 USE `paqueteria`;
 
 /* Empleados */
-insert into `empleados` values (1, '11', 'aa');
-insert into `empleados` values (2, '22', 'bb');
-insert into `empleados` values (3, '33', 'cc');
+insert into `empleados` values (1, '11', 'aa', '11');
+insert into `empleados` values (2, '22', 'bb', '22');
+insert into `empleados` values (3, '33', 'cc', '33');
 
 /* Clintes */
 insert into `clientes` values (1, '11', 'aa', '11', 'aa', '11', 'aa', '11');

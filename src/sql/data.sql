@@ -9,27 +9,27 @@ USE `paqueteria`,
 
 /* Empleados */
 DELETE FROM `empleados`;
-INSERT INTO `empleados` (`id_empleado`,`cedula`,`nombre`) VALUES
-(1,"164906015","Xaviera Hall"),
-(2,"165708077","Olympia Mccall"),
-(3,"162012249","Zachary Petty"),
-(4,"163508236","Kai Garza"),
-(5,"168807169","Wallace Trujillo"),
-(6,"166608194","Uriel Howe"),
-(7,"167209039","Amity Huffman"),
-(8,"163806073","Yvonne England"),
-(9,"169101153","Lamar Mcclure"),
-(10,"169207079","Urielle Brock"),
-(11,"166408253","Phelan Lamb"),
-(12,"162303238","Coby Meyers"),
-(13,"163404297","Daria Henderson"),
-(14,"160606213","Tucker Garza"),
-(15,"166206035","Xena Rivers"),
-(16,"169304188","Isaac Waller"),
-(17,"160907022","Kaitlin Jenkins"),
-(18,"168410061","Kiayada Strong"),
-(19,"167104258","Ryan Bruce"),
-(20,"166309031","Noble Santana");
+INSERT INTO `empleados` (`id_empleado`,`cedula`,`nombre`,`password`) VALUES
+(1,"164906015","Xaviera Hall", "12345"),
+(2,"165708077","Olympia Mccall", "12345"),
+(3,"162012249","Zachary Petty", "12345"),
+(4,"163508236","Kai Garza", "12345"),
+(5,"168807169","Wallace Trujillo", "12345"),
+(6,"166608194","Uriel Howe", "12345"),
+(7,"167209039","Amity Huffman", "12345"),
+(8,"163806073","Yvonne England", "12345"),
+(9,"169101153","Lamar Mcclure", "12345"),
+(10,"169207079","Urielle Brock", "12345"),
+(11,"166408253","Phelan Lamb", "12345"),
+(12,"162303238","Coby Meyers", "12345"),
+(13,"163404297","Daria Henderson", "12345"),
+(14,"160606213","Tucker Garza", "12345"),
+(15,"166206035","Xena Rivers", "12345"),
+(16,"169304188","Isaac Waller", "12345"),
+(17,"160907022","Kaitlin Jenkins", "12345"),
+(18,"168410061","Kiayada Strong", "12345"),
+(19,"167104258","Ryan Bruce", "12345"),
+(20,"166309031","Noble Santana", "12345");
 
 
 

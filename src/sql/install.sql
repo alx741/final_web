@@ -5,7 +5,8 @@ CREATE OR REPLACE TABLE `empleados`
 (
     `id_empleado` integer,
     `cedula`      varchar(10) NOT NULL,
-    `nombre`      varchar(50) NOT NULL
+    `nombre`      varchar(50) NOT NULL,
+    `password`    varchar(50) NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE OR REPLACE TABLE `clientes`
