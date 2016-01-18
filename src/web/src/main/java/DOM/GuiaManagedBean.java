@@ -105,7 +105,7 @@ public class GuiaManagedBean implements Serializable
 
 
         // Paquete
-        Recurso paquete = pmb.getPaqueteByID(this.getPaquete());
+        Paquete paquete = pmb.getPaqueteByID(this.getPaquete());
         // Ruta
         Recurso ruta = rmb.getRutaByID(this.getRuta());
 

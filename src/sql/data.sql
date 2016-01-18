@@ -154,12 +154,12 @@ INSERT INTO `rutas` (`id_ruta`,`tarifa`,`descripcion`,`habilitado`) VALUES
 
 /* Paquetes */
 DELETE FROM `paquetes`;
-INSERT INTO `paquetes` (`id_paquete`,`tarifa`,`descripcion`,`habilitado`) VALUES
-(1,"1.50","Sobre [0.0 - 0.7 Kg]",true),
-(2,"3.00","Ligero [0.7 - 2 Kg]",true),
-(3,"5.45","Mediano [2 - 5.5 Kg]",true),
-(4,"5.45","Grande [5.5 - 10 Kg]",true),
-(5,"5.45","Pesado [10 - 20 Kg]",true);
+INSERT INTO `paquetes` (`id_paquete`,`tarifa`,`rawDesc`,`desde`,`hasta`,`habilitado`) VALUES
+(1,"1.50","Sobre", '0.0', '0.7',true),
+(2,"3.00","Ligero", '0.7', '2',true),
+(3,"5.45","Mediano", '2', '5.5',true),
+(4,"5.45","Grande", '5.5', '10',true),
+(5,"5.45","Pesado", '10', '20',true);
 
 
 /* Admin password */

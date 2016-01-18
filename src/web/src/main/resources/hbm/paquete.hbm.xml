@@ -14,8 +14,16 @@
             <column name="tarifa"/>
         </property>
 
-        <property name="descripcion">
-            <column name="descripcion"/>
+        <property name="rawDesc">
+            <column name="rawDesc"/>
+        </property>
+
+        <property name="desde" type="float">
+            <column name="desde"/>
+        </property>
+
+        <property name="hasta" type="float">
+            <column name="hasta"/>
         </property>
 
         <property name="habilitado">

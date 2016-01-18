@@ -16,9 +16,9 @@ insert into `rutas` values (2, '22.5', 'b-b', true);
 insert into `rutas` values (3, '33.5', 'c-c', true);
 
 /* Paquetes */
-insert into `paquetes` values (1, '11.5', 'sobre', true);
-insert into `paquetes` values (2, '22.5', 'mediano', true);
-insert into `paquetes` values (3, '33.5', 'grande', true);
+insert into `paquetes` values (1, '11.5', 'sobre', '0.0', '0.7', true);
+insert into `paquetes` values (2, '22.5', 'mediano', '0.7', '2.0', true);
+insert into `paquetes` values (3, '33.5', 'grande', '2.0', '5.5', true);
 
 /* Admin password */
 insert into `admin` values (1, '12345');

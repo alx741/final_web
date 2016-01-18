@@ -28,6 +28,8 @@ public class PaqueteManagedBean implements Serializable
     private boolean habilitado;
     private String paquete;
 
+    private String paquete_id;
+
     public float getTarifa()
     {
         return tarifa;
@@ -89,6 +91,18 @@ public class PaqueteManagedBean implements Serializable
         this.paquete = paquete;
     }
 
+    public String getPaquete_id()
+    {
+        return paquete_id;
+    }
+
+    public void setPaquete_id(String paquete_id)
+    {
+        this.paquete_id = paquete_id;
+    }
+
+
+
     public String save()
     {
         String result = null;
@@ -96,9 +110,9 @@ public class PaqueteManagedBean implements Serializable
 
         Paquete paquete = new Paquete();
         paquete.setTarifa(this.getTarifa());
-        paquete.setDescripcion(this.getDescripcion() + " [" +
-                Float.toString(this.getDesde()) + " - " +
-                Float.toString(this.getHasta()) + " Kg]");
+        paquete.setRawDesc(this.getDescripcion());
+        paquete.setDesde(this.getDesde());
+        paquete.setHasta(this.getHasta());
         paquete.setHabilitado(true);
 
         Transaction tx = null;
@@ -271,5 +285,39 @@ public class PaqueteManagedBean implements Serializable
         }
 
         return null;
+    }
+
+    public Map<String, String> getPaquetesDescripcion()
+    {
+        List<Paquete> paqueteList = this.getPaquetes();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Paquete p : paqueteList)
+        {
+            if (p.isHabilitado())
+            {
+                descripciones.put(p.getDescripcion(), Integer.toString(p.getId()));
+            }
+        }
+
+        return descripciones;
+    }
+
+    public void onPaqueteChange()
+    {
+
+    // private float tarifa;
+    // private String descripcion;
+    // private float desde;
+    // private float hasta;
+    // private boolean habilitado;
+    // private String paquete;
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Paquete paquete = (Paquete) session.load(Paquete.class,
+                Integer.parseInt(this.getPaquete()));
+
+        this.setTarifa(paquete.getTarifa());
+        // this.setTarifa(12);
     }
 }

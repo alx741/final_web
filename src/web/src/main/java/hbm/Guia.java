@@ -18,7 +18,7 @@ public class Guia
     private int id;
     private Date fecha_creacion;
     private String detalle;
-    private Recurso paquete;
+    private Paquete paquete;
     private Recurso ruta;
     private Cliente cliente;
     // private Empleado empleado;
@@ -62,12 +62,12 @@ public class Guia
         this.fecha_creacion = fecha_creacion;
     }
 
-    public Recurso getPaquete()
+    public Paquete getPaquete()
     {
         return paquete;
     }
 
-    public void setPaquete(Recurso paquete)
+    public void setPaquete(Paquete paquete)
     {
         this.paquete = paquete;
     }
