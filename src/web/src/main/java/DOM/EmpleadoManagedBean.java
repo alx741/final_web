@@ -20,9 +20,7 @@ public class EmpleadoManagedBean implements Serializable
     private static final String ERROR   = "error";
     private String cedula;
     private String nombre;
-
-    private String adminPass;
-    private String isAdminPass;
+    private String password;
 
 
 
@@ -46,24 +44,14 @@ public class EmpleadoManagedBean implements Serializable
         this.nombre = nombre;
     }
 
-    public String getAdminPass()
+    public String getPassword()
     {
-        return adminPass;
+        return password;
     }
 
-    public void setAdminPass(String adminPass)
+    public void setPassword(String password)
     {
-        this.adminPass = adminPass;
-    }
-
-    public String getIsAdminPass()
-    {
-        return isAdminPass;
-    }
-
-    public void setIsAdminPass(String isAdminPass)
-    {
-        this.isAdminPass = isAdminPass;
+        this.password = password;
     }
 
 
@@ -75,6 +63,7 @@ public class EmpleadoManagedBean implements Serializable
         Empleado empleado = new Empleado();
         empleado.setCedula(this.getCedula());
         empleado.setNombre(this.getNombre());
+        empleado.setPassword(this.getPassword());
 
         Transaction tx = null;
 
@@ -115,5 +104,6 @@ public class EmpleadoManagedBean implements Serializable
     {
         this.setCedula("");
         this.setNombre("");
+        this.setPassword("");
     }
 }
