@@ -112,6 +112,11 @@ public class GuiaManagedBean implements Serializable
         // Factura
         Factura factura =
             cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
+        if (factura.getId() == 0)
+        {
+            factura =
+                cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
+        }
 
         Factura factura_h = (Factura) session.load(Factura.class,
                 factura.getId());

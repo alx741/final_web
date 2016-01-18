@@ -222,12 +222,39 @@ public class ClienteManagedBean implements Serializable
             }
         }
 
+        // Crear nueva factura
+        Session session = HibernateUtil.getSessionFactory().openSession();
         factura = new Factura();
         factura.setFecha(new Date());
         factura.setValor(0);
         factura.setPagado(false);
         factura.setCliente(cliente);
-        cliente.getFacturas().add(factura);
+
+        ClienteManagedBean cmb = new ClienteManagedBean();
+        Cliente cliente_h = (Cliente) session.load(Cliente.class,
+                cliente.getId());
+        cliente_h.getFacturas().add(factura);
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(factura);
+            tx.commit();
+            log.debug("Nuevo registro : " + factura + ", realizado : " + tx.wasCommitted());
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
 
         return factura;
     }
