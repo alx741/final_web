@@ -22,6 +22,8 @@ public class EmpleadoManagedBean implements Serializable
     private String nombre;
     private String password;
 
+    private String isPass;
+
 
 
     public String getCedula()
@@ -52,6 +54,16 @@ public class EmpleadoManagedBean implements Serializable
     public void setPassword(String password)
     {
         this.password = password;
+    }
+
+    public String getIsPass()
+    {
+        return isPass;
+    }
+
+    public void setIsPass(String isPass)
+    {
+        this.isPass = isPass;
     }
 
 
@@ -105,5 +117,41 @@ public class EmpleadoManagedBean implements Serializable
         this.setCedula("");
         this.setNombre("");
         this.setPassword("");
+    }
+
+
+
+
+
+
+    public int getIdEmpleado(String cedula)
+    {
+        List<Empleado> empleados = getEmpleados();
+
+        for (Empleado empleado : empleados)
+        {
+            if (empleado.getCedula().equals(cedula))
+            {
+                return empleado.getId();
+            }
+        }
+
+        return 0;
+    }
+
+    public void checkEmpleadoPassword()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Empleado empleado = (Empleado) session.load(Empleado.class,
+                getIdEmpleado(this.getCedula()));
+
+        if (this.getPassword().equals(empleado.getPassword()))
+        {
+            this.isPass = "si";
+        }
+        else
+        {
+            this.isPass = "no";
+        }
     }
 }

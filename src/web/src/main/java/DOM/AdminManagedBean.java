@@ -104,7 +104,6 @@ public class AdminManagedBean implements Serializable
         Admin admin = (Admin) session.load(Admin.class, 1);
 
         if (this.getAdminPass().equals(admin.getPassword()))
-        // if (this.getAdminPass().equals("12345"))
         {
             this.isAdminPass = "si";
         }

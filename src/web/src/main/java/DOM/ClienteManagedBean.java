@@ -279,7 +279,6 @@ public class ClienteManagedBean implements Serializable
                 getIdCliente(this.getRuc_empresa()));
 
         if (this.getPassword().equals(cliente.getPassword()))
-        // if (this.getAdminPass().equals("12345"))
         {
             this.isPass = "si";
         }
