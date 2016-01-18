@@ -31,6 +31,9 @@ public class ClienteManagedBean implements Serializable
     private String direccion;
     private String password;
 
+    private String isPass;
+
+
     public String getRuc_empresa()
     {
         return ruc_empresa;
@@ -99,6 +102,16 @@ public class ClienteManagedBean implements Serializable
     public void setPassword(String password)
     {
         this.password = password;
+    }
+
+    public String getIsPass()
+    {
+        return isPass;
+    }
+
+    public void setIsPass(String isPass)
+    {
+        this.isPass = isPass;
     }
 
 
@@ -257,5 +270,22 @@ public class ClienteManagedBean implements Serializable
         }
 
         return factura;
+    }
+
+    public void checkClientePassword()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Cliente cliente = (Cliente) session.load(Cliente.class,
+                getIdCliente(this.getRuc_empresa()));
+
+        if (this.getPassword().equals(cliente.getPassword()))
+        // if (this.getAdminPass().equals("12345"))
+        {
+            this.isPass = "si";
+        }
+        else
+        {
+            this.isPass = "no";
+        }
     }
 }
