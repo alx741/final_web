@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+    <p:panel header="Modificar paquete">
+    <h:form>
+
+        <br/>
+            <p:outputLabel for="paquete" value="Tipo de paquete: " />
+            <br/>
+            <p:selectOneMenu id="paquete" value="#{paqueteMBean.paquete}" style="width:150px">
+                <p:ajax listener="#{paqueteMBean.onPaqueteChange()}" update="tarifa descripcion desde hasta"/>
+                <f:selectItem itemLabel="Seleccionar paquete" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{paqueteMBean.getPaquetesDescripcion()}" />
+            </p:selectOneMenu>
+
+        <br/>
+        <br/>
+            <h:outputLabel for="tarifa" value="Tarifa:" />
+            <p:inputText id="tarifa" value="#{paqueteMBean.tarifa}"/>
+
+        <br/>
+        <br/>
+            <h:outputLabel for="descripcion" value="Descripción:" />
+            <p:inputText id="descripcion" value="#{paqueteMBean.descripcion}"/>
+
+        <br/>
+        <br/>
+            <h3>Peso (Kg):</h3>
+            <h:outputLabel for="desde" value="Desde:" />
+            <p:inputText id="desde" value="#{paqueteMBean.desde}"/>
+        <br/>
+            <h:outputLabel for="hasta" value="Hasta:" />
+            <p:inputText id="hasta" value="#{paqueteMBean.hasta}"/>
+
+
+        <br/>
+        <br/>
+            <p:commandButton id="submit" value="Modificar" action="#{paqueteMBean.modificar()}" ajax="false"/>
+            <p:commandButton id="reset" value="Resetear" action="#{paqueteMBean.reset()}" ajax="false"/>
+
+     </h:form>
+     </p:panel>
+</body>
+</html>
