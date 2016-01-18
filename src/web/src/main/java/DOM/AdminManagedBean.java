@@ -50,8 +50,6 @@ public class AdminManagedBean implements Serializable
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         Admin admin = new Admin();
-        admin.setCedula(this.getCedula());
-        admin.setNombre(this.getNombre());
 
         Transaction tx = null;
 
@@ -90,8 +88,6 @@ public class AdminManagedBean implements Serializable
 
     public void reset()
     {
-        this.setCedula("");
-        this.setNombre("");
     }
 
 
