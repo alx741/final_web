@@ -81,6 +81,12 @@ CREATE OR REPLACE TABLE `eventos_guias`
     `id_evento` integer NOT NULL
 ) ENGINE = InnoDB;
 
+CREATE OR REPLACE TABLE `admin`
+(
+    `id_admin` integer,
+    `password` varchar(50) NOT NULL
+) ENGINE = InnoDB;
+
 
 CREATE OR REPLACE USER 'usuario'@'localhost' identified by '1234';
 grant all privileges on paqueteria.* to 'usuario'@'localhost';

@@ -160,3 +160,7 @@ INSERT INTO `paquetes` (`id_paquete`,`tarifa`,`descripcion`,`habilitado`) VALUES
 (3,"5.45","Mediano [2 - 5.5 Kg]",true),
 (4,"5.45","Grande [5.5 - 10 Kg]",true),
 (5,"5.45","Pesado [10 - 20 Kg]",true);
+
+
+/* Admin password */
+insert into `admin` values (1, '12345');
