@@ -5,6 +5,7 @@ public class Empleado
     private int id;
     private String cedula;
     private String nombre;
+    private String password;
 
     public Empleado() {}
 
@@ -37,5 +38,15 @@ public class Empleado
     public void setNombre(String nombre)
     {
         this.nombre = nombre;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
     }
 }
