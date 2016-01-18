@@ -2,6 +2,9 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -23,6 +26,7 @@ public class PaqueteManagedBean implements Serializable
     private float desde;
     private float hasta;
     private boolean habilitado;
+    private String paquete;
 
     public float getTarifa()
     {
@@ -75,6 +79,15 @@ public class PaqueteManagedBean implements Serializable
         this.habilitado = habilitado;
     }
 
+    public String getPaquete()
+    {
+        return paquete;
+    }
+
+    public void setPaquete(String paquete)
+    {
+        this.paquete = paquete;
+    }
 
     public String save()
     {
@@ -135,6 +148,115 @@ public class PaqueteManagedBean implements Serializable
 
 
 
+
+
+    public String deshabilitar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Paquete paquete = (Paquete) session.load(Paquete.class,
+                Integer.parseInt(this.getPaquete()));
+
+        paquete.setHabilitado(false);
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(paquete);
+            tx.commit();
+            log.debug("Nuevo registro : " + paquete + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
+    }
+
+    public String habilitar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Paquete paquete = (Paquete) session.load(Paquete.class,
+                Integer.parseInt(this.getPaquete()));
+
+        paquete.setHabilitado(true);
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(paquete);
+            tx.commit();
+            log.debug("Nuevo registro : " + paquete + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
+    }
+
+    public Map<String, String> getPaquetesHabilitados()
+    {
+        List<Paquete> paqueteList = this.getPaquetes();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Paquete p : paqueteList)
+        {
+            if (p.isHabilitado())
+            {
+                descripciones.put(p.getDescripcion(),
+                        Integer.toString(p.getId()));
+            }
+        }
+
+        return descripciones;
+    }
+
+    public Map<String, String> getPaquetesDeshabilitados()
+    {
+        List<Paquete> paqueteList = this.getPaquetes();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Paquete p : paqueteList)
+        {
+            if (!p.isHabilitado())
+            {
+                descripciones.put(p.getDescripcion(),
+                        Integer.toString(p.getId()));
+            }
+        }
+
+        return descripciones;
+    }
 
     public Paquete getPaqueteByID(String id)
     {
