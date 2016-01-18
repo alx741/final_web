@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+    <p:panel header="Login Cliente">
+    <h:form>
+         <table>
+             <tr>
+                <td><h:outputLabel for="ruc_empresa" value="Ruc empresarial:" /></td>
+                <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="password" value="Contraseña:" /></td>
+                <td><p:inputText id="password" value="#{clienteMBean.password}"/></td>
+             </tr>
+             <tr>
+                 <td><h:outputText value="Es correcto?: " /></td>
+                 <td><h:outputText value="#{clienteMBean.isPass}" /></td>
+             </tr>
+
+
+             <tr>
+                <td><p:commandButton id="submit" value="Verificar" action="#{clienteMBean.checkClientePassword()}" ajax="false"/></td>
+             </tr>
+         </table>
+     </h:form>
+     </p:panel>
+</body>
+</html>
