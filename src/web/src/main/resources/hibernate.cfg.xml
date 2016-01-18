@@ -20,5 +20,6 @@
   <mapping resource="hbm/factura.hbm.xml"/>
   <mapping resource="hbm/evento.hbm.xml"/>
   <mapping resource="hbm/guia.hbm.xml"/>
+  <mapping resource="hbm/admin.hbm.xml"/>
 </session-factory>
 </hibernate-configuration>
