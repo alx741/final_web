@@ -3,6 +3,9 @@ package DOM;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -25,6 +28,7 @@ public class FacturaManagedBean implements Serializable
     private Date fecha;
     private float valor;
     private boolean pagado;
+    private String factura;
 
     public String getRuc_empresa()
     {
@@ -53,7 +57,7 @@ public class FacturaManagedBean implements Serializable
 
     public Date getFecha()
     {
-        return this.fecha;
+        return fecha;
     }
 
     public void setValor(float valor)
@@ -75,6 +79,17 @@ public class FacturaManagedBean implements Serializable
     {
         return this.pagado;
     }
+
+    public String getFactura()
+    {
+        return this.factura;
+    }
+
+    public void setFactura(String factura)
+    {
+        this.factura = factura;
+    }
+
 
 
     public String save()
@@ -135,5 +150,68 @@ public void reset()
         this.setFecha(new Date());
         this.setValor(0);
         this.setPagado(false);
+    }
+
+
+
+
+
+
+
+
+
+    public String pagar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Factura factura = (Factura) session.load(Factura.class,
+                Integer.parseInt(this.getFactura()));
+
+        factura.setPagado(true);
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(factura);
+            tx.commit();
+            log.debug("Nuevo registro : " + factura + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
+    }
+
+    public Map<String, String> getUnpaidFacturas()
+    {
+        List<Factura> facturaList = this.getFacturas();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Factura f : facturaList)
+        {
+            if (!f.isPagado())
+            {
+                descripciones.put(f.getCliente().getNombre_empresa() + " | $" +
+                        Float.toString(f.getValor()),
+                        Integer.toString(f.getId()));
+            }
+        }
+
+        return descripciones;
     }
 }
