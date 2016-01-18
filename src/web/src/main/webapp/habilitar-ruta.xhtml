@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+    <p:panel header="Habilitar ruta">
+    <h:form>
+
+    <br/>
+        <p:outputLabel for="ruta" value="Tipo de ruta: " />
+        <br/>
+        <p:selectOneMenu id="ruta" value="#{rutaMBean.ruta}" style="width:150px">
+            <f:selectItems value="#{rutaMBean.getRutasDeshabilitados()}" />
+        </p:selectOneMenu>
+
+
+    <br/>
+    <hr/>
+    <br/>
+        <p:commandButton id="submit" value="Habilitar" action="#{rutaMBean.habilitar()}" ajax="false"/>
+
+     </h:form>
+     </p:panel>
+</body>
+</html>

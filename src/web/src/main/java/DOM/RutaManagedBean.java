@@ -2,6 +2,9 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -23,6 +26,7 @@ public class RutaManagedBean implements Serializable
     private String destino;
     private String transporte;
     private boolean habilitado;
+    private String ruta;
 
     public float getTarifa()
     {
@@ -73,6 +77,16 @@ public class RutaManagedBean implements Serializable
     public void setHabilitado(boolean habilitado)
     {
         this.habilitado = habilitado;
+    }
+
+    public String getRuta()
+    {
+        return ruta;
+    }
+
+    public void setRuta(String ruta)
+    {
+        this.ruta = ruta;
     }
 
 
@@ -134,6 +148,114 @@ public class RutaManagedBean implements Serializable
 
 
 
+
+    public String deshabilitar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Ruta ruta = (Ruta) session.load(Ruta.class,
+                Integer.parseInt(this.getRuta()));
+
+        ruta.setHabilitado(false);
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(ruta);
+            tx.commit();
+            log.debug("Nuevo registro : " + ruta + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
+    }
+
+    public String habilitar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Ruta ruta = (Ruta) session.load(Ruta.class,
+                Integer.parseInt(this.getRuta()));
+
+        ruta.setHabilitado(true);
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(ruta);
+            tx.commit();
+            log.debug("Nuevo registro : " + ruta + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
+    }
+
+    public Map<String, String> getRutasHabilitados()
+    {
+        List<Ruta> rutaList = this.getRutas();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Ruta p : rutaList)
+        {
+            if (p.isHabilitado())
+            {
+                descripciones.put(p.getDescripcion(),
+                        Integer.toString(p.getId()));
+            }
+        }
+
+        return descripciones;
+    }
+
+    public Map<String, String> getRutasDeshabilitados()
+    {
+        List<Ruta> rutaList = this.getRutas();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Ruta p : rutaList)
+        {
+            if (!p.isHabilitado())
+            {
+                descripciones.put(p.getDescripcion(),
+                        Integer.toString(p.getId()));
+            }
+        }
+
+        return descripciones;
+    }
 
 
     public Ruta getRutaByID(String id)
