@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+    <p:panel header="Agregar Factura">
+    <h:form>
+    <b>
+        Usar 2 combobox (quizas?):
+        - Uno para seleccionar el cliente
+        - Otro para seleccionar entre las facturas de ESE cliente
+
+        Este ejemplo muestra la idea de una lista
+        que afecta el contenido de la otra:
+        http://www.primefaces.org/showcase/ui/ajax/dropdown.xhtml
+    </b>
+
+    <p:panel header="Pagar Factura">
+    <h:form>
+
+    <br/>
+        <p:outputLabel for="factura" value="Factura: " />
+        <br/>
+        <p:selectOneMenu id="factura" value="#{facturaMBean.factura}" style="width:150px">
+            <f:selectItems value="#{facturaMBean.getUnpaidFacturas()}" />
+        </p:selectOneMenu>
+
+
+    <br/>
+    <hr/>
+    <br/>
+        <p:commandButton id="submit" value="Pagar" action="#{facturaMBean.pagar()}" ajax="false"/>
+
+     </h:form>
+     </p:panel>
+</body>
+</html>

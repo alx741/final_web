@@ -180,4 +180,16 @@
             </navigation-case>
         </navigation-rule>
 
+        <navigation-rule>
+        <from-view-id>/pagar-factura.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <to-view-id>/index.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>error</from-outcome>
+                <to-view-id>/error.xhtml</to-view-id>
+            </navigation-case>
+        </navigation-rule>
+
 </faces-config>
