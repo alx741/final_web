@@ -8,43 +8,20 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import hbm.Empleado;
+import hbm.Admin;
 import util.HibernateUtil;
 
-public class EmpleadoManagedBean implements Serializable
+public class AdminManagedBean implements Serializable
 {
 
     private static final long serialVersionUID = 1L;
-    private static Logger log = Logger.getLogger(EmpleadoManagedBean.class);
+    private static Logger log = Logger.getLogger(AdminManagedBean.class);
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
-    private String cedula;
-    private String nombre;
 
     private String adminPass;
     private String isAdminPass;
 
-
-
-    public String getCedula()
-    {
-        return this.cedula;
-    }
-
-    public String getNombre()
-    {
-        return this.nombre;
-    }
-
-    public void setCedula(String cedula)
-    {
-        this.cedula = cedula;
-    }
-
-    public void setNombre(String nombre)
-    {
-        this.nombre = nombre;
-    }
 
     public String getAdminPass()
     {
@@ -72,18 +49,18 @@ public class EmpleadoManagedBean implements Serializable
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        Empleado empleado = new Empleado();
-        empleado.setCedula(this.getCedula());
-        empleado.setNombre(this.getNombre());
+        Admin admin = new Admin();
+        admin.setCedula(this.getCedula());
+        admin.setNombre(this.getNombre());
 
         Transaction tx = null;
 
         try
         {
             tx = session.beginTransaction();
-            session.save(empleado);
+            session.save(admin);
             tx.commit();
-            log.debug("Nuevo registro : " + empleado + ", realizado : " +
+            log.debug("Nuevo registro : " + admin + ", realizado : " +
                     tx.wasCommitted());
             result = SUCCESS;
         }
@@ -103,17 +80,41 @@ public class EmpleadoManagedBean implements Serializable
         return result;
     }
 
-    public List<Empleado> getEmpleados()
+    public List<Admin> getAdmins()
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Empleado>  empleadoList =
-            session.createCriteria(Empleado.class).list();
-        return empleadoList;
+        List<Admin>  adminList =
+            session.createCriteria(Admin.class).list();
+        return adminList;
     }
 
     public void reset()
     {
         this.setCedula("");
         this.setNombre("");
+    }
+
+
+
+
+
+
+
+
+
+    public void checkAdminPassword()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Admin admin = (Admin) session.load(Admin.class, 1);
+
+        if (this.getAdminPass().equals(admin.getPassword()))
+        // if (this.getAdminPass().equals("12345"))
+        {
+            this.isAdminPass = "si";
+        }
+        else
+        {
+            this.isAdminPass = "no";
+        }
     }
 }
