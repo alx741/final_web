@@ -191,7 +191,10 @@ public class GuiaManagedBean implements Serializable
 
         for (Paquete p : paqueteList)
         {
-           descripciones.put(p.getDescripcion(), Integer.toString(p.getId()));
+            if (p.isHabilitado())
+            {
+                descripciones.put(p.getDescripcion(), Integer.toString(p.getId()));
+            }
         }
 
         return descripciones;
@@ -204,7 +207,10 @@ public class GuiaManagedBean implements Serializable
 
         for (Ruta r : rutaList)
         {
-           descripciones.put(r.getDescripcion(), Integer.toString(r.getId()));
+            if (r.isHabilitado())
+            {
+                descripciones.put(r.getDescripcion(), Integer.toString(r.getId()));
+            }
         }
 
         return descripciones;
