@@ -19,22 +19,3 @@ insert into `rutas` values (3, '33.5', 'c-c', true);
 insert into `paquetes` values (1, '11.5', 'sobre', true);
 insert into `paquetes` values (2, '22.5', 'mediano', true);
 insert into `paquetes` values (3, '33.5', 'grande', true);
-
-
-CREATE OR REPLACE TABLE `facturas`
-(
-    `id_factura` integer,
-    `fecha`      date NOT NULL,
-    `valor`      float NOT NULL,
-    `pagado`     boolean NOT NULL
-) ENGINE = InnoDB;
-
-CREATE OR REPLACE TABLE `facturas_clientes`
-(
-    `id_cliente` integer,
-    `id_factura` integer NOT NULL
-) ENGINE = InnoDB;
-
-
-CREATE OR REPLACE USER 'usuario'@'localhost' identified by '1234';
-grant all privileges on paqueteria.* to 'usuario'@'localhost';
