@@ -39,6 +39,7 @@ CREATE OR REPLACE TABLE `paquetes`
 CREATE OR REPLACE TABLE `facturas`
 (
     `id_factura` integer,
+    `cliente`    integer NOT NULL,
     `fecha`      date NOT NULL,
     `valor`      float NOT NULL,
     `pagado`     boolean NOT NULL

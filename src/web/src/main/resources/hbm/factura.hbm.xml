@@ -22,6 +22,9 @@
             <column name="pagado"/>
         </property>
 
+        <many-to-one name="cliente" column="cliente" unique="true"
+            class="hbm.Cliente" not-null="true"/>
+
         <set name="guias" table="guias_facturas">
             <key column="id_factura"/>
             <many-to-many column="id_guia" class="hbm.Guia"/>
