@@ -2,9 +2,13 @@ package hbm;
 
 import java.util.Date;
 
+import java.util.Set;
+import java.util.HashSet;
+
 import hbm.Factura;
 import hbm.Recurso;
 import hbm.Paquete;
+import hbm.Evento;
 import hbm.Ruta;
 import hbm.Cliente;
 import hbm.Empleado;
@@ -20,6 +24,19 @@ public class Guia
     // private Empleado empleado;
     private Factura factura;
     // private Evento eventos[];
+    private Set<Evento> eventos = new HashSet<Evento>();
+
+
+    // Usar para el detalle de las facturas
+    public String generarDescripcion()
+    {
+        return new String("Paquete: " + this.paquete.getDescripcion()
+                + " | Ruta: " + this.ruta.getDescripcion()
+                + " | Detalle: " + this.getDetalle());
+    }
+
+
+
 
     public Guia()
     {
@@ -93,5 +110,15 @@ public class Guia
     public void setFactura(Factura factura)
     {
         this.factura = factura;
+    }
+
+    public Set<Evento> getEventos()
+    {
+        return eventos;
+    }
+
+    public void setEventos(Set<Evento> eventos)
+    {
+        this.eventos = eventos;
     }
 }

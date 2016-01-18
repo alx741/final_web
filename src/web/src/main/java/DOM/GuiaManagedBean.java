@@ -98,11 +98,6 @@ public class GuiaManagedBean implements Serializable
         this.factura = factura;
     }
 
-
-
-
-
-
     public String save()
     {
         String result = null;
@@ -162,6 +157,7 @@ public class GuiaManagedBean implements Serializable
         return result;
     }
 
+
     public List<Guia> getGuias()
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -173,6 +169,9 @@ public class GuiaManagedBean implements Serializable
     {
         this.setFecha_creacion(new Date());
     }
+
+
+
 
 
 

@@ -30,6 +30,11 @@
         <many-to-one name="factura" column="factura" unique="true"
             class="hbm.Factura" not-null="true"/>
 
+        <set name="eventos" table="eventos_guias">
+            <key column="id_guia"/>
+            <many-to-many column="id_evento" class="hbm.Evento"/>
+        </set>
+
     </class>
 
 </hibernate-mapping>

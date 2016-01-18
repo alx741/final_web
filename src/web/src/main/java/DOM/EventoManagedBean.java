@@ -2,6 +2,8 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -10,6 +12,7 @@ import org.hibernate.Transaction;
 
 import hbm.Evento;
 import hbm.Cliente;
+import hbm.Guia;
 import util.HibernateUtil;
 
 public class EventoManagedBean implements Serializable
@@ -19,11 +22,13 @@ public class EventoManagedBean implements Serializable
     private static Logger log = Logger.getLogger(EventoManagedBean.class);
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
+    private GuiaManagedBean gmb = new GuiaManagedBean();
 
     private int id;
     private Date fecha;
     private String evento;
     private String descripcion;
+    private String guia;
 
     public int getId()
     {
@@ -65,6 +70,16 @@ public class EventoManagedBean implements Serializable
         this.descripcion = descripcion;
     }
 
+    public String getGuia()
+    {
+        return guia;
+    }
+
+    public void setGuia(String guia)
+    {
+        this.guia = guia;
+    }
+
 
     public String save()
     {
@@ -76,6 +91,10 @@ public class EventoManagedBean implements Serializable
         // Cliente cliente = (Cliente) session.load(Cliente.class,
         //         cmb.getIdCliente(this.getRuc_empresa()));
 
+        // Guia
+        Guia guia = (Guia) session.load(Guia.class,
+                Integer.parseInt(this.getGuia()));
+
 
         Evento evento = new Evento();
         evento.setFecha(new Date());
@@ -84,6 +103,9 @@ public class EventoManagedBean implements Serializable
 
         // // Agregar evento al cliente
         // cliente.getEventos().add(evento);
+
+        // Agregar evento a la guia
+        guia.getEventos().add(evento);
 
         Transaction tx = null;
 
@@ -119,9 +141,40 @@ public class EventoManagedBean implements Serializable
         return eventoList;
     }
 
-public void reset()
+    public void reset()
     {
         this.setFecha(new Date());
         this.setDescripcion("");
+    }
+
+
+
+
+
+
+
+
+    // Este metodo devuelve una lista de TODAS las guias de TODOS los clientes
+    // Usar 2 combobox (quizas?):
+    //  - Uno para seleccionar el cliente
+    //  - Otro para seleccionar entre las guias de ESE cliente
+
+    // Este ejemplo muestra la idea de una lista
+    // que afecta el contenido de la otra:
+    // http://www.primefaces.org/showcase/ui/ajax/dropdown.xhtml
+    public Map<String, String> getGuiasDescripcion()
+    {
+        //TODO: El metodo generarDescripcion() en Guia.java puede ser usado?
+
+        List<Guia> guiasList = gmb.getGuias();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Guia g : guiasList)
+        {
+           descripciones.put(g.getCliente().getNombre_empresa() + " | "
+                   + g.getDetalle(), String.valueOf(g.getId()));
+        }
+
+        return descripciones;
     }
 }

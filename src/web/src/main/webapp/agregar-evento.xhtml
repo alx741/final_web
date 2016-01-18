@@ -32,6 +32,28 @@
             <h:outputLabel for="descripcion" value="Descripción [opcional]:" />
             <p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/>
 
+            <br/>
+            <hr/>
+            <br/>
+            <b>
+                Cambiar esto con una forma más amigable y comprensible de
+                seleccionar la guia a la cual corresponde el evento!!
+
+                Filtrar las guias por clientes!
+
+                Cliente + fecha ?
+                Cliente + tipo de paquete?
+            </b>
+            <br/>
+            <br/>
+                <p:outputLabel for="guia" value="Guia: " />
+                <br/>
+                <p:selectOneMenu id="guia" value="#{eventoMBean.guia}" style="width:150px">
+                    <f:selectItems value="#{eventoMBean.getGuiasDescripcion()}" />
+                </p:selectOneMenu>
+                <br/> <br/> <h:outputText value="guia: "></h:outputText>
+                <h:outputText value="#{eventoMBean.guia}"></h:outputText><br/>
+
 
             <br/>
             <hr/>
