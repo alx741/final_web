@@ -305,19 +305,53 @@ public class PaqueteManagedBean implements Serializable
 
     public void onPaqueteChange()
     {
-
-    // private float tarifa;
-    // private String descripcion;
-    // private float desde;
-    // private float hasta;
-    // private boolean habilitado;
-    // private String paquete;
-
         Session session = HibernateUtil.getSessionFactory().openSession();
         Paquete paquete = (Paquete) session.load(Paquete.class,
                 Integer.parseInt(this.getPaquete()));
 
         this.setTarifa(paquete.getTarifa());
-        // this.setTarifa(12);
+        this.setDescripcion(paquete.getRawDesc());
+        this.setDesde(paquete.getDesde());
+        this.setHasta(paquete.getHasta());
+    }
+
+    public String modificar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Paquete paquete = (Paquete) session.load(Paquete.class,
+                Integer.parseInt(this.getPaquete()));
+
+        paquete.setTarifa(this.getTarifa());
+        paquete.setRawDesc(this.getDescripcion());
+        paquete.setDesde(this.getDesde());
+        paquete.setHasta(this.getHasta());
+        paquete.setHabilitado(true);
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(paquete);
+            tx.commit();
+            log.debug("Nuevo registro : " + paquete + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
     }
 }
