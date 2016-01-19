@@ -11,9 +11,9 @@ insert into `clientes` values (2, '22', 'bb', '22', 'bb', '22', 'bb', '22');
 insert into `clientes` values (3, '33', 'cc', '33', 'cc', '33', 'cc', '33');
 
 /* Rutas */
-insert into `rutas` values (1, '11.5', 'a-a', true);
-insert into `rutas` values (2, '22.5', 'b-b', true);
-insert into `rutas` values (3, '33.5', 'c-c', true);
+insert into `rutas` values (1, '11.5', 'a', 'a', 'a', true);
+insert into `rutas` values (2, '22.5', 'b', 'b', 'b', true);
+insert into `rutas` values (3, '33.5', 'c', 'c', 'c', true);
 
 /* Paquetes */
 insert into `paquetes` values (1, '11.5', 'sobre', '0.0', '0.7', true);

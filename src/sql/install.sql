@@ -23,10 +23,12 @@ CREATE OR REPLACE TABLE `clientes`
 
 CREATE OR REPLACE TABLE `rutas`
 (
-    `id_ruta`     integer,
-    `tarifa`      float NOT NULL,
-    `descripcion` varchar(50) NOT NULL,
-    `habilitado`  boolean NOT NULL
+    `id_ruta`    integer,
+    `tarifa`     float NOT NULL,
+    `origen`     varchar(50) NOT NULL,
+    `destino`    varchar(50) NOT NULL,
+    `transporte` varchar(50) NOT NULL,
+    `habilitado` boolean NOT NULL
 ) ENGINE = InnoDB;
 
 CREATE OR REPLACE TABLE `paquetes`

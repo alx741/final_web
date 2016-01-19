@@ -143,12 +143,12 @@ INSERT INTO `clientes` (`id_cliente`,`ruc_empresa`,`nombre_empresa`,
 
 /* Rutas */
 DELETE FROM `rutas`;
-INSERT INTO `rutas` (`id_ruta`,`tarifa`,`descripcion`,`habilitado`) VALUES
-(1,"3.30","Cuenca - Machala [Terrestre]",true),
-(2,"5.00","Cuenca - Quito [Terrestre]",true),
-(3,"2.25","Machala - Guayaquil [Maritimo]",true),
-(4,"7.45","Quito - Esmeraldas [Aereo]",true),
-(5,"6.00","Loja - Quito [Aereo]",true);
+INSERT INTO `rutas` (`id_ruta`,`tarifa`,`origen`,`destino`,`transporte`,`habilitado`) VALUES
+(1,"3.30","Cuenca", "Machala", "Terrestre",true),
+(2,"5.00","Cuenca", "Quito", "Terrestre",true),
+(3,"2.25","Machala", "Guayaquil", "Maritimo",true),
+(4,"7.45","Quito", "Esmeraldas", "Aereo",true),
+(5,"6.00","Loja", "Quito", "Aereo",true);
 
 
 

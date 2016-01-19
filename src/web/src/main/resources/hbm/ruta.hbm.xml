@@ -14,8 +14,16 @@
             <column name="tarifa"/>
         </property>
 
-        <property name="descripcion">
-            <column name="descripcion"/>
+        <property name="origen">
+            <column name="origen"/>
+        </property>
+
+        <property name="destino">
+            <column name="destino"/>
+        </property>
+
+        <property name="transporte">
+            <column name="transporte"/>
         </property>
 
         <property name="habilitado">

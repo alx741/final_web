@@ -97,8 +97,9 @@ public class RutaManagedBean implements Serializable
 
         Ruta ruta = new Ruta();
         ruta.setTarifa(this.getTarifa());
-        ruta.setDescripcion(this.getOrigen() + " - " + this.getDestino() + " ["
-                + this.getTransporte() + "]");
+        ruta.setOrigen(this.getOrigen());
+        ruta.setDestino(this.getDestino());
+        ruta.setTransporte(this.getTransporte());
         ruta.setHabilitado(true);
 
         Transaction tx = null;
