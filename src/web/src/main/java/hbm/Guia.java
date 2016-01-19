@@ -35,7 +35,10 @@ public class Guia
                 + " | Detalle: " + this.getDetalle());
     }
 
-
+    public float getValor()
+    {
+        return this.paquete.getTarifa() + this.ruta.getTarifa();
+    }
 
 
     public Guia()

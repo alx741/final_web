@@ -2,6 +2,7 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.hibernate.Transaction;
 
 import hbm.Factura;
 import hbm.Cliente;
+import hbm.Guia;
 import util.HibernateUtil;
 
 public class FacturaManagedBean implements Serializable
@@ -30,6 +32,7 @@ public class FacturaManagedBean implements Serializable
     private boolean pagado;
     private String factura;
     private String empresa;
+    private List<Guia> guiasFactura = new ArrayList<Guia>();
 
 
     public String getRuc_empresa()
@@ -100,6 +103,16 @@ public class FacturaManagedBean implements Serializable
     public void setEmpresa(String empresa)
     {
         this.empresa = empresa;
+    }
+
+    public void setGuiasFactura(List<Guia> guiasFactura)
+    {
+        this.guiasFactura = guiasFactura;
+    }
+
+    public List<Guia> getGuiasFactura()
+    {
+        return guiasFactura;
     }
 
 
@@ -247,9 +260,13 @@ public class FacturaManagedBean implements Serializable
         Factura factura = (Factura) session.load(Factura.class,
                 Integer.parseInt(this.getFactura()));
 
+        List<Guia> guias = new ArrayList<Guia>();
+        guias.addAll(factura.getGuias());
+
         this.setFecha(factura.getFecha());
         this.setEmpresa(factura.getCliente().getNombre_empresa());
         this.setValor(factura.getValor());
         this.setPagado(factura.isPagado());
+        this.setGuiasFactura(guias);
     }
 }
