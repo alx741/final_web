@@ -31,8 +31,18 @@ public class ClienteManagedBean implements Serializable
     private String direccion;
     private String password;
 
+    private String cliente;
     private String isPass;
 
+    public String getCliente()
+    {
+        return cliente;
+    }
+
+    public void setCliente(String cliente)
+    {
+        this.cliente = cliente;
+    }
 
     public String getRuc_empresa()
     {
@@ -286,5 +296,62 @@ public class ClienteManagedBean implements Serializable
         {
             this.isPass = "no";
         }
+    }
+
+    public void onClienteChange()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Cliente cliente = (Cliente) session.load(Cliente.class,
+                this.getIdCliente(this.getCliente()));
+
+        this.setRuc_empresa(cliente.getRuc_empresa());
+        this.setNombre_empresa(cliente.getNombre_empresa());
+        this.setCedula_representante(cliente.getCedula_representante());
+        this.setNombre_representante(cliente.getNombre_representante());
+        this.setTelefono(cliente.getTelefono());
+        this.setDireccion(cliente.getDireccion());
+        this.setPassword(cliente.getPassword());
+    }
+
+    public String modificar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Cliente cliente = (Cliente) session.load(Cliente.class,
+                this.getIdCliente(this.getCliente()));
+
+        cliente.setRuc_empresa(this.getRuc_empresa());
+        cliente.setNombre_empresa(this.getNombre_empresa());
+        cliente.setCedula_representante(this.getCedula_representante());
+        cliente.setNombre_representante(this.getNombre_representante());
+        cliente.setTelefono(this.getTelefono());
+        cliente.setDireccion(this.getDireccion());
+        cliente.setPassword(this.getPassword());
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(cliente);
+            tx.commit();
+            log.debug("Nuevo registro : " + cliente + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
     }
 }
