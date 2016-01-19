@@ -18,6 +18,7 @@ public class EmpleadoManagedBean implements Serializable
     private static Logger log = Logger.getLogger(EmpleadoManagedBean.class);
     private static final String SUCCESS = "success";
     private static final String ERROR   = "error";
+    private String empleado;
     private String cedula;
     private String nombre;
     private String password;
@@ -25,6 +26,14 @@ public class EmpleadoManagedBean implements Serializable
     private String isPass;
 
 
+    public String getEmpleado()
+    {
+        return this.empleado;
+    }
+    public void setEmpleado(String empleado)
+    {
+        this.empleado = empleado;
+    }
 
     public String getCedula()
     {
@@ -153,5 +162,55 @@ public class EmpleadoManagedBean implements Serializable
         {
             this.isPass = "no";
         }
+    }
+
+
+    public void onEmpleadoChange()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Empleado empleado = (Empleado) session.load(Empleado.class,
+                this.getIdEmpleado(this.getEmpleado()));
+
+        this.setCedula(empleado.getCedula());
+        this.setNombre(empleado.getNombre());
+        this.setPassword(empleado.getPassword());
+    }
+
+    public String modificar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Empleado empleado = (Empleado) session.load(Empleado.class,
+                this.getIdEmpleado(this.getEmpleado()));
+
+        empleado.setCedula(this.getCedula());
+        empleado.setNombre(this.getNombre());
+        empleado.setPassword(this.getPassword());
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(empleado);
+            tx.commit();
+            log.debug("Nuevo registro : " + empleado + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
     }
 }
