@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+    <p:panel header="Modificar ruta">
+    <h:form>
+
+        <br/>
+            <p:outputLabel for="ruta" value="Tipo de ruta: " />
+            <br/>
+            <p:selectOneMenu id="ruta" value="#{rutaMBean.ruta}" style="width:150px">
+                <p:ajax listener="#{rutaMBean.onRutaChange()}" update="tarifa origen destino transporte"/>
+                <f:selectItem itemLabel="Seleccionar ruta" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{rutaMBean.getRutasDescripcion()}" />
+            </p:selectOneMenu>
+
+        <br/>
+        <br/>
+            <h:outputLabel for="tarifa" value="Tarifa:" />
+            <p:inputText id="tarifa" value="#{rutaMBean.tarifa}"/>
+
+        <br/>
+        <br/>
+            <h:outputLabel for="origen" value="Origen:" />
+            <p:inputText id="origen" value="#{rutaMBean.origen}"/>
+
+        <br/>
+        <br/>
+            <h:outputLabel for="destino" value="Destino:" />
+            <p:inputText id="destino" value="#{rutaMBean.destino}"/>
+
+        <br/>
+        <br/>
+            <h:outputLabel for="transporte" value="Transporte:" />
+            <p:inputText id="transporte" value="#{rutaMBean.transporte}"/>
+
+
+
+        <br/>
+        <br/>
+            <p:commandButton id="submit" value="Modificar" action="#{rutaMBean.modificar()}" ajax="false"/>
+            <p:commandButton id="reset" value="Resetear" action="#{rutaMBean.reset()}" ajax="false"/>
+
+     </h:form>
+     </p:panel>
+</body>
+</html>
