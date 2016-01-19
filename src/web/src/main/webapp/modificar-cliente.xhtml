@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+        <p:panel header="Modificar cliente">
+        <h:form>
+
+            <br/>
+                <h:outputLabel for="cliente" value="Cliente (ruc empresa):" />
+                <p:inputText id="cliente" value="#{clienteMBean.cliente}"/>
+                <br/>
+                <br/>
+                <p:commandButton id="obtener" value="Obtener" action="#{clienteMBean.onClienteChange()}" ajax="false"/>
+
+
+            <br/>
+            <hr/>
+            <br/>
+                <h:outputLabel for="ruc_empresa" value="Ruc empresa:" />
+                <p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="nombre_empresa" value="Nombre empresa:" />
+                <p:inputText id="nombre_empresa" value="#{clienteMBean.nombre_empresa}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="cedula_representante" value="Cedula representante:" />
+                <p:inputText id="cedula_representante" value="#{clienteMBean.cedula_representante}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="nombre_representante" value="Nombre representante:" />
+                <p:inputText id="nombre_representante" value="#{clienteMBean.nombre_representante}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="telefono" value="Telefono:" />
+                <p:inputText id="telefono" value="#{clienteMBean.telefono}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="direccion" value="Dirección:" />
+                <p:inputText id="direccion" value="#{clienteMBean.direccion}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="password" value="Contraseña:" />
+                <p:inputText id="password" value="#{clienteMBean.password}"/>
+
+
+
+
+
+            <br/>
+            <br/>
+                <p:commandButton id="submit" value="Modificar" action="#{clienteMBean.modificar()}" ajax="false"/>
+                <p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset()}" ajax="false"/>
+
+        </h:form>
+        </p:panel>
+</body>
+</html>
