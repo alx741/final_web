@@ -1,0 +1,64 @@
+<ui:composition template="indexAd.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="Listar">
+        
+                    <h:form>
+        <p:tab title="Listar Cliente">
+            <p:dataTable id="cliente" value="#{clienteMBean.clientes}" var="cliente" style="width: 100%" rows="20"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" resizableColumns="true" liveResize="true">
+                 <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Id" />
+                </f:facet>
+                     <h:outputText value="#{cliente.id}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Ruc empresa" />
+                </f:facet>
+                <h:outputText value="#{cliente.ruc_empresa}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nombre Empresa" />
+                </f:facet>
+                <h:outputText value="#{cliente.ruc_empresa}" />
+            </p:column>
+          <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nombre Representante" />
+                </f:facet>
+              <h:outputText value="#{cliente.nombre_representante}" />
+            </p:column>
+                <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Cedula Representante" />
+                </f:facet>
+                    <h:outputText value="#{cliente.cedula_representante}" />
+            </p:column>
+                 <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Direccion" />
+                </f:facet>
+                     <h:outputText value="#{cliente.direccion}" />
+            </p:column>
+                 <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Telefono" />
+                </f:facet>
+                    <h:outputText value="#{cliente.telefono}" />
+            </p:column>
+                
+            
+        </p:dataTable>
+        </p:tab>
+                    </h:form>
+       
+    </ui:define>
+</ui:composition>

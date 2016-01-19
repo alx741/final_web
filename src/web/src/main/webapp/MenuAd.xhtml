@@ -102,7 +102,7 @@
                            
                             <tr>
                                 <td><h:outputLabel for="password" value="Contraseña:" /></td>
-                                <td><p:password id="password1" value="#{clienteMBean.password}"/></td>
+                                <td><p:inputText disabled="true" id="password1" value="#{clienteMBean.password}"/></td>
                             </tr>
                            
                            
@@ -165,7 +165,7 @@
                            
                             <tr>
                                 <td><h:outputLabel for="password" value="Contraseña:" /></td>
-                                <td><p:password  disabled="true" id="password1" value="#{clienteMBean.password}"/></td>
+                                <td><p:inputText  disabled="true" id="password1" value="#{clienteMBean.password}"/></td>
                             </tr>
                            
                            
@@ -187,8 +187,27 @@
             </h:panelGrid>
         </p:tab>
            <p:tab title="Listar Cliente">
-            <h:panelGrid columns="2" cellpadding="10">
-                
+            <p:dataTable id="empleados" value="#{clienteMBean.clientes}" var="empleado" style="width: 100%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText value="#{clienteMbean.id}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Cedula" />
+                </f:facet>
+                <h:outputText value="#{cliente.}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nombre" />
+                </f:facet>
+                <h:outputText value="#{empleado.nombre}" />
+            </p:column>
+        </p:dataTable>
+   </p:dataTable>
               
             </h:panelGrid>
         </p:tab>

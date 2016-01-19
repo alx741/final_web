@@ -13,9 +13,9 @@
         <p:outputLabel for="factura" value="Factura: " />
         <br/>
         <p:selectOneMenu id="factura" value="#{facturaMBean.factura}" style="width:150px">
-            <p:ajax listener="#{facturaMBean.onFacturaChange()}" update="cliente fecha total pagado guias"/>
+            <p:ajax listener="#{facturaMBean.onFacturaChange}" update="cliente fecha total pagado guias"/>
             <f:selectItem itemLabel="Seleccionar factura" itemValue="" noSelectionOption="true" />
-            <f:selectItems value="#{facturaMBean.getFacturasDescripcion()}" />
+            <f:selectItems value="#{facturaMBean.getFacturasDescripcion}" />
         </p:selectOneMenu>
 
         <br/>
@@ -63,19 +63,19 @@
                 <f:facet name="header">
                     <h:outputText value="Paquete" />
                 </f:facet>
-                <h:outputText value="#{guia.paquete.getDescripcion()}" />
+                <h:outputText value="#{guia.paquete.getDescripcion}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Ruta" />
                 </f:facet>
-                <h:outputText value="#{guia.ruta.getDescripcion()}" />
+                <h:outputText value="#{guia.ruta.getDescripcion}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Valor" />
                 </f:facet>
-                <h:outputText value="#{guia.getValor()}" />
+                <h:outputText value="#{guia.getValor}" />
             </p:column>
         </p:dataTable>
 

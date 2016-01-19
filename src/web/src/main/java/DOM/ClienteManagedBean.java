@@ -35,6 +35,15 @@ public class ClienteManagedBean implements Serializable
 
     private String cliente;
     private String isPass;
+    private List<Cliente> filteredClientes;
+
+    public List<Cliente> getFilteredClientes() {
+        return filteredClientes;
+    }
+
+    public void setFilteredClientes(List<Cliente> filteredClientes) {
+        this.filteredClientes = filteredClientes;
+    }
 
     public String getCliente()
     {
@@ -181,10 +190,11 @@ public class ClienteManagedBean implements Serializable
     public List<Cliente> getClientes()
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Cliente>  clienteList = session.createCriteria(Cliente.class).list();
+        List<Cliente>  clienteList = 
+                session.createCriteria(Cliente.class).list();
         return clienteList;
     }
-
+    
     public void reset()
     {
         this.setRuc_empresa("");

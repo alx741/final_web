@@ -15,46 +15,39 @@
     </h:head>
     
     <h:body>
-        <p:growl id="growl" showDetail="true" sticky="true" />  
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="100" header="Top" resizable="true" collapsible="true">
-                <h:outputText value="Top unit content." />
-            </p:layoutUnit>
-        <p:layoutUnit position="center">
-            <p:tabView  orientation="left">
-                <p:tab title="Cliente">
-                    <ui:insert name="bodyJSF" >
-                    </ui:insert>
-            
-                </p:tab>
-                <p:tab title="Paquete">
-            
-                    <ui:insert name="paqueteJSF" />
-                </p:tab>
-                <p:tab title="Ruta">
-                    <ui:insert name="rutasJSF" />
-          
-                </p:tab>
-                <p:tab title="Empleado">
-                    <ui:insert name="empleadoJSF" />
-          
-                </p:tab>
-                <p:tab title="Guias">
-                    <ui:insert name="guiaJSF" />
-          
-                </p:tab>
-                <p:tab title="Evento">
-                    <ui:insert name="eventoJSF" />
-          
-                </p:tab>
-                <p:tab title="Factura">
-                    <ui:insert name="facturaJSF" />
-          
-                </p:tab>
-            </p:tabView>
-        </p:layoutUnit>
-            
-        </p:layout>   
+      <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+
+              
+
+          <p:layoutUnit resizable="true" position="west" size="250" header="Menu">
+                    <p:menu>
+                        <p:submenu label="Cliente" >
+                            <p:menuitem value="Crear" url="agregar-cliente.faces" icon="ui-icon-person" />
+                            <p:menuitem value="Modificar" url="modificar-cliente.faces" />
+                            <p:menuitem value="Eliminar" url="eliminar-cliente.faces" />
+                            <p:menuitem value="Listar" url="listar-cliente.faces" />
+                            <p:menuitem value="Buscar" url="buscar-cliente.faces" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <ui:insert name="Nuevo" />
+                     <ui:insert name="Modificar" />
+                     <ui:insert name="Eliminar" />
+                     <ui:insert name="Listar" />
+                      <ui:insert name="Buscar" />
+                </p:layoutUnit>
+
+            </p:layout>
+    
+   
     </h:body>
   
 </html>
