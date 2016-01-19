@@ -29,6 +29,8 @@ public class FacturaManagedBean implements Serializable
     private float valor;
     private boolean pagado;
     private String factura;
+    private String empresa;
+
 
     public String getRuc_empresa()
     {
@@ -90,6 +92,15 @@ public class FacturaManagedBean implements Serializable
         this.factura = factura;
     }
 
+    public String getEmpresa()
+    {
+        return this.empresa;
+    }
+
+    public void setEmpresa(String empresa)
+    {
+        this.empresa = empresa;
+    }
 
 
     public String save()
@@ -145,7 +156,7 @@ public class FacturaManagedBean implements Serializable
         return facturaList;
     }
 
-public void reset()
+    public void reset()
     {
         this.setFecha(new Date());
         this.setValor(0);
@@ -213,5 +224,32 @@ public void reset()
         }
 
         return descripciones;
+    }
+
+    public Map<String, String> getFacturasDescripcion()
+    {
+        List<Factura> facturaList = this.getFacturas();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Factura f : facturaList)
+        {
+            descripciones.put(f.getCliente().getNombre_empresa() + " | $" +
+                    Float.toString(f.getValor()), Integer.toString(f.getId()));
+
+        }
+
+        return descripciones;
+    }
+
+    public void onFacturaChange()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Factura factura = (Factura) session.load(Factura.class,
+                Integer.parseInt(this.getFactura()));
+
+        this.setFecha(factura.getFecha());
+        this.setEmpresa(factura.getCliente().getNombre_empresa());
+        this.setValor(factura.getValor());
+        this.setPagado(factura.isPagado());
     }
 }

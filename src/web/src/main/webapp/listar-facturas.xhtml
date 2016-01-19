@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Paqueteria</title>
+</h:head>
+<body>
+    <h:form>
+
+    <br/>
+        <p:outputLabel for="factura" value="Factura: " />
+        <br/>
+        <p:selectOneMenu id="factura" value="#{facturaMBean.factura}" style="width:150px">
+            <p:ajax listener="#{facturaMBean.onFacturaChange()}" update="cliente fecha total pagado"/>
+            <f:selectItem itemLabel="Seleccionar factura" itemValue="" noSelectionOption="true" />
+            <f:selectItems value="#{facturaMBean.getFacturasDescripcion()}" />
+        </p:selectOneMenu>
+
+        <br/>
+        <br/>
+        <h:outputText value="Cliente: "></h:outputText>
+        <br/>
+        <h:outputText id="cliente" value="#{facturaMBean.empresa}"></h:outputText><br/>
+
+        <br/>
+        <br/>
+        <h:outputText value="Fecha: "></h:outputText>
+        <br/>
+        <h:outputText id="fecha" value="#{facturaMBean.fecha}"></h:outputText><br/>
+
+        <br/>
+        <br/>
+        <h:outputText value="Total: "></h:outputText>
+        <br/>
+        <h:outputText id="total" value="#{facturaMBean.valor}"></h:outputText><br/>
+
+        <br/>
+        <br/>
+        <h:outputText value="Pagado?: "></h:outputText>
+        <br/>
+        <h:outputText id="pagado" value="#{facturaMBean.pagado}"></h:outputText><br/>
+
+        </h:form>
+
+</body>
+</html>
