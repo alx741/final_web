@@ -2,31 +2,39 @@
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
      xmlns:p="http://primefaces.org/ui">
-
- <h:head><title>Paqueteria</title></h:head>
- <body>
-    <p:panel header="Login Cliente">
+    
+    
+    <h:head>
+        <title>Ingreso Cliente</title>
+         <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+    </h:head>
+ 
+    <body>   
     <h:form>
-         <table>
-             <tr>
-                <td><h:outputLabel for="ruc_empresa" value="Ruc empresarial:" /></td>
-                <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
-             </tr>
-             <tr>
-                <td><h:outputLabel for="password" value="Contraseña:" /></td>
-                <td><p:inputText id="password" value="#{clienteMBean.password}"/></td>
-             </tr>
-             <tr>
-                 <td><h:outputText value="Es correcto?: " /></td>
-                 <td><h:outputText value="#{clienteMBean.isPass}" /></td>
-             </tr>
+        <div id="content" class="right_content">
+                           
+        <p:panel id="basic" header="Ingreso al Sistema Cliente" style="margin-bottom:10px">
+        <h:panelGrid columns="2" cellpadding="5">
+        <br />
+        
+            <p:graphicImage name="./mensajeria_express.png" />
+            <h:outputLabel for="ruc" value="Ruc Empresarial:" />
+            <p:inputText id="cedula" value="#{clienteMBean.ruc_empresa}"/>
+            <h:outputLabel for="password" value="Contraseña:"/>
+            <p:password id="password" value="#{clienteMBean.password}"/>
+            <h:outputText value="Es correcto?: " />
+            <h:outputText value="#{clienteMBean.isPass}" />
+           
+        </h:panelGrid>
+            
+             <p:commandButton id="submit" icon="ui-icon-star" value="Verificar" action="#{clienteMBean.checkClientePassword}" ajax="false"/>
+                    
+              </p:panel>
+        </div>
+    
+    </h:form>
+    </body>
 
-
-             <tr>
-                <td><p:commandButton id="submit" value="Verificar" action="#{clienteMBean.checkClientePassword()}" ajax="false"/></td>
-             </tr>
-         </table>
-     </h:form>
-     </p:panel>
-</body>
+ 
 </html>

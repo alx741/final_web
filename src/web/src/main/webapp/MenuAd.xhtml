@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="indexAd.xhtml" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+   
+    <ui:define name="bodyJSF"> 
+     <p:accordionPanel>
+         
+        <p:tab title="Nuevo Cliente" >
+            
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:panel header="Nuevo cliente">
+                    <h:form>
+                        <table>
+                            <tr>
+                                <td><h:outputLabel for="ruc_empresa" value="Ruc empresarial:" /></td>
+                                <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="nombre_empresa" value="Nombre empresa:" /></td>
+                                <td><p:inputText id="nombre_empresa" value="#{clienteMBean.nombre_empresa}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="cedula_representante" value="Cedula representante:" /></td>
+                                <td><p:inputText id="cedula_representante" value="#{clienteMBean.cedula_representante}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="nombre_representante" value="Nombre representante:" /></td>
+                                <td><p:inputText id="nombre_representante" value="#{clienteMBean.nombre_representante}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="telefono" value="Teléfono:" /></td>
+                                <td><p:inputText id="telefono" value="#{clienteMBean.telefono}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="direccion" value="Dirección:" /></td>
+                                <td><p:inputText id="direccion" value="#{clienteMBean.direccion}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="password" value="Contraseña:" /></td>
+                                <td><p:password id="password" value="#{clienteMBean.password}"/></td>
+                            </tr>
+                            <tr>
+                                <td><p:commandButton id="submit" value="Guardar" action="#{clienteMBean.save}" ajax="false"/></td>
+                                <td><p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/></td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </p:panel>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Modificar Cliente">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:panel header="Modificar cliente">
+                    <h:form>
+                        <table>
+                            <tr>
+                                <td><h:outputLabel for="ruc_empresa" value="Ruc empresarial:" /></td>
+                                <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="nombre_empresa" value="Nombre empresa:" /></td>
+                                <td><p:inputText id="nombre_empresa" value="#{clienteMBean.nombre_empresa}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="cedula_representante" value="Cedula representante:" /></td>
+                                <td><p:inputText id="cedula_representante" value="#{clienteMBean.cedula_representante}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="nombre_representante" value="Nombre representante:" /></td>
+                                <td><p:inputText id="nombre_representante" value="#{clienteMBean.nombre_representante}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="telefono" value="Teléfono:" /></td>
+                                <td><p:inputText id="telefono" value="#{clienteMBean.telefono}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="direccion" value="Dirección:" /></td>
+                                <td><p:inputText id="direccion" value="#{clienteMBean.direccion}"/></td>
+                            </tr>
+                            <tr>
+                                <td><h:outputLabel for="password" value="Contraseña:" /></td>
+                                <td><p:password id="password" value="#{clienteMBean.password}"/></td>
+                            </tr>
+                            <tr>
+                                <td><p:commandButton id="submit" value="Guardar" action="#{clienteMBean.save}" ajax="false"/></td>
+                                <td><p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/></td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </p:panel>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Eliminar Cliente">
+            <h:panelGrid columns="2" cellpadding="10">
+              <p:panel header="Eliminar cliente">
+                    <h:form>
+                        <table>
+                            <tr>
+                                <td><h:outputLabel for="eliminar_ruc" value="Ingrese Ruc empresarial:" /></td>
+                                <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
+                            </tr>
+                        </table>
+                    </h:form>
+              </p:panel>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Buscar Clientes">
+            <h:panelGrid columns="2" cellpadding="10">
+                <h:form>
+                        <p:dataTable var="car" value="#{dtFilterView.cars}" widgetVar="carsTable"
+                 emptyMessage="No cars found with given criteria" filteredValue="#{dtFilterView.filteredCars}">
+ 
+               
+                        </p:dataTable>
+                </h:form>
+      
+            </h:panelGrid>
+        </p:tab>
+           <p:tab title="Listar Cliente">
+            <h:panelGrid columns="2" cellpadding="10">
+                
+              
+            </h:panelGrid>
+        </p:tab>
+    </p:accordionPanel>
+
+    
+ </ui:define>
+   
+     <ui:define name="paqueteJSF">
+    <p:panel header="Nuevo tipo de paquete">
+    <h:form>
+         <table>
+             <tr>
+                <td><h:outputLabel for="tarifa" value="Tarifa:" /></td>
+                <td><p:inputText id="tarifa" value="#{paqueteMBean.tarifa}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="descripcion" value="Descripción:" /></td>
+                <td><p:inputText id="descripcion" value="#{paqueteMBean.descripcion}"/>
+                   
+                </td>
+                
+                
+             </tr>
+         
+             <tr>
+              
+                 <td><hr/><br/><h1>Peso (Kg):</h1></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="desde" value="Desde:" /></td>
+                <td><p:inputText id="desde" value="#{paqueteMBean.desde}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="hasta" value="Hasta:" /></td>
+                <td><p:inputText id="hasta" value="#{paqueteMBean.hasta}"/></td>
+             </tr>
+
+
+             <tr>
+                <td><p:commandButton id="submit" value="Guardar" action="#{paqueteMBean.save}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Resetear" action="#{paqueteMBean.reset}" ajax="false"/></td>
+             </tr>
+         </table>
+     </h:form>
+     </p:panel>
+</ui:define>
+
+    <ui:define name="rutasJSF">
+        
+         <p:accordionPanel>
+         
+             <p:tab title="Nueva Ruta" >
+                 
+                 <h:panelGrid columns="2" cellpadding="10">
+                     <p:panel header="Nueva Ruta">
+                     <h:form>
+         <table>
+             <tr>
+                <td><h:outputLabel for="tarifa" value="Tarifa:" /></td>
+                <td><p:inputText id="tarifa" value="#{rutaMBean.tarifa}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="origen" value="Origen:" /></td>
+                <td><p:inputText id="origen" value="#{rutaMBean.origen}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="destino" value="Destino:" /></td>
+                <td><p:inputText id="destino" value="#{rutaMBean.destino}"/></td>
+             </tr>
+             <tr>
+                <td><h:outputLabel for="transporte" value="Transporte:" /></td>
+                <td><p:inputText id="transporte" value="#{rutaMBean.transporte}"/></td>
+             </tr>
+
+
+             <tr>
+                <td><p:commandButton id="submit" value="Guardar" action="#{rutaMBean.save}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Resetear" action="#{rutaMBean.reset}" ajax="false"/></td>
+             </tr>
+         </table>
+     </h:form>
+     </p:panel>
+                 </h:panelGrid>
+             </p:tab>
+                </p:accordionPanel>
+
+        
+    </ui:define>
+       
+</ui:composition>
+
+

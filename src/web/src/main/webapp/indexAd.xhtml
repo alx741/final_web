@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head><title>Pagina de Inicio</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <style>
+      #leftPanel {z-index:2 !important; }
+      #leftPanel div{overflow:visible;}
+   </style>
+        
+    </h:head>
+    
+<h:body>
+ 
+     <p:layout fullPage="true">
+         <p:layoutUnit position="north" size="100" header="Top" resizable="true" collapsible="true">
+                <h:outputText value="Top unit content." />
+            </p:layoutUnit>
+         <p:layoutUnit position="center">
+         <p:tabView orientation="left">
+        <p:tab title="Cliente">
+            
+                
+                <ui:insert name="bodyJSF" >
+	    	  
+	    	</ui:insert>
+            
+        </p:tab>
+        <p:tab title="Paquete">
+            
+             <ui:insert name="paqueteJSF" />
+        </p:tab>
+        <p:tab title="Ruta">
+            <ui:insert name="rutasJSF" />
+          
+        </p:tab>
+        <p:tab title="Empleado">
+            <ui:insert name="empleadoJSF" />
+          
+        </p:tab>
+        <p:tab title="Guias">
+            <ui:insert name="guiaJSF" />
+          
+        </p:tab>
+             <p:tab title="Evento">
+            <ui:insert name="eventoJSF" />
+          
+        </p:tab>
+        <p:tab title="Factura">
+            <ui:insert name="facturaJSF" />
+          
+        </p:tab>
+    </p:tabView>
+   
+ 
+   
+           </p:layoutUnit>
+    
+        
+       
+      
+       
+     
+        
+  
+</p:layout>   
+     </h:body>
+  
+</html>
