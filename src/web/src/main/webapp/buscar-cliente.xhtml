@@ -1,0 +1,48 @@
+
+<ui:composition template="indexAd.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="Buscar">
+<h:form>
+    <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}" widgetVar="clientesTable"
+                 emptyMessage="Clientes no encontrados con ese criterio" filteredValue="#{clienteMBean.filteredClientes}" rows="20"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" resizableColumns="true" liveResize="true">
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Buscar en todos los campos:" />
+                <p:inputText id="globalFilter" onkeyup="PF('clientesTable').filter()" style="width:150px" placeholder="Ingrese palabara"/>
+            </p:outputPanel>
+        </f:facet>
+ 
+        <p:column filterBy="#{cliente.id}" headerText="Id"  filterMatchMode="contains">
+            <h:outputText value="#{cliente.id}" />
+        </p:column>
+        <p:column filterBy="#{cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
+                <h:outputText value="#{cliente.ruc_empresa}" />
+        </p:column>
+        <p:column filterBy="#{cliente.nombre_empresa}" headerText="Nombre Empresa"  filterMatchMode="contains">
+            <h:outputText value="#{cliente.nombre_empresa}" />
+        </p:column>
+        <p:column filterBy="#{cliente.nombre_representante}" headerText="Nombre Representante"  filterMatchMode="contains">
+            <h:outputText value="#{cliente.nombre_representante}" />
+        </p:column>
+        <p:column filterBy="#{cliente.cedula_representante}" headerText="Cedula Representante"  filterMatchMode="contains">
+            <h:outputText value="#{cliente.cedula_representante}" />
+        </p:column>
+        <p:column filterBy="#{cliente.direccion}" headerText="Telefono"  filterMatchMode="contains">
+            <h:outputText value="#{cliente.direccion}" />
+        </p:column>
+        <p:column filterBy="#{cliente.telefono}" headerText="Telefono"  filterMatchMode="contains">
+            <h:outputText value="#{cliente.telefono}" />
+        </p:column>
+        
+    </p:dataTable>
+</h:form>
+    </ui:define>
+</ui:composition>
