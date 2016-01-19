@@ -98,18 +98,22 @@ public class AdminManagedBean implements Serializable
 
 
 
-    public void checkAdminPassword()
+    public String checkAdminPassword()
     {
+        String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Admin admin = (Admin) session.load(Admin.class, 1);
 
         if (this.getAdminPass().equals(admin.getPassword()))
         {
             this.isAdminPass = "si";
+            result = SUCCESS;
         }
         else
         {
+             result = ERROR;
             this.isAdminPass = "no";
         }
+        return result;
     }
 }

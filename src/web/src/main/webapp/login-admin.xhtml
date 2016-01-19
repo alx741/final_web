@@ -10,10 +10,12 @@
         <h:outputStylesheet name="./css/cssLayout.css"/>
     </h:head>
  
-    <body>   
-    <h:form>
+    <h:body >
+         
+    <h:form >
         <div id="content" class="right_content">
-                           
+            <p:layout style="min-width:400px;min-height:395px;">
+           <p:layoutUnit position="center" size="100" resizable="true">                
         <p:panel id="basic" header="Ingreso al Sistema Administrador" style="margin-bottom:10px">
         <h:panelGrid columns="2" cellpadding="5">
         <br />
@@ -28,9 +30,12 @@
                     
            
     </p:panel>
+                </p:layoutUnit>
+            </p:layout>
         </div>
     
     </h:form>
-    </body>
+        
+    </h:body>
  
 </html>
