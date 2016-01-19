@@ -273,4 +273,72 @@ public class RutaManagedBean implements Serializable
 
         return null;
     }
+
+    public Map<String, String> getRutasDescripcion()
+    {
+        List<Ruta>  rutaList = this.getRutas();
+        Map<String, String> descripciones = new  HashMap<String, String>();
+
+        for (Ruta r : rutaList)
+        {
+            if (r.isHabilitado())
+            {
+                descripciones.put(r.getDescripcion(), Integer.toString(r.getId()));
+            }
+        }
+
+        return descripciones;
+    }
+
+    public void onRutaChange()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Ruta ruta = (Ruta) session.load(Ruta.class,
+                Integer.parseInt(this.getRuta()));
+
+        this.setTarifa(ruta.getTarifa());
+        this.setOrigen(ruta.getOrigen());
+        this.setDestino(ruta.getDestino());
+        this.setTransporte(ruta.getTransporte());
+    }
+
+    public String modificar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Ruta ruta = (Ruta) session.load(Ruta.class,
+                Integer.parseInt(this.getRuta()));
+
+        ruta.setTarifa(this.getTarifa());
+        ruta.setOrigen(this.getOrigen());
+        ruta.setDestino(this.getDestino());
+        ruta.setTransporte(this.getTransporte());
+        ruta.setHabilitado(true);
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(ruta);
+            tx.commit();
+            log.debug("Nuevo registro : " + ruta + ", realizado : " +
+                      tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
+    }
 }
