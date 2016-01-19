@@ -3,22 +3,34 @@
       xmlns:f="http://java.sun.com/jsf/core"
      xmlns:p="http://primefaces.org/ui">
 
- <h:head><title>Paqueteria</title></h:head>
- <body>
-     <h:form>
-         <table>
-             <tr>
-                <td><h:outputLabel for="pass" value="Password Administrador:" /></td>
-                <td><p:inputText id="pass" value="#{adminMBean.adminPass}"/> </td>
-             </tr>
-             <tr>
-                 <td><h:outputText value="Es correcto?: " /></td>
-                 <td><h:outputText value="#{adminMBean.isAdminPass}" /></td>
-             </tr>
-             <tr>
-                <td><p:commandButton id="submit" value="Verificar" action="#{adminMBean.checkAdminPassword()}" ajax="false"/></td>
-             </tr>
-         </table>
-     </h:form>
-</body>
+    
+    <h:head>
+        <title>Ingreso Administrador</title>
+         <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+    </h:head>
+ 
+    <body>   
+    <h:form>
+        <div id="content" class="right_content">
+                           
+        <p:panel id="basic" header="Ingreso al Sistema Administrador" style="margin-bottom:10px">
+        <h:panelGrid columns="2" cellpadding="5">
+        <br />
+        
+            <p:graphicImage name="./mensajeria_express.png" />
+            <h:outputText value="Nombre de Usuario: "/> <p:inputText id="nombreUsuario"/>
+            <h:outputText value="Password: " />
+            <p:password id="pass" value="#{adminMBean.adminPass}"/>
+            </h:panelGrid>
+            
+             <p:commandButton value="Ingresar" icon="ui-icon-star" action="#{adminMBean.checkAdminPassword}" ajax="false"/>
+                    
+           
+    </p:panel>
+        </div>
+    
+    </h:form>
+    </body>
+ 
 </html>

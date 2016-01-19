@@ -3,30 +3,36 @@
       xmlns:f="http://java.sun.com/jsf/core"
      xmlns:p="http://primefaces.org/ui">
 
- <h:head><title>Paqueteria</title></h:head>
- <body>
-    <p:panel header="Login Empleado">
+    <h:head>
+        <title>Ingreso Empleado</title>
+         <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+    </h:head>
+ 
+    <body>   
     <h:form>
-         <table>
-             <tr>
-                <td><h:outputLabel for="cedula" value="Cedula:" /></td>
-                <td><p:inputText id="cedula" value="#{empleadoMBean.cedula}"/></td>
-             </tr>
-             <tr>
-                <td><h:outputLabel for="password" value="Contraseña:" /></td>
-                <td><p:inputText id="password" value="#{empleadoMBean.password}"/></td>
-             </tr>
-             <tr>
-                 <td><h:outputText value="Es correcto?: " /></td>
-                 <td><h:outputText value="#{empleadoMBean.isPass}" /></td>
-             </tr>
-
-
-             <tr>
-                <td><p:commandButton id="submit" value="Verificar" action="#{empleadoMBean.checkEmpleadoPassword()}" ajax="false"/></td>
-             </tr>
-         </table>
-     </h:form>
-     </p:panel>
-</body>
+        <div id="content" class="right_content">
+                           
+        <p:panel id="basic" header="Ingreso al Sistema Empleado" style="margin-bottom:10px">
+        <h:panelGrid columns="2" cellpadding="5">
+        <br />
+        
+            <p:graphicImage name="./mensajeria_express.png" />
+            <h:outputLabel for="cedula" value="Cedula:" />
+            <p:inputText id="cedula" value="#{empleadoMBean.cedula}"/>
+            <h:outputLabel for="password" value="Contraseña:"/>
+            <p:password id="password" value="#{empleadoMBean.password}"/>
+            <h:outputText value="Es correcto?: " />
+            <h:outputText value="#{empleadoMBean.isPass}" />
+           
+        </h:panelGrid>
+            
+             <p:commandButton id="submit" icon="ui-icon-star" value="Verificar" action="#{empleadoMBean.checkEmpleadoPassword}" ajax="false"/>
+                    
+              </p:panel>
+        </div>
+    
+    </h:form>
+    </body>
+ 
 </html>
