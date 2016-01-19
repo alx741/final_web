@@ -13,6 +13,8 @@ import org.hibernate.Transaction;
 
 import hbm.Cliente;
 import hbm.Factura;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import util.HibernateUtil;
 
 public class ClienteManagedBean implements Serializable
@@ -128,7 +130,7 @@ public class ClienteManagedBean implements Serializable
 
 
 
-    public String save()
+    public void save()
     {
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -150,22 +152,30 @@ public class ClienteManagedBean implements Serializable
             session.save(cliente);
             tx.commit();
             log.debug("Nuevo registro : " + cliente + ", realizado : " + tx.wasCommitted());
-            result = SUCCESS;
+            FacesContext context = FacesContext.getCurrentInstance();
+         
+            context.addMessage(null, new FacesMessage("Exito","Se guardo con exito el cliente") );
+           
         }
         catch (Exception e)
         {
             if (tx != null)
             {
                 tx.rollback();
-                result = ERROR;
+                
                 e.printStackTrace();
+                FacesContext context = FacesContext.getCurrentInstance();
+         
+            context.addMessage(null, new FacesMessage("Error","No se pudo guardar el Cliente") );
+            
             }
         }
         finally
         {
             session.close();
         }
-        return result;
+         reset();
+        //return result;
     }
 
     public List<Cliente> getClientes()
@@ -300,6 +310,7 @@ public class ClienteManagedBean implements Serializable
 
     public void onClienteChange()
     {
+        
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
@@ -313,7 +324,7 @@ public class ClienteManagedBean implements Serializable
         this.setPassword(cliente.getPassword());
     }
 
-    public String modificar()
+    public void modificar()
     {
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -333,25 +344,82 @@ public class ClienteManagedBean implements Serializable
         try
         {
             tx = session.beginTransaction();
-            session.save(cliente);
+            session.update(cliente);
             tx.commit();
             log.debug("Nuevo registro : " + cliente + ", realizado : " +
                       tx.wasCommitted());
-            result = SUCCESS;
+            FacesContext context = FacesContext.getCurrentInstance();
+         
+            context.addMessage(null, new FacesMessage("Exito","Se guardo con exito los cambios en el cliente") );
+            
+            
         }
         catch (Exception e)
         {
             if (tx != null)
             {
                 tx.rollback();
-                result = ERROR;
-                e.printStackTrace();
+                FacesContext context = FacesContext.getCurrentInstance();
+         
+            context.addMessage(null, new FacesMessage("Fracaso","No se pudo Modificar") );
+               e.printStackTrace();
+               
             }
         }
         finally
         {
             session.close();
         }
-        return result;
+        reset();
+        //return result;
+    }
+    public void eliminar()
+    {
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Cliente cliente = (Cliente) session.load(Cliente.class,
+                this.getIdCliente(this.getCliente()));
+
+        cliente.setRuc_empresa(this.getRuc_empresa());
+        cliente.setNombre_empresa(this.getNombre_empresa());
+        cliente.setCedula_representante(this.getCedula_representante());
+        cliente.setNombre_representante(this.getNombre_representante());
+        cliente.setTelefono(this.getTelefono());
+        cliente.setDireccion(this.getDireccion());
+        cliente.setPassword(this.getPassword());
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.delete(cliente);
+            tx.commit();
+            log.debug("Nuevo registro : " + cliente + ", realizado : " +
+                      tx.wasCommitted());
+            FacesContext context = FacesContext.getCurrentInstance();
+         
+            context.addMessage(null, new FacesMessage("Exito","Se guardo con exito los cambios en el cliente") );
+            
+            
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                FacesContext context = FacesContext.getCurrentInstance();
+         
+            context.addMessage(null, new FacesMessage("Fracaso","No se pudo Modificar") );
+               e.printStackTrace();
+               
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        reset();
+        //return result;
     }
 }

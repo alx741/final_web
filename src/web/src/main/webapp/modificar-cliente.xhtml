@@ -13,7 +13,7 @@
                 <p:inputText id="cliente" value="#{clienteMBean.cliente}"/>
                 <br/>
                 <br/>
-                <p:commandButton id="obtener" value="Obtener" action="#{clienteMBean.onClienteChange()}" ajax="false"/>
+                <p:commandButton id="obtener" value="Obtener" action="#{clienteMBean.onClienteChange}" ajax="false"/>
 
 
             <br/>
@@ -58,8 +58,8 @@
 
             <br/>
             <br/>
-                <p:commandButton id="submit" value="Modificar" action="#{clienteMBean.modificar()}" ajax="false"/>
-                <p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset()}" ajax="false"/>
+                <p:commandButton id="submit" value="Modificar" action="#{clienteMBean.modificar}" ajax="false"/>
+                <p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/>
 
         </h:form>
         </p:panel>

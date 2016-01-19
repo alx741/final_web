@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
    
     <ui:define name="bodyJSF"> 
-     <p:accordionPanel>
+     <p:accordionPanel multiple="true">
          
         <p:tab title="Nuevo Cliente" >
             
@@ -45,7 +45,7 @@
                                 <td><p:password id="password" value="#{clienteMBean.password}"/></td>
                             </tr>
                             <tr>
-                                <td><p:commandButton id="submit" value="Guardar" action="#{clienteMBean.save}" ajax="false"/></td>
+                                <td><p:commandButton id="submit" value="Guardar" action="#{clienteMBean.save}" update="growl" ajax="false"/></td>
                                 <td><p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/></td>
                             </tr>
                         </table>
@@ -57,66 +57,131 @@
             <h:panelGrid columns="2" cellpadding="10">
                 <p:panel header="Modificar cliente">
                     <h:form>
-                        <table>
-                            <tr>
-                                <td><h:outputLabel for="ruc_empresa" value="Ruc empresarial:" /></td>
-                                <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
-                            </tr>
-                            <tr>
-                                <td><h:outputLabel for="nombre_empresa" value="Nombre empresa:" /></td>
-                                <td><p:inputText id="nombre_empresa" value="#{clienteMBean.nombre_empresa}"/></td>
-                            </tr>
+                         <table>
+                             <tr>
+                                 <td><h:outputLabel for="cliente" value="Cliente (RUC empresa):" /></td>
+                                 <td><p:inputText id="cliente" value="#{clienteMBean.cliente}"/></td>
+                             </tr>
+                           
+                             <tr>
+                                 <td><p:commandButton id="obtener" value="Obtener Valores:" action="#{clienteMBean.onClienteChange}" ajax="false"/></td>
+                             </tr>
+                         </table>
+                            <hr/>
+                            
+                            <table>
+                                <tr>
+                                    <td><h:outputLabel for="ruc_empresa" value="Ruc empresa:" /></td>
+                                    <td><p:inputText id="ruc_empresa1" value="#{clienteMBean.ruc_empresa}"/></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><h:outputLabel for="nombre_empresa" value="Nombre empresa:" /></td>
+                                    <td><p:inputText id="nombre_empresa1" value="#{clienteMBean.nombre_empresa}"/></td>
+                                </tr>
+                            
                             <tr>
                                 <td><h:outputLabel for="cedula_representante" value="Cedula representante:" /></td>
-                                <td><p:inputText id="cedula_representante" value="#{clienteMBean.cedula_representante}"/></td>
+                                <td><p:inputText id="cedula_representante1" value="#{clienteMBean.cedula_representante}"/></td>
                             </tr>
+                           
                             <tr>
                                 <td><h:outputLabel for="nombre_representante" value="Nombre representante:" /></td>
-                                <td><p:inputText id="nombre_representante" value="#{clienteMBean.nombre_representante}"/></td>
+                                <td><p:inputText id="nombre_representante1" value="#{clienteMBean.nombre_representante}"/></td>
                             </tr>
+                         
                             <tr>
-                                <td><h:outputLabel for="telefono" value="Teléfono:" /></td>
-                                <td><p:inputText id="telefono" value="#{clienteMBean.telefono}"/></td>
+                                <td><h:outputLabel for="telefono" value="Telefono:" /></td>
+                                <td><p:inputText id="telefono1" value="#{clienteMBean.telefono}"/></td>
                             </tr>
+                         
                             <tr>
                                 <td><h:outputLabel for="direccion" value="Dirección:" /></td>
-                                <td><p:inputText id="direccion" value="#{clienteMBean.direccion}"/></td>
+                                <td><p:inputText id="direccion1" value="#{clienteMBean.direccion}"/></td>
                             </tr>
+                           
                             <tr>
                                 <td><h:outputLabel for="password" value="Contraseña:" /></td>
-                                <td><p:password id="password" value="#{clienteMBean.password}"/></td>
+                                <td><p:password id="password1" value="#{clienteMBean.password}"/></td>
                             </tr>
+                           
+                           
                             <tr>
-                                <td><p:commandButton id="submit" value="Guardar" action="#{clienteMBean.save}" ajax="false"/></td>
-                                <td><p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/></td>
+                                <td><p:commandButton id="submit1" value="Modificar" action="#{clienteMBean.modificar}" ajax="false"/></td>
+                                <td><p:commandButton id="reset1" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/></td>
                             </tr>
-                        </table>
+                            </table>
                     </h:form>
                 </p:panel>
+                
             </h:panelGrid>
         </p:tab>
         <p:tab title="Eliminar Cliente">
             <h:panelGrid columns="2" cellpadding="10">
-              <p:panel header="Eliminar cliente">
+                <p:panel header="Modificar cliente">
                     <h:form>
-                        <table>
+                         <table>
+                             <tr>
+                                 <td><h:outputLabel for="cliente" value="Cliente (RUC empresa):" /></td>
+                                 <td><p:inputText id="cliente" value="#{clienteMBean.cliente}"/></td>
+                             </tr>
+                           
+                             <tr>
+                                 <td><p:commandButton id="obtener" value="Obtener Valores:" action="#{clienteMBean.onClienteChange}" ajax="false"/></td>
+                             </tr>
+                         </table>
+                            <hr/>
+                            
+                            <table>
+                                <tr>
+                                    <td><h:outputLabel for="ruc_empresa" value="Ruc empresa:" /></td>
+                                    <td><p:inputText  disabled="true" id="ruc_empresa1" value="#{clienteMBean.ruc_empresa}"/></td>
+                                </tr>
+                            
+                                <tr>
+                                    <td><h:outputLabel for="nombre_empresa" value="Nombre empresa:" /></td>
+                                    <td><p:inputText disabled="true" id="nombre_empresa1" value="#{clienteMBean.nombre_empresa}"/></td>
+                                </tr>
+                            
                             <tr>
-                                <td><h:outputLabel for="eliminar_ruc" value="Ingrese Ruc empresarial:" /></td>
-                                <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
+                                <td><h:outputLabel for="cedula_representante" value="Cedula representante:" /></td>
+                                <td><p:inputText disabled="true" id="cedula_representante1" value="#{clienteMBean.cedula_representante}"/></td>
                             </tr>
-                        </table>
+                           
+                            <tr>
+                                <td><h:outputLabel for="nombre_representante" value="Nombre representante:" /></td>
+                                <td><p:inputText disabled="true" id="nombre_representante1" value="#{clienteMBean.nombre_representante}"/></td>
+                            </tr>
+                         
+                            <tr>
+                                <td><h:outputLabel for="telefono" value="Telefono:" /></td>
+                                <td><p:inputText disabled="true" id="telefono1" value="#{clienteMBean.telefono}"/></td>
+                            </tr>
+                         
+                            <tr>
+                                <td><h:outputLabel for="direccion" value="Dirección:" /></td>
+                                <td><p:inputText disabled="true" id="direccion1" value="#{clienteMBean.direccion}"/></td>
+                            </tr>
+                           
+                            <tr>
+                                <td><h:outputLabel for="password" value="Contraseña:" /></td>
+                                <td><p:password  disabled="true" id="password1" value="#{clienteMBean.password}"/></td>
+                            </tr>
+                           
+                           
+                            <tr>
+                                <td><p:commandButton id="submit1" value="Eliminar" action="#{clienteMBean.eliminar}" ajax="false"/></td>
+                            </tr>
+                            </table>
                     </h:form>
-              </p:panel>
+                </p:panel>
+                
             </h:panelGrid>
         </p:tab>
         <p:tab title="Buscar Clientes">
             <h:panelGrid columns="2" cellpadding="10">
                 <h:form>
-                        <p:dataTable var="car" value="#{dtFilterView.cars}" widgetVar="carsTable"
-                 emptyMessage="No cars found with given criteria" filteredValue="#{dtFilterView.filteredCars}">
- 
-               
-                        </p:dataTable>
+                             
                 </h:form>
       
             </h:panelGrid>

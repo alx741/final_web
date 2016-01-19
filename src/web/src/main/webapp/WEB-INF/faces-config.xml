@@ -57,15 +57,17 @@
         <navigation-rule>
         <from-view-id>/login-admin.xhtml</from-view-id>
             <navigation-case>
+                <from-action>#{adminMBean.checkAdminPassword}</from-action>
                 <from-outcome>success</from-outcome>
-                <to-view-id>/indexAd.xhtml</to-view-id>
+                <to-view-id>/MenuAd.xhtml</to-view-id>
             </navigation-case>
             <navigation-case>
+                <from-action>#{adminMBean.checkAdminPassword}</from-action>
                 <from-outcome>error</from-outcome>
                 <to-view-id>/error.xhtml</to-view-id>
             </navigation-case>
         </navigation-rule>
-        
+               
     <navigation-rule>
         <from-view-id>/agregar-empleado.xhtml</from-view-id>
             <navigation-case>
