@@ -18,26 +18,47 @@
       <p:layout fullPage="true">
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    
+                    hola
                 </p:layoutUnit>
 
               
 
-          <p:layoutUnit resizable="true" position="west" size="250" header="Menu">
-                    <p:menu>
+          <p:layoutUnit resizable="true" position="west" size="300" header="Menu">
+              <p:panelMenu style="width:300px">
+                  
                         <p:submenu label="Cliente" >
                             <p:menuitem value="Crear" url="agregar-cliente.faces" icon="ui-icon-person" />
                             <p:menuitem value="Modificar" url="modificar-cliente.faces" />
-                            <p:menuitem value="Eliminar" url="eliminar-cliente.faces" />
+                            
                             <p:menuitem value="Listar" url="listar-cliente.faces" />
                             <p:menuitem value="Buscar" url="buscar-cliente.faces" />
 
                         </p:submenu>
+                  
+ 
+                        <p:submenu label="Empleado" >
+                            <p:menuitem value="Crear" url="agregar-empleado.faces" icon="ui-icon-person" />
+                            <p:menuitem value="Modificar" url="modificar-empleado.faces" />
+                           
+                            <p:menuitem value="Listar" url="listar-empleados.faces" />
+                            <p:menuitem value="Buscar" url="buscar-empleado.faces" />
 
-                    </p:menu>
-                </p:layoutUnit>
+                        </p:submenu>
+                  <p:submenu label="Ruta" >
+                            <p:menuitem value="Crear" url="agregar-empleado.faces" icon="ui-icon-person" />
+                            <p:menuitem value="Modificar" url="modificar-empleado.faces" />
+                           
+                            <p:menuitem value="Listar" url="listar-empleados.faces" />
+                            <p:menuitem value="Buscar" url="buscar-empleado.faces" />
 
-                <p:layoutUnit position="center">
+                        </p:submenu>
+                   
+              </p:panelMenu>
+                   
+
+                                    </p:layoutUnit>
+
+                <p:layoutUnit position="center" size="500">
                     <ui:insert name="Nuevo" />
                      <ui:insert name="Modificar" />
                      <ui:insert name="Eliminar" />

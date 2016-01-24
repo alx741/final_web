@@ -9,6 +9,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import hbm.Empleado;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import util.HibernateUtil;
 
 public class EmpleadoManagedBean implements Serializable
@@ -192,7 +194,7 @@ public class EmpleadoManagedBean implements Serializable
         try
         {
             tx = session.beginTransaction();
-            session.save(empleado);
+            session.update(empleado);
             tx.commit();
             log.debug("Nuevo registro : " + empleado + ", realizado : " +
                       tx.wasCommitted());
@@ -213,4 +215,5 @@ public class EmpleadoManagedBean implements Serializable
         }
         return result;
     }
+    
 }
