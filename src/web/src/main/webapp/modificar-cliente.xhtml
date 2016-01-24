@@ -5,66 +5,36 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="Modificar">
- <h:panelGrid columns="2" cellpadding="10">
-                <p:panel header="Modificar cliente">
-                    <h:form>
-                         <table>
-                             <tr>
-                                 <td><h:outputLabel for="cliente" value="Cliente (RUC empresa):" /></td>
-                                 <td><p:inputText id="cliente" value="#{clienteMBean.cliente}"/></td>
-                             </tr>
-                           
-                             <tr>
-                                 <td><p:commandButton id="obtener" value="Obtener Valores:" action="#{clienteMBean.onClienteChange}" ajax="false"/></td>
-                             </tr>
-                         </table>
-                            <hr/>
-                            
-                            <table>
-                                <tr>
-                                    <td><h:outputLabel for="ruc_empresa" value="Ruc empresa:" /></td>
-                                    <td><p:inputText id="ruc_empresa1" value="#{clienteMBean.ruc_empresa}"/></td>
-                                </tr>
-                            
-                                <tr>
-                                    <td><h:outputLabel for="nombre_empresa" value="Nombre empresa:" /></td>
-                                    <td><p:inputText id="nombre_empresa1" value="#{clienteMBean.nombre_empresa}"/></td>
-                                </tr>
-                            
-                            <tr>
-                                <td><h:outputLabel for="cedula_representante" value="Cedula representante:" /></td>
-                                <td><p:inputText id="cedula_representante1" value="#{clienteMBean.cedula_representante}"/></td>
-                            </tr>
-                           
-                            <tr>
-                                <td><h:outputLabel for="nombre_representante" value="Nombre representante:" /></td>
-                                <td><p:inputText id="nombre_representante1" value="#{clienteMBean.nombre_representante}"/></td>
-                            </tr>
-                         
-                            <tr>
-                                <td><h:outputLabel for="telefono" value="Telefono:" /></td>
-                                <td><p:inputText id="telefono1" value="#{clienteMBean.telefono}"/></td>
-                            </tr>
-                         
-                            <tr>
-                                <td><h:outputLabel for="direccion" value="Dirección:" /></td>
-                                <td><p:inputText id="direccion1" value="#{clienteMBean.direccion}"/></td>
-                            </tr>
-                           
-                            <tr>
-                                <td><h:outputLabel for="password" value="Contraseña:" /></td>
-                                <td><p:inputText disabled="true" id="password1" value="#{clienteMBean.password}"/></td>
-                            </tr>
-                           
-                           
-                            <tr>
-                                <td><p:commandButton id="submit1" value="Modificar" action="#{clienteMBean.modificar}" ajax="false"/></td>
-                                <td><p:commandButton id="reset1" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/></td>
-                            </tr>
-                            </table>
-                    </h:form>
-                </p:panel>
-                
-            </h:panelGrid>
+ <h:form id="form">
+   <p:growl id="msgs" showDetail="true"/>
+ 
+   <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}" editable="true" style="margin-bottom:20px">
+       <f:facet name="header">
+           Modificar Celdas
+       </f:facet>
+ 
+       <p:ajax event="rowEdit" listener="#{clienteMBean.onRowEdit}" update=":form:msgs" />
+       <p:ajax event="rowEditCancel" listener="#{clienteMBean.onRowCancel}" update=":form:msgs" />
+ 
+       <p:column headerText="Id">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{cliente.ruc_empresa}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{cliente.ruc_empresa}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+ 
+       
+ 
+     
+ 
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+   </p:dataTable>
+ 
+   
+ </h:form>
+     
     </ui:define>
 </ui:composition>
+

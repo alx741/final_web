@@ -15,6 +15,7 @@ import hbm.Cliente;
 import hbm.Factura;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.primefaces.event.RowEditEvent;
 import util.HibernateUtil;
 
 public class ClienteManagedBean implements Serializable
@@ -36,6 +37,15 @@ public class ClienteManagedBean implements Serializable
     private String cliente;
     private String isPass;
     private List<Cliente> filteredClientes;
+    private List<Cliente> cliente1;
+
+    public List<Cliente> getCliente1() {
+        return cliente1;
+    }
+
+    public void setCliente1(List<Cliente> cliente1) {
+        this.cliente1 = cliente1;
+    }
 
     public List<Cliente> getFilteredClientes() {
         return filteredClientes;
@@ -208,6 +218,11 @@ public class ClienteManagedBean implements Serializable
 
 
 
+     
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edicion Cancelada", Integer.toString(((Cliente) event.getObject()).getId()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
 
 
@@ -334,83 +349,27 @@ public class ClienteManagedBean implements Serializable
         this.setPassword(cliente.getPassword());
     }
 
-    public void modificar()
+    public void onRowEdit(RowEditEvent event)
     {
+       Cliente edittedObject = (Cliente) event.getObject();
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
 
-        cliente.setRuc_empresa(this.getRuc_empresa());
-        cliente.setNombre_empresa(this.getNombre_empresa());
-        cliente.setCedula_representante(this.getCedula_representante());
-        cliente.setNombre_representante(this.getNombre_representante());
-        cliente.setTelefono(this.getTelefono());
-        cliente.setDireccion(this.getDireccion());
-        cliente.setPassword(this.getPassword());
-
+        
         Transaction tx = null;
 
         try
         {
             tx = session.beginTransaction();
-            session.update(cliente);
+            session.update(edittedObject);
             tx.commit();
             log.debug("Nuevo registro : " + cliente + ", realizado : " +
                       tx.wasCommitted());
-            FacesContext context = FacesContext.getCurrentInstance();
-         
-            context.addMessage(null, new FacesMessage("Exito","Se guardo con exito los cambios en el cliente") );
-            
-            
-        }
-        catch (Exception e)
-        {
-            if (tx != null)
-            {
-                tx.rollback();
-                FacesContext context = FacesContext.getCurrentInstance();
-         
-            context.addMessage(null, new FacesMessage("Fracaso","No se pudo Modificar") );
-               e.printStackTrace();
-               
-            }
-        }
-        finally
-        {
-            session.close();
-        }
-        reset();
-        //return result;
-    }
-    public void eliminar()
-    {
-        String result = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Cliente cliente = (Cliente) session.load(Cliente.class,
-                this.getIdCliente(this.getCliente()));
-
-        cliente.setRuc_empresa(this.getRuc_empresa());
-        cliente.setNombre_empresa(this.getNombre_empresa());
-        cliente.setCedula_representante(this.getCedula_representante());
-        cliente.setNombre_representante(this.getNombre_representante());
-        cliente.setTelefono(this.getTelefono());
-        cliente.setDireccion(this.getDireccion());
-        cliente.setPassword(this.getPassword());
-
-        Transaction tx = null;
-
-        try
-        {
-            tx = session.beginTransaction();
-            session.delete(cliente);
-            tx.commit();
-            log.debug("Nuevo registro : " + cliente + ", realizado : " +
-                      tx.wasCommitted());
-            FacesContext context = FacesContext.getCurrentInstance();
-         
-            context.addMessage(null, new FacesMessage("Exito","Se guardo con exito los cambios en el cliente") );
-            
+           
+            FacesMessage msg = new FacesMessage("Cliete Editado", Integer.toString(((Cliente) event.getObject()).getId()));
+            FacesContext.getCurrentInstance().addMessage(null, msg);
             
         }
         catch (Exception e)

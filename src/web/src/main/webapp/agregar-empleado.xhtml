@@ -1,10 +1,12 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="indexAd.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">
-
- <h:head><title>Paqueteria</title></h:head>
- <body>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="Nuevo">
+ <h:panelGrid columns="2" cellpadding="15" >
+      <p:panel header="Modificar cliente">
      <h:form>
          <table>
              <tr>
@@ -20,10 +22,12 @@
                 <td><p:inputText id="password" value="#{empleadoMBean.password}"/></td>
              </tr>
              <tr>
-                <td><p:commandButton id="submit" value="Guardar" action="#{empleadoMBean.save()}" ajax="false"/></td>
-                <td><p:commandButton id="reset" value="Resetear" action="#{empleadoMBean.reset()}" ajax="false"/></td>
+                <td><p:commandButton id="submit" value="Guardar" action="#{empleadoMBean.save}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Resetear" action="#{empleadoMBean.reset}" ajax="false"/></td>
              </tr>
          </table>
      </h:form>
-</body>
-</html>
+      </p:panel>
+ </h:panelGrid>
+    </ui:define>
+</ui:composition>
