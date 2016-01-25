@@ -12,8 +12,8 @@ import org.hibernate.Transaction;
 
 import hbm.Evento;
 import hbm.Cliente;
-import hbm.Factura;
 import hbm.Guia;
+import hbm.Factura;
 import util.HibernateUtil;
 
 public class EventoManagedBean implements Serializable
@@ -30,6 +30,9 @@ public class EventoManagedBean implements Serializable
     private String evento;
     private String descripcion;
     private String guia;
+
+
+
     private Guia guiaO;
 
     private List<Guia> filteredGuias;
@@ -51,6 +54,8 @@ public class EventoManagedBean implements Serializable
     {
         this.guiaO = guiaO;
     }
+
+
     public int getId()
     {
         return id;
