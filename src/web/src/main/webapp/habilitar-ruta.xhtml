@@ -1,27 +1,31 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="indexAd.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">
-
- <h:head><title>Paqueteria</title></h:head>
- <body>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="Habilitar">
+        <h:panelGrid columns="3" cellpadding="100">
+ 
     <p:panel header="Habilitar ruta">
     <h:form>
+        <table>
 
-    <br/>
-        <p:outputLabel for="ruta" value="Tipo de ruta: " />
-        <br/>
-        <p:selectOneMenu id="ruta" value="#{rutaMBean.ruta}" style="width:150px">
-            <f:selectItems value="#{rutaMBean.getRutasDeshabilitados()}" />
-        </p:selectOneMenu>
-
-
-    <br/>
+            <tr>
+                <td><p:outputLabel for="ruta" value="Tipo de ruta: " /></td>
+        
+        <td><p:selectOneMenu id="ruta" value="#{rutaMBean.ruta}" style="width:150px">
+            <f:selectItems value="#{rutaMBean.rutasDeshabilitados}" />
+        </p:selectOneMenu></td>
+            </tr>
+        </table>
+    
     <hr/>
     <br/>
-        <p:commandButton id="submit" value="Habilitar" action="#{rutaMBean.habilitar()}" ajax="false"/>
+        <p:commandButton id="submit" value="Habilitar" action="#{rutaMBean.habilitar}" ajax="false"/>
 
      </h:form>
      </p:panel>
-</body>
-</html>
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>

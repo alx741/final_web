@@ -49,7 +49,7 @@
                 <p:outputLabel for="guia" value="Guia: " />
                 <br/>
                 <p:selectOneMenu id="guia" value="#{eventoMBean.guia}" style="width:150px">
-                    <f:selectItems value="#{eventoMBean.getGuiasDescripcion()}" />
+                    <f:selectItems value="#{eventoMBean.guiasDescripcion}" />
                 </p:selectOneMenu>
                 <br/> <br/> <h:outputText value="guia: "></h:outputText>
                 <h:outputText value="#{eventoMBean.guia}"></h:outputText><br/>
@@ -58,8 +58,8 @@
             <br/>
             <hr/>
             <br/>
-            <p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save()}" ajax="false"/>
-            <p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset()}" ajax="false"/>
+            <p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save}" ajax="false"/>
+            <p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset}" ajax="false"/>
 
      </h:form>
      </p:panel>
