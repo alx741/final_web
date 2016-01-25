@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
+    <p:panel header="Guias">
+        <h:form id="main">
+
+
+        <p:dataTable id="guia" var="guia"
+            value="#{guiaMBean.guias}"
+            widgetVar="guiasTable" emptyMessage="Guias no encontrados con
+            ese criterio" filteredValue="#{eventoMBean.filteredGuias}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{eventoMBean.guiaO}" rowKey="#{guia.id}">
+
+            <p:ajax event="rowSelect"
+                listener="#{facturaMBean.onFacturaChangeT}"
+                update=":main:cliente :main:fecha :main:total :main:guias"/>
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Guia" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('guiasTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{guia.cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{guia.cliente.ruc_empresa}" />
+            </p:column>
+            <p:column filterBy="#{guia.cliente.nombre_empresa}" headerText="Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{guia.cliente.nombre_empresa}" />
+            </p:column>
+            <p:column filterBy="#{guia.ruta.getDescripcion()}" headerText="Ruta"  filterMatchMode="contains">
+                <h:outputText value="#{guia.ruta.getDescripcion()}" />
+            </p:column>
+            <p:column filterBy="#{guia.paquete.getDescripcion()}" headerText="Paquete"  filterMatchMode="contains">
+                <h:outputText value="#{guia.paquete.getDescripcion()}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+        <br/>
+        <br/>
+        <p:dataTable id="guias" value="#{facturaMBean.guiasFactura}" var="guia" style="width: 100%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText value="#{guia.id}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Detalle" />
+                </f:facet>
+                <h:outputText value="#{guia.detalle}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Paquete" />
+                </f:facet>
+                <h:outputText value="#{guia.paquete.getDescripcion()}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Ruta" />
+                </f:facet>
+                <h:outputText value="#{guia.ruta.getDescripcion()}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Valor" />
+                </f:facet>
+                <h:outputText value="#{guia.getValor()}" />
+            </p:column>
+        </p:dataTable>
+
+
+     </h:form>
+     </p:panel>
+</body>
+</html>
