@@ -6,16 +6,47 @@
  <h:head><title>Paqueteria</title></h:head>
  <body>
     <p:panel header="Modificar paquete">
-    <h:form>
+        <h:form id="main">
 
-        <br/>
-            <p:outputLabel for="paquete" value="Tipo de paquete: " />
-            <br/>
-            <p:selectOneMenu id="paquete" value="#{paqueteMBean.paquete}" style="width:150px">
-                <p:ajax listener="#{paqueteMBean.onPaqueteChange()}" update="tarifa descripcion desde hasta"/>
-                <f:selectItem itemLabel="Seleccionar paquete" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{paqueteMBean.getPaquetesDescripcion()}" />
-            </p:selectOneMenu>
+
+        <p:dataTable id="paquete" var="paquete" value="#{paqueteMBean.paquetes}"
+            widgetVar="paquetesTable" emptyMessage="Paquetes no encontrados con
+            ese criterio" filteredValue="#{paqueteMBean.filteredPaquetes}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{paqueteMBean.paqueteO}" rowKey="#{paquete.id}">
+
+            <p:ajax event="rowSelect"
+                listener="#{paqueteMBean.onPaqueteChangeT}"
+                update=":main:tarifa :main:descripcion :main:desde
+                :main:hasta"/>
+
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Paquete" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('paquetesTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{paquete.rawDesc}" headerText="Descripción"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.rawDesc}" />
+            </p:column>
+            <p:column filterBy="#{paquete.desde}" headerText="Desde"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.desde}" />
+            </p:column>
+            <p:column filterBy="#{paquete.hasta}" headerText="Hasta"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.hasta}" />
+            </p:column>
+        </p:dataTable>
 
         <br/>
         <br/>
@@ -24,7 +55,7 @@
 
         <br/>
         <br/>
-            <h:outputLabel for="descripcion" value="DescripciÃ³n:" />
+            <h:outputLabel for="descripcion" value="Descripción:" />
             <p:inputText id="descripcion" value="#{paqueteMBean.descripcion}"/>
 
         <br/>
