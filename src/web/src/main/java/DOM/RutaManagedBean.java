@@ -330,18 +330,13 @@ public class RutaManagedBean implements Serializable
 
     public void onRutaChangeT()
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Ruta ruta = (Ruta) session.load(Ruta.class,
-                this.getRutaO().getId());
-
-        this.setTarifa(ruta.getTarifa());
-        this.setOrigen(ruta.getOrigen());
-        this.setDestino(ruta.getDestino());
-        this.setTransporte(ruta.getTransporte());
+        this.setRuta(String.valueOf(this.getRutaO().getId()));
+        this.onRutaChange();
     }
 
     public String modificar()
     {
+        this.setRuta(String.valueOf(this.getRutaO().getId()));
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Ruta ruta = (Ruta) session.load(Ruta.class,

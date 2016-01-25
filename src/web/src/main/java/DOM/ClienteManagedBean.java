@@ -338,23 +338,15 @@ public class ClienteManagedBean implements Serializable
         this.setPassword(cliente.getPassword());
     }
 
-    public void onClienteChangeT(SelectEvent event)
+    public void onClienteChangeT()
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Cliente cliente = (Cliente) session.load(Cliente.class,
-                this.getIdCliente(this.getClienteO().getRuc_empresa()));
-
-        this.setRuc_empresa(cliente.getRuc_empresa());
-        this.setNombre_empresa(cliente.getNombre_empresa());
-        this.setCedula_representante(cliente.getCedula_representante());
-        this.setNombre_representante(cliente.getNombre_representante());
-        this.setTelefono(cliente.getTelefono());
-        this.setDireccion(cliente.getDireccion());
-        this.setPassword(cliente.getPassword());
+        this.setCliente(this.getClienteO().getRuc_empresa());
+        this.onClienteChange();
     }
 
     public String modificar()
     {
+        this.setCliente(this.getClienteO().getRuc_empresa());
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,

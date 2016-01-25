@@ -199,18 +199,14 @@ public class EmpleadoManagedBean implements Serializable
 
     public void onEmpleadoChangeT()
     {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Empleado empleado = (Empleado) session.load(Empleado.class,
-                this.getIdEmpleado(this.getEmpleadoO().getCedula()));
-
-        this.setCedula(empleado.getCedula());
-        this.setNombre(empleado.getNombre());
-        this.setPassword(empleado.getPassword());
+        this.setEmpleado(this.getEmpleadoO().getCedula());
+        this.onEmpleadoChange();
     }
 
 
     public String modificar()
     {
+        this.setEmpleado(this.getEmpleadoO().getCedula());
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Empleado empleado = (Empleado) session.load(Empleado.class,
