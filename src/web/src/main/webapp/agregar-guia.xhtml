@@ -1,12 +1,11 @@
-<ui:composition template="index.xhtml"
-               
-    xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="NuevoGuia">
- <h:panelGrid columns="2" cellpadding="15" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+<h:head><title>Paqueteria</title></h:head>
+<body>
+
     <p:panel header="Crear Guia">
     <h:form>
 
@@ -34,7 +33,7 @@
                 </p:outputPanel>
             </f:facet>
 
-            <p:column filterBy="#{paquete.rawDesc}" headerText="Descripción"  filterMatchMode="contains">
+            <p:column filterBy="#{paquete.rawDesc}" headerText="DescripciÃ³n"  filterMatchMode="contains">
                 <h:outputText value="#{paquete.rawDesc}" />
             </p:column>
             <p:column filterBy="#{paquete.desde}" headerText="Desde"  filterMatchMode="contains">
@@ -128,24 +127,25 @@
 
 
 
-    <table>
-        <tr>
-            <td><p:outputLabel for="detalle" value="Detalle: " /></td>
-       
-            <td><p:inputTextarea rows="6" cols="33" id="detalle" value="#{guiaMBean.detalle}"/></td>
-        </tr>
-    </table>
+    <br/>
+    <hr/>
+    <br/>
+        <p:outputLabel for="detalle" value="Detalle: " />
+        <br/>
+        <p:inputText id="detalle" value="#{guiaMBean.detalle}"/>
+        <br/> <br/> <h:outputText value="detalle: "></h:outputText>
+        <h:outputText value="#{guiaMBean.detalle}"></h:outputText><br/>
 
 
 
     <br/>
     <hr/>
     <br/>
-        <p:commandButton id="submit" value="Guardar" action="#{guiaMBean.save}" ajax="false"/>
-        <p:commandButton id="reset" value="Resetear" action="#{guiaMBean.reset}" ajax="false"/>
+        <p:commandButton id="submit" value="Guardar" action="#{guiaMBean.save()}" ajax="false"/>
+        <p:commandButton id="reset" value="Resetear" action="#{guiaMBean.reset()}" ajax="false"/>
 
      </h:form>
      </p:panel>
- </h:panelGrid>
-    </ui:define>
-</ui:composition>
+
+</body>
+</html>
