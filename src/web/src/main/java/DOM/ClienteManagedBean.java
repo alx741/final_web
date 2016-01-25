@@ -340,8 +340,10 @@ public class ClienteManagedBean implements Serializable
             this.isPass = "no";
         }
     }
+
     public void onClienteChange()
     {
+        
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
@@ -354,63 +356,60 @@ public class ClienteManagedBean implements Serializable
         this.setDireccion(cliente.getDireccion());
         this.setPassword(cliente.getPassword());
     }
-
-    public void onClienteChangeT(SelectEvent event)
-    {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Cliente cliente = (Cliente) session.load(Cliente.class,
-                this.getIdCliente(this.getClienteO().getRuc_empresa()));
-
-        this.setRuc_empresa(cliente.getRuc_empresa());
-        this.setNombre_empresa(cliente.getNombre_empresa());
-        this.setCedula_representante(cliente.getCedula_representante());
-        this.setNombre_representante(cliente.getNombre_representante());
-        this.setTelefono(cliente.getTelefono());
-        this.setDireccion(cliente.getDireccion());
-        this.setPassword(cliente.getPassword());
+     public void onRowSelect(SelectEvent event) {
+        FacesMessage msg = new FacesMessage("Cliente Seleccionado", ((Cliente) event.getObject()).getRuc_empresa());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
-    public String modificar()
+ 
+    public void onRowUnselect(UnselectEvent event) {
+        FacesMessage msg = new FacesMessage("Cliente Deseleccionado", ((Cliente) event.getObject()).getRuc_empresa());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public void modificar()
     {
+     
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
-
         cliente.setRuc_empresa(this.getRuc_empresa());
         cliente.setNombre_empresa(this.getNombre_empresa());
         cliente.setCedula_representante(this.getCedula_representante());
         cliente.setNombre_representante(this.getNombre_representante());
-        cliente.setTelefono(this.getTelefono());
         cliente.setDireccion(this.getDireccion());
-        cliente.setPassword(this.getPassword());
-
+        cliente.setTelefono(this.telefono);
+  
+        
         Transaction tx = null;
 
         try
         {
             tx = session.beginTransaction();
-            session.save(cliente);
+            session.update(cliente);
             tx.commit();
-            log.debug("Nuevo registro : " + cliente + ", realizado : " +
+           log.debug("Nuevo registro : " + cliente + ", realizado : " +
                       tx.wasCommitted());
             result = SUCCESS;
+            
         }
         catch (Exception e)
         {
             if (tx != null)
             {
                 tx.rollback();
-                result = ERROR;
-                e.printStackTrace();
+                FacesContext context = FacesContext.getCurrentInstance();
+         
+            context.addMessage(null, new FacesMessage("Fracaso","No se pudo Modificar") );
+               e.printStackTrace();
+               
             }
         }
         finally
         {
             session.close();
         }
-        return result;
+        reset();
+        //return result;
     }
-
-    
 }
