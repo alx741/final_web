@@ -38,6 +38,17 @@ public class GuiaManagedBean implements Serializable
     private String factura;
 
 
+    private Cliente clienteO;
+
+    public Cliente getClienteO()
+    {
+        return clienteO;
+    }
+
+    public void setClienteO(Cliente clienteO)
+    {
+        this.clienteO = clienteO;
+    }
 
     private Ruta rutaO;
 
@@ -134,6 +145,7 @@ public class GuiaManagedBean implements Serializable
     {
         this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
         this.setRuta(String.valueOf(this.getRutaO().getId()));
+        this.setCliente(this.getClienteO().getRuc_empresa());
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 

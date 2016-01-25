@@ -91,11 +91,41 @@
     <br/>
     <hr/>
     <br/>
-        <p:outputLabel for="ruc_empresa" value="Ruc empresarial cliente: " />
-        <br/>
-        <p:inputText id="ruc_empresa" value="#{guiaMBean.cliente}"/>
-        <br/> <br/> <h:outputText value="cliente: "></h:outputText>
-        <h:outputText value="#{guiaMBean.cliente}"></h:outputText><br/>
+        <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}"
+            widgetVar="clientesTable" emptyMessage="Clientes no encontrados con
+            ese criterio" filteredValue="#{clienteMBean.filteredClientes}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{guiaMBean.clienteO}" rowKey="#{cliente.id}">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Cliente" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('clientesTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{cliente.ruc_empresa}" />
+            </p:column>
+            <p:column filterBy="#{cliente.nombre_empresa}" headerText="Nombre Empresa"  filterMatchMode="contains">
+                <h:outputText value="#{cliente.nombre_empresa}" />
+            </p:column>
+            <p:column filterBy="#{cliente.nombre_representante}" headerText="Nombre Representante"  filterMatchMode="contains">
+                <h:outputText value="#{cliente.nombre_representante}" />
+            </p:column>
+        </p:dataTable>
+
+
+
 
     <br/>
     <hr/>
