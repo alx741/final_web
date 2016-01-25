@@ -29,6 +29,27 @@ public class PaqueteManagedBean implements Serializable
     private String paquete;
 
     private String paquete_id;
+    private Paquete paqueteO;
+
+    private List<Paquete> filteredPaquetes;
+
+    public List<Paquete> getFilteredPaquetes() {
+        return filteredPaquetes;
+    }
+
+    public void setFilteredPaquetes(List<Paquete> filteredPaquetes) {
+        this.filteredPaquetes = filteredPaquetes;
+    }
+
+    public Paquete getPaqueteO()
+    {
+        return paqueteO;
+    }
+
+    public void setPaqueteO(Paquete paqueteO)
+    {
+        this.paqueteO = paqueteO;
+    }
 
     public float getTarifa()
     {
@@ -314,9 +335,15 @@ public class PaqueteManagedBean implements Serializable
         this.setDesde(paquete.getDesde());
         this.setHasta(paquete.getHasta());
     }
+     public void onPaqueteChangeT()
+    {
+        this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
+        this.onPaqueteChange();
+    }
 
     public String modificar()
     {
+        this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Paquete paquete = (Paquete) session.load(Paquete.class,

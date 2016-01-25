@@ -10,7 +10,11 @@ import org.hibernate.Transaction;
 
 import hbm.Empleado;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.RequestScoped;
+//import javax.faces.context.FacesContext;
+//import javax.servlet.http.HttpServletRequest;
+ 
 import util.HibernateUtil;
 
 public class EmpleadoManagedBean implements Serializable
@@ -24,8 +28,31 @@ public class EmpleadoManagedBean implements Serializable
     private String cedula;
     private String nombre;
     private String password;
-  private List<Empleado> filteredEmpleado;
+    private List<Empleado> filteredEmpleado;
     private String isPass;
+    private Empleado empleadoO;
+  /* private final HttpServletRequest httpServletRequest;
+    private final FacesContext faceContext;
+    private FacesMessage facesMessage;
+
+    public EmpleadoManagedBean() {
+       faceContext=FacesContext.getCurrentInstance();
+       httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
+    }*/
+    
+     
+    
+    
+
+    public Empleado getEmpleadoO()
+    {
+        return empleadoO;
+    }
+
+    public void setEmpleadoO(Empleado empleadoO)
+    {
+        this.empleadoO = empleadoO;
+    }
   public List<Empleado> getFilteredEmpleado() {
         return filteredEmpleado;
     }
@@ -134,7 +161,29 @@ public class EmpleadoManagedBean implements Serializable
         this.setPassword("");
     }
 
+    /*public String login()
+    {
+         Session session = HibernateUtil.getSessionFactory().openSession();
+         Empleado empleado = (Empleado) session.load(Empleado.class,
+                getIdEmpleado(this.getCedula()));
 
+        if (this.getPassword().equals(empleado.getPassword()))
+        {
+            httpServletRequest.getSession().setAttribute("sessionUsuario",empleado);
+            facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
+            faceContext.addMessage(null, facesMessage);
+            return "indexAd";
+            
+        }
+        else
+        {
+            facesMessage=new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrecto", null);
+            faceContext.addMessage(null, facesMessage);
+            return "login-empleado";
+        }
+       
+       
+    }*/
 
 
 
@@ -171,7 +220,7 @@ public class EmpleadoManagedBean implements Serializable
     }
 
 
-    public void onEmpleadoChange()
+   public void onEmpleadoChange()
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Empleado empleado = (Empleado) session.load(Empleado.class,
@@ -182,8 +231,16 @@ public class EmpleadoManagedBean implements Serializable
         this.setPassword(empleado.getPassword());
     }
 
+    public void onEmpleadoChangeT()
+    {
+       this.setEmpleado(this.getEmpleadoO().getCedula());
+        this.onEmpleadoChange();
+    }
+
+
     public String modificar()
     {
+        this.setEmpleado(this.getEmpleadoO().getCedula());
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Empleado empleado = (Empleado) session.load(Empleado.class,

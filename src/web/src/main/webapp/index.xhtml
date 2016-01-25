@@ -1,57 +1,99 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Pagina de Inicio</title>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <style>
+            #leftPanel {z-index:2 !important; }
+            #leftPanel div{overflow:visible;}
+        </style>
+        
+    </h:head>
+    
+    <h:body>
+      <p:layout fullPage="true">
 
-    <h:head><title>Paqueteria</title></h:head>
-    <body>
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <h6>SERVICIO DE PAQUETERIA</h6>
+                </p:layoutUnit>
 
-        <a href="agregar-empleado.xhtml">Agregar Empleado</a><br/>
-        <a href="agregar-cliente.xhtml">Agregar Cliente</a><br/>
-        <a href="agregar-ruta.xhtml">Agregar Ruta</a><br/>
-        <a href="agregar-paquete.xhtml">Agregar Paquete</a><br/>
-        <a href="agregar-factura.xhtml">Agregar Factura</a><br/>
-        <a href="agregar-evento.xhtml">Agregar Evento</a><br/>
+              
 
-        <br/>
-        <hr/>
-        <br/>
-        <a href="modificar-paquete.xhtml">Modificar Paquete</a><br/>
-        <a href="modificar-ruta.xhtml">Modificar Ruta</a><br/>
-        <a href="modificar-empleado.xhtml">Modificar Empleado</a><br/>
-        <a href="modificar-cliente.xhtml">Modificar Cliente</a><br/>
+          <p:layoutUnit resizable="true" position="west" size="300" header="Menu">
+              <p:panelMenu style="width:300px">
+                  
+                        <p:submenu label="Cliente" >
+                            <p:menuitem value="Crear" url="agregar-cliente.faces" icon="ui-icon-person" />
+                          
+                            
+                            <p:menuitem value="Listar" url="listar-cliente.faces" icon="ui-icon-script" />
+                            <p:menuitem value="Buscar" url="buscar-cliente.faces" icon="ui-icon-search" />
 
-        <br/>
-        <hr/>
-        <br/>
-        <a href="habilitar-paquete.xhtml">Habilitar Paquete</a><br/>
-        <a href="deshabilitar-paquete.xhtml">Deshabilitar Paquete</a><br/>
-        <br/>
-        <a href="habilitar-ruta.xhtml">Habilitar Ruta</a><br/>
-        <a href="deshabilitar-ruta.xhtml">Deshabilitar Ruta</a><br/>
+                        </p:submenu>
+                  
+ 
+                        <p:submenu label="Empleado" >
+                            <p:menuitem value="Crear" url="agregar-empleado.faces" icon="ui-icon-person" />
+                            
+                           
+                            <p:menuitem value="Listar" url="listar-empleados.faces" icon="ui-icon-script" />
+                            <p:menuitem value="Buscar" url="buscar-empleado.faces" icon="ui-icon-search"/>
 
-        <br/>
-        <hr/>
-        <br/>
-        <a href="listar-empleados.xhtml">Listar Empleados</a><br/>
-        <a href="listar-facturas.xhtml">Listar Facturas</a><br/>
+                        </p:submenu>
+                  <p:submenu label="Ruta" >
+                            <p:menuitem value="Crear" url="agregar-ruta.faces" icon="ui-icon-plus" />
+                            
+                            <p:menuitem value="Listar" url="listar-ruta.faces" icon="ui-icon-script" />
+                           
 
-        <br/>
-        <hr/>
-        <br/>
-        <a href="agregar-guia.xhtml">Nueva Guia</a><br/>
+                        </p:submenu>
+                  <p:submenu label="Paquete" >
+                            <p:menuitem value="Crear" url="agregar-paquete.faces" icon="ui-icon-plus" />
+                           
+                            <p:menuitem value="Listar" url="listar-paquetes.faces" icon="ui-icon-script" />
+                          
 
-        <br/>
-        <hr/>
-        <br/>
-        <a href="pagar-factura.xhtml">Pagar Factura</a><br/>
+                        </p:submenu>
+                    <p:submenu label="Guia" >
+                            <p:menuitem value="Crear" url="agregar-guia.faces" icon="ui-icon-plus" />
+                            <p:menuitem value="Agregar Evento" url="agregar-evento.faces" icon="ui-icon-circle-plus" />
+                           
+                            <p:menuitem value="Listar" url="listar-guias.faces" icon="ui-icon-script"/>
+                           
 
-        <br/>
-        <hr/>
-        <br/>
-        <a href="login-admin.xhtml">Login Administrador</a><br/>
-        <a href="login-cliente.xhtml">Login Cliente</a><br/>
-        <a href="login-empleado.xhtml">Login Empleado</a><br/>
+                        </p:submenu>
+                   <p:submenu label="Factura" >
+                            
+                            <p:menuitem value="Pagar" url="pagar-factura.faces" icon="ui-icon-script"/>
+                            <p:menuitem value="Listar" url="listar-facturas.faces" icon="ui-icon-script"/>
+                           
 
-    </body>
+                        </p:submenu>
+                   
+              </p:panelMenu>
+                   
+
+                                    </p:layoutUnit>
+
+                <p:layoutUnit position="center" size="500">
+                    <ui:insert name="Nuevo" />
+                    <ui:insert name="Modificar" />
+                    <ui:insert name="Eliminar" />
+                    <ui:insert name="Listar" />
+                    <ui:insert name="Buscar" />
+                    <ui:insert name="Deshabilitar"/>
+                    <ui:insert name="Habilitar"/>
+                    <ui:insert name="Pagar"/>
+
+                </p:layoutUnit>
+
+            </p:layout>
+    
+   
+    </h:body>
+  
 </html>

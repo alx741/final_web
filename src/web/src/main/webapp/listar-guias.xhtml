@@ -8,8 +8,8 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:define name="Listar">
         <h:form>
-            <p:tab title="Listar Paquetes">
-                <p:dataTable id="rutas" value="#{rutaMBean.rutas}" var="ruta" style="width: 100%" rows="20"
+            <p:tab title="Listar Guias">
+                <p:dataTable id="guias" value="#{guiaMBean.guias}" var="guias" style="width: 100%" rows="20"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15" resizableColumns="true" liveResize="true">
@@ -17,31 +17,31 @@
                 <f:facet name="header">
                     <h:outputText value="Id" />
                 </f:facet>
-                         <h:outputText value="#{ruta.id}" />
+                         <h:outputText value="#{guias.id}" />
             </p:column>
                      <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Tarifa" />
+                    <h:outputText value="Paquete" />
                 </f:facet>
-                         <h:outputText value="#{ruta.tarifa}" />
+                         <h:outputText value="#{guias.paquete.descripcion}" />
             </p:column>
                      <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Origen" />
+                    <h:outputText value="Ruta" />
                 </f:facet>
-                         <h:outputText value="#{ruta.origen}" />
+                         <h:outputText value="#{guias.ruta.descripcion}" />
             </p:column>
                      <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Destino" />
+                    <h:outputText value="Cliente" />
                 </f:facet>
-                         <h:outputText value="#{ruta.destino}" />
+                         <h:outputText value="#{guias.cliente.ruc_empresa}" />
             </p:column>
                      <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Transporte" />
+                    <h:outputText value="Valor" />
                 </f:facet>
-                         <h:outputText value="#{ruta.transporte}" />
+                         <h:outputText value="#{guias.valor}" />
             </p:column>
                
                 </p:dataTable>      

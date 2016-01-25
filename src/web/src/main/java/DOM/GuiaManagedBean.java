@@ -37,7 +37,42 @@ public class GuiaManagedBean implements Serializable
     private String cliente;
     // private Empleado empleado;
     private String factura;
+    private Cliente clienteO;
 
+    public Cliente getClienteO()
+    {
+        return clienteO;
+    }
+
+    public void setClienteO(Cliente clienteO)
+    {
+        this.clienteO = clienteO;
+    }
+
+    private Ruta rutaO;
+
+    public Ruta getRutaO()
+    {
+        return rutaO;
+    }
+
+    public void setRutaO(Ruta rutaO)
+    {
+        this.rutaO = rutaO;
+    }
+
+
+    private Paquete paqueteO;
+
+    public Paquete getPaqueteO()
+    {
+        return paqueteO;
+    }
+
+    public void setPaqueteO(Paquete paqueteO)
+    {
+        this.paqueteO = paqueteO;
+    }
 
     public Date getFecha_creacion()
     {
@@ -101,6 +136,9 @@ public class GuiaManagedBean implements Serializable
 
     public String save()
     {
+        this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
+        this.setRuta(String.valueOf(this.getRutaO().getId()));
+        this.setCliente(this.getClienteO().getRuc_empresa());
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
