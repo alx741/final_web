@@ -6,14 +6,43 @@
  <h:head><title>Paqueteria</title></h:head>
  <body>
         <p:panel header="Modificar empleado">
-        <h:form>
+        <h:form id="main">
 
-            <br/>
-                <h:outputLabel for="empleado" value="Empleado (cedula):" />
-                <p:inputText id="empleado" value="#{empleadoMBean.empleado}"/>
-                <br/>
-                <br/>
-                <p:commandButton id="obtener" value="Obtener" action="#{empleadoMBean.onEmpleadoChange()}" ajax="false"/>
+
+        <p:dataTable id="empleado" var="empleado" value="#{empleadoMBean.empleados}"
+            widgetVar="empleadosTable" emptyMessage="Empleados no encontrados con
+            ese criterio" filteredValue="#{empleadoMBean.filteredEmpleados}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{empleadoMBean.empleadoO}" rowKey="#{empleado.id}">
+
+            <p:ajax event="rowSelect"
+                listener="#{empleadoMBean.onEmpleadoChangeT}"
+                update=":main:cedula :main:nombre :main:password"/>
+
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Empleado" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('empleadosTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{empleado.cedula}" headerText="Cedula"  filterMatchMode="contains">
+                    <h:outputText value="#{empleado.cedula}" />
+            </p:column>
+            <p:column filterBy="#{empleado.nombre}" headerText="Nombre"  filterMatchMode="contains">
+                <h:outputText value="#{empleado.nombre}" />
+            </p:column>
+        </p:dataTable>
 
 
             <br/>

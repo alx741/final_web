@@ -25,6 +25,27 @@ public class EmpleadoManagedBean implements Serializable
 
     private String isPass;
 
+    private Empleado empleadoO;
+
+    private List<Empleado> filteredEmpleados;
+
+    public List<Empleado> getFilteredEmpleados() {
+        return filteredEmpleados;
+    }
+
+    public void setFilteredEmpleados(List<Empleado> filteredEmpleados) {
+        this.filteredEmpleados = filteredEmpleados;
+    }
+
+    public Empleado getEmpleadoO()
+    {
+        return empleadoO;
+    }
+
+    public void setEmpleadoO(Empleado empleadoO)
+    {
+        this.empleadoO = empleadoO;
+    }
 
     public String getEmpleado()
     {
@@ -175,6 +196,18 @@ public class EmpleadoManagedBean implements Serializable
         this.setNombre(empleado.getNombre());
         this.setPassword(empleado.getPassword());
     }
+
+    public void onEmpleadoChangeT()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Empleado empleado = (Empleado) session.load(Empleado.class,
+                this.getIdEmpleado(this.getEmpleadoO().getCedula()));
+
+        this.setCedula(empleado.getCedula());
+        this.setNombre(empleado.getNombre());
+        this.setPassword(empleado.getPassword());
+    }
+
 
     public String modificar()
     {
