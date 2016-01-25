@@ -6,10 +6,57 @@
  <h:head><title>Paqueteria</title></h:head>
  <body>
     <p:panel header="Agregar Evento">
-    <h:form>
+        <h:form id="main">
 
-            <br/>
-            La fecha será la fecha actual<br/>
+
+        <p:dataTable id="guia" var="guia"
+            value="#{guiaMBean.guias}"
+            widgetVar="guiasTable" emptyMessage="Guias no encontrados con
+            ese criterio" filteredValue="#{eventoMBean.filteredGuias}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{eventoMBean.guiaO}" rowKey="#{guia.id}">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Guia" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('guiasTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{guia.cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{guia.cliente.ruc_empresa}" />
+            </p:column>
+            <p:column filterBy="#{guia.cliente.nombre_empresa}" headerText="Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{guia.cliente.nombre_empresa}" />
+            </p:column>
+            <p:column filterBy="#{guia.ruta.getDescripcion()}" headerText="Ruta"  filterMatchMode="contains">
+                <h:outputText value="#{guia.ruta.getDescripcion()}" />
+            </p:column>
+            <p:column filterBy="#{guia.paquete.getDescripcion()}" headerText="Paquete"  filterMatchMode="contains">
+                <h:outputText value="#{guia.paquete.getDescripcion()}" />
+            </p:column>
+        </p:dataTable>
+
+
+            <!-- <p:outputLabel for="guia" value="Guia: " /> -->
+            <!-- <br/> -->
+            <!-- <p:selectOneMenu id="guia" value="#{eventoMBean.guia}" style="width:150px"> -->
+            <!--     <f:selectItems value="#{eventoMBean.getGuiasDescripcion()}" /> -->
+            <!-- </p:selectOneMenu> -->
+            <!-- <br/> <br/> <h:outputText value="guia: "></h:outputText> -->
+            <!-- <h:outputText value="#{eventoMBean.guia}"></h:outputText><br/> -->
+
+
+
 
             <br/>
             <hr/>
@@ -26,33 +73,12 @@
                 <f:selectItem itemLabel="Aprobado" itemValue="Aprobado"/>
             </p:selectOneRadio>
 
+
             <br/>
             <hr/>
             <br/>
             <h:outputLabel for="descripcion" value="Descripción [opcional]:" />
             <p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/>
-
-            <br/>
-            <hr/>
-            <br/>
-            <b>
-                Cambiar esto con una forma más amigable y comprensible de
-                seleccionar la guia a la cual corresponde el evento!!
-
-                Filtrar las guias por clientes!
-
-                Cliente + fecha ?
-                Cliente + tipo de paquete?
-            </b>
-            <br/>
-            <br/>
-                <p:outputLabel for="guia" value="Guia: " />
-                <br/>
-                <p:selectOneMenu id="guia" value="#{eventoMBean.guia}" style="width:150px">
-                    <f:selectItems value="#{eventoMBean.getGuiasDescripcion()}" />
-                </p:selectOneMenu>
-                <br/> <br/> <h:outputText value="guia: "></h:outputText>
-                <h:outputText value="#{eventoMBean.guia}"></h:outputText><br/>
 
 
             <br/>
