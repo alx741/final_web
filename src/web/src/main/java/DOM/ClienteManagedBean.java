@@ -10,14 +10,12 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 import hbm.Cliente;
 import hbm.Factura;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import org.primefaces.event.RowEditEvent;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 import util.HibernateUtil;
 
 public class ClienteManagedBean implements Serializable
@@ -38,11 +36,11 @@ public class ClienteManagedBean implements Serializable
 
     private String cliente;
     private String isPass;
-    private List<Cliente> filteredClientes;
-    private List<Cliente> cliente1;
-     private Cliente clienteO;
 
-    
+    private Cliente clienteO;
+
+    private List<Cliente> filteredClientes;
+
     public List<Cliente> getFilteredClientes() {
         return filteredClientes;
     }
@@ -60,17 +58,6 @@ public class ClienteManagedBean implements Serializable
     {
         this.clienteO = clienteO;
     }
-
-    public List<Cliente> getCliente1() {
-        return cliente1;
-    }
-
-    public void setCliente1(List<Cliente> cliente1) {
-        this.cliente1 = cliente1;
-    }
-
-   
- 
 
     public String getCliente()
     {
@@ -166,7 +153,7 @@ public class ClienteManagedBean implements Serializable
 
 
 
-    public void save()
+    public String save()
     {
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -188,50 +175,31 @@ public class ClienteManagedBean implements Serializable
             session.save(cliente);
             tx.commit();
             log.debug("Nuevo registro : " + cliente + ", realizado : " + tx.wasCommitted());
-            FacesContext context = FacesContext.getCurrentInstance();
-         
-            context.addMessage(null, new FacesMessage("Exito","Se guardo con exito el cliente") );
-           
+            result = SUCCESS;
         }
         catch (Exception e)
         {
             if (tx != null)
             {
                 tx.rollback();
-                
+                result = ERROR;
                 e.printStackTrace();
-                FacesContext context = FacesContext.getCurrentInstance();
-         
-            context.addMessage(null, new FacesMessage("Error","No se pudo guardar el Cliente") );
-            
             }
         }
         finally
         {
             session.close();
         }
-         reset();
-        //return result;
+        return result;
     }
 
     public List<Cliente> getClientes()
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        List<Cliente>  clienteList = 
-                session.createCriteria(Cliente.class).list();
+        List<Cliente>  clienteList = session.createCriteria(Cliente.class).list();
         return clienteList;
     }
-    
-    public List<String> getRucs(){
-        List<Cliente> lista=getClientes();
-        List<String> rucs = null;
-        for (int i=0;i<=lista.size();i++){
-            rucs.add(lista.get(i).getRuc_empresa());
-        }
-        return rucs;
-        
-    }
-    
+
     public void reset()
     {
         this.setRuc_empresa("");
@@ -245,8 +213,7 @@ public class ClienteManagedBean implements Serializable
 
 
 
-     
-   
+
 
 
 
@@ -355,6 +322,7 @@ public class ClienteManagedBean implements Serializable
             this.isPass = "no";
         }
     }
+
     public void onClienteChange()
     {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -370,16 +338,15 @@ public class ClienteManagedBean implements Serializable
         this.setPassword(cliente.getPassword());
     }
 
-    public void onClienteChangeT(SelectEvent event)
+    public void onClienteChangeT()
     {
-         this.setCliente(this.getClienteO().getRuc_empresa());
+        this.setCliente(this.getClienteO().getRuc_empresa());
         this.onClienteChange();
     }
 
     public String modificar()
     {
-                this.setCliente(this.getClienteO().getRuc_empresa());
-
+        this.setCliente(this.getClienteO().getRuc_empresa());
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
@@ -398,7 +365,7 @@ public class ClienteManagedBean implements Serializable
         try
         {
             tx = session.beginTransaction();
-            session.save(cliente);
+            session.update(cliente);
             tx.commit();
             log.debug("Nuevo registro : " + cliente + ", realizado : " +
                       tx.wasCommitted());
@@ -419,6 +386,6 @@ public class ClienteManagedBean implements Serializable
         }
         return result;
     }
-
-    
 }
+
+  

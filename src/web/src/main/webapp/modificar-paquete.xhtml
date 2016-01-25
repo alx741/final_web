@@ -72,11 +72,12 @@
                     <td><h:outputLabel for="hasta" value="Hasta:" /></td>
                     <td><p:inputText id="hasta" value="#{paqueteMBean.hasta}"/></td>
                 </tr>
-                <tr>
-                    <td><p:commandButton id="submit" value="Modificar" action="#{paqueteMBean.modificar()}" ajax="false"/></td>
-                    <td><p:commandButton id="reset" value="Resetear" action="#{paqueteMBean.reset()}" ajax="false"/></td>
-                </tr>
-            </table>
+                </table>
+                
+                    <td><p:commandButton id="submit" value="Modificar" action="#{paqueteMBean.modificar}" ajax="false"/></td>
+                    <td><p:commandButton id="reset" value="Resetear" action="#{paqueteMBean.reset}" ajax="false"/></td>
+               
+            
            
      </h:form>
      </p:panel>

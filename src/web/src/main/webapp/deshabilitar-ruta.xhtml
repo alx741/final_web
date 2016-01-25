@@ -15,7 +15,7 @@
                 <td><p:outputLabel for="ruta" value="Tipo de ruta: " /></td>
         
                 <td><p:selectOneMenu id="ruta" value="#{rutaMBean.ruta}" style="width:550px">
-            <f:selectItems value="#{rutaMBean.getRutasHabilitados()}" />
+            <f:selectItems value="#{rutaMBean.rutasHabilitados}" />
                     </p:selectOneMenu></td>
             </tr>
         </table>
@@ -23,7 +23,7 @@
     
     <hr/>
     <br/>
-        <p:commandButton id="submit" value="Deshabilitar" action="#{rutaMBean.deshabilitar()}" ajax="false"/>
+        <p:commandButton id="submit" value="Deshabilitar" action="#{rutaMBean.deshabilitar}" ajax="false"/>
 
      </h:form>
      </p:panel>

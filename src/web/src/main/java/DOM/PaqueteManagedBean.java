@@ -29,6 +29,9 @@ public class PaqueteManagedBean implements Serializable
     private String paquete;
 
     private String paquete_id;
+
+
+
     private Paquete paqueteO;
 
     private List<Paquete> filteredPaquetes;
@@ -50,6 +53,11 @@ public class PaqueteManagedBean implements Serializable
     {
         this.paqueteO = paqueteO;
     }
+
+
+
+
+
 
     public float getTarifa()
     {
@@ -335,7 +343,8 @@ public class PaqueteManagedBean implements Serializable
         this.setDesde(paquete.getDesde());
         this.setHasta(paquete.getHasta());
     }
-     public void onPaqueteChangeT()
+
+    public void onPaqueteChangeT()
     {
         this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
         this.onPaqueteChange();
@@ -360,7 +369,7 @@ public class PaqueteManagedBean implements Serializable
         try
         {
             tx = session.beginTransaction();
-            session.save(paquete);
+            session.update(paquete);
             tx.commit();
             log.debug("Nuevo registro : " + paquete + ", realizado : " +
                       tx.wasCommitted());

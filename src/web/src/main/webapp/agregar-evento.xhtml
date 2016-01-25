@@ -1,12 +1,11 @@
 <ui:composition template="index.xhtml"
-                
+               
     xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="Nuevo">
- <h:panelGrid columns="2" cellpadding="15" >
+    <ui:define name="Agregar">
     <p:panel header="Agregar Evento">
         <h:form id="main">
 
@@ -40,11 +39,11 @@
             <p:column filterBy="#{guia.cliente.nombre_empresa}" headerText="Empresa"  filterMatchMode="contains">
                     <h:outputText value="#{guia.cliente.nombre_empresa}" />
             </p:column>
-            <p:column filterBy="#{guia.ruta.getDescripcion()}" headerText="Ruta"  filterMatchMode="contains">
-                <h:outputText value="#{guia.ruta.getDescripcion()}" />
+            <p:column filterBy="#{guia.ruta.descripcion}" headerText="Ruta"  filterMatchMode="contains">
+                <h:outputText value="#{guia.ruta.descripcion}" />
             </p:column>
-            <p:column filterBy="#{guia.paquete.getDescripcion()}" headerText="Paquete"  filterMatchMode="contains">
-                <h:outputText value="#{guia.paquete.getDescripcion()}" />
+            <p:column filterBy="#{guia.paquete.descripcion}" headerText="Paquete"  filterMatchMode="contains">
+                <h:outputText value="#{guia.paquete.descripcion}" />
             </p:column>
         </p:dataTable>
 
@@ -53,10 +52,11 @@
             <br/>
             <hr/>
             <br/>
-            <table>
-                <tr>
-                    <td><p:outputLabel for="evento" value="Evento:" /></td>
-                    <td> <p:selectOneRadio id="evento" value="#{eventoMBean.evento}">
+            
+            
+                
+            <p:outputLabel for="evento" value="Evento:" />
+                    <p:selectOneRadio id="evento" value="#{eventoMBean.evento}">
                 <br/>
                 <f:selectItem itemLabel="Salida" itemValue="Salida"/>
                 <br/>
@@ -72,22 +72,17 @@
                 <br/>
                 <f:selectItem itemLabel="Punto de control" itemValue="Punto de
                 control"/>
-                        </p:selectOneRadio></td>
-                </tr>
-
-            
-                <tr>
-                    <td><h:outputLabel for="descripcion" value="Descripción [opcional]:" /></td>
-                    <td><p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/></td>
-                </tr>
-                <tr>
-                    <td><p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save()}" ajax="false"/></td>
-                    <td><p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset()}" ajax="false"/></td>
-                </tr>
+                        </p:selectOneRadio>
+<table>
+                    <tr>
+                        <td><h:outputLabel for="descripcion" value="DescripciÃ³n [opcional]:" /></td>
+                        <td><p:inputTextarea rows="6" cols="33" id="descripcion" value="#{eventoMBean.descripcion}"/></td>
+                    </tr>
             </table>
-            
+            <p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save}" ajax="false"/>
+            <p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset}" ajax="false"/>
+
      </h:form>
      </p:panel>
- </h:panelGrid>
     </ui:define>
 </ui:composition>
