@@ -28,7 +28,6 @@ public class EmpleadoManagedBean implements Serializable
     private String cedula;
     private String nombre;
     private String password;
-<<<<<<< HEAD
     private List<Empleado> filteredEmpleado;
     private String isPass;
     private Empleado empleadoO;
@@ -60,12 +59,6 @@ public class EmpleadoManagedBean implements Serializable
      public void setFilteredEmpleado(List<Empleado> filteredEmpleado) {
         this.filteredEmpleado = filteredEmpleado;
     }
-=======
-
-    private String isPass;
-
-
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
     public String getEmpleado()
     {
         return this.empleado;

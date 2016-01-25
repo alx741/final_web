@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <ui:composition template="indexAd.xhtml"
                 template="index.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
@@ -50,26 +49,10 @@
 
 
 
-=======
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">
-
-<h:head><title>Paqueteria</title></h:head>
-<body>
-
-    <p:panel header="Crear Guia">
-    <h:form>
-
-    <br/>
-        <h:outputText value="Fecha de creación será la fecha actual"></h:outputText>
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
 
     <br/>
     <hr/>
     <br/>
-<<<<<<< HEAD
         <p:dataTable id="ruta" var="ruta" value="#{rutaMBean.rutas}"
             widgetVar="rutasTable" emptyMessage="Rutas no encontrados con
             ese criterio" filteredValue="#{rutaMBean.filteredRutas}"
@@ -105,20 +88,10 @@
 
 
 
-=======
-        <p:outputLabel for="paquete" value="Tipo de paquete: " />
-        <br/>
-        <p:selectOneMenu id="paquete" value="#{guiaMBean.paquete}" style="width:150px">
-            <f:selectItems value="#{guiaMBean.getPaquetesDescripcion()}" />
-        </p:selectOneMenu>
-        <br/> <br/> <h:outputText value="paquete: "></h:outputText>
-        <h:outputText value="#{guiaMBean.paquete}"></h:outputText><br/>
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
 
     <br/>
     <hr/>
     <br/>
-<<<<<<< HEAD
         <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}"
             widgetVar="clientesTable" emptyMessage="Clientes no encontrados con
             ese criterio" filteredValue="#{clienteMBean.filteredClientes}"
@@ -162,50 +135,17 @@
             <td><p:inputTextarea rows="6" cols="33" id="detalle" value="#{guiaMBean.detalle}"/></td>
         </tr>
     </table>
-=======
-        <p:outputLabel for="ruta" value="Tipo de ruta: " />
-        <br/>
-        <p:selectOneMenu id="ruta" value="#{guiaMBean.ruta}" style="width:150px">
-            <f:selectItems value="#{guiaMBean.getRutasDescripcion()}" />
-        </p:selectOneMenu>
-        <br/> <br/> <h:outputText value="ruta: "></h:outputText>
-        <h:outputText value="#{guiaMBean.ruta}"></h:outputText><br/>
-
-    <br/>
-    <hr/>
-    <br/>
-        <p:outputLabel for="ruc_empresa" value="Ruc empresarial cliente: " />
-        <br/>
-        <p:inputText id="ruc_empresa" value="#{guiaMBean.cliente}"/>
-        <br/> <br/> <h:outputText value="cliente: "></h:outputText>
-        <h:outputText value="#{guiaMBean.cliente}"></h:outputText><br/>
-
-    <br/>
-    <hr/>
-    <br/>
-        <p:outputLabel for="detalle" value="Detalle: " />
-        <br/>
-        <p:inputText id="detalle" value="#{guiaMBean.detalle}"/>
-        <br/> <br/> <h:outputText value="detalle: "></h:outputText>
-        <h:outputText value="#{guiaMBean.detalle}"></h:outputText><br/>
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
 
 
 
     <br/>
     <hr/>
     <br/>
-        <p:commandButton id="submit" value="Guardar" action="#{guiaMBean.save()}" ajax="false"/>
-        <p:commandButton id="reset" value="Resetear" action="#{guiaMBean.reset()}" ajax="false"/>
+        <p:commandButton id="submit" value="Guardar" action="#{guiaMBean.save}" ajax="false"/>
+        <p:commandButton id="reset" value="Resetear" action="#{guiaMBean.reset}" ajax="false"/>
 
      </h:form>
      </p:panel>
-<<<<<<< HEAD
  </h:panelGrid>
     </ui:define>
 </ui:composition>
-=======
-
-</body>
-</html>
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes

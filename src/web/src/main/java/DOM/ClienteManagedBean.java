@@ -16,6 +16,8 @@ import hbm.Factura;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import util.HibernateUtil;
 
 public class ClienteManagedBean implements Serializable
@@ -220,6 +222,16 @@ public class ClienteManagedBean implements Serializable
         return clienteList;
     }
     
+    public List<String> getRucs(){
+        List<Cliente> lista=getClientes();
+        List<String> rucs = null;
+        for (int i=0;i<=lista.size();i++){
+            rucs.add(lista.get(i).getRuc_empresa());
+        }
+        return rucs;
+        
+    }
+    
     public void reset()
     {
         this.setRuc_empresa("");
@@ -234,11 +246,7 @@ public class ClienteManagedBean implements Serializable
 
 
      
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edicion Cancelada", Integer.toString(((Cliente) event.getObject()).getId()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
+   
 
 
 
@@ -362,7 +370,6 @@ public class ClienteManagedBean implements Serializable
         this.setPassword(cliente.getPassword());
     }
 
-<<<<<<< HEAD
     public void onClienteChangeT(SelectEvent event)
     {
          this.setCliente(this.getClienteO().getRuc_empresa());
@@ -373,17 +380,11 @@ public class ClienteManagedBean implements Serializable
     {
                 this.setCliente(this.getClienteO().getRuc_empresa());
 
-=======
-    public void onRowEdit(RowEditEvent event)
-    {
-       Cliente edittedObject = (Cliente) event.getObject();
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
 
-<<<<<<< HEAD
         cliente.setRuc_empresa(this.getRuc_empresa());
         cliente.setNombre_empresa(this.getNombre_empresa());
         cliente.setCedula_representante(this.getCedula_representante());
@@ -392,30 +393,16 @@ public class ClienteManagedBean implements Serializable
         cliente.setDireccion(this.getDireccion());
         cliente.setPassword(this.getPassword());
 
-=======
-        
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
         Transaction tx = null;
 
         try
         {
             tx = session.beginTransaction();
-<<<<<<< HEAD
             session.save(cliente);
             tx.commit();
             log.debug("Nuevo registro : " + cliente + ", realizado : " +
                       tx.wasCommitted());
             result = SUCCESS;
-=======
-            session.update(edittedObject);
-            tx.commit();
-            log.debug("Nuevo registro : " + cliente + ", realizado : " +
-                      tx.wasCommitted());
-           
-            FacesMessage msg = new FacesMessage("Cliete Editado", Integer.toString(((Cliente) event.getObject()).getId()));
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
         }
         catch (Exception e)
         {

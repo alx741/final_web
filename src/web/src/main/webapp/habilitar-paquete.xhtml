@@ -1,33 +1,32 @@
-<<<<<<< HEAD
 <ui:composition template="indexAd.xhtml"
                 template="index.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-=======
-<html xmlns="http://www.w3.org/1999/xhtml"
->>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">
-
- <h:head><title>Paqueteria</title></h:head>
- <body>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="Habilitar">
+         <h:panelGrid columns="3" cellpadding="100">
     <p:panel header="Habilitar paquete">
     <h:form>
 
-    <br/>
-        <p:outputLabel for="paquete" value="Tipo de paquete: " />
-        <br/>
-        <p:selectOneMenu id="paquete" value="#{paqueteMBean.paquete}" style="width:150px">
-            <f:selectItems value="#{paqueteMBean.getPaquetesDeshabilitados()}" />
-        </p:selectOneMenu>
+        <table>`
+            <tr>
+                <td><p:outputLabel for="paquete" value="Tipo de paquete: " /></td>
+        
+        <td><p:selectOneMenu id="paquete" value="#{paqueteMBean.paquete}" style="width:500px">
+            <f:selectItems value="#{paqueteMBean.paquetesDeshabilitados}" />
+        </p:selectOneMenu></td>
+            </tr>
+        </table>
 
-
-    <br/>
+   
     <hr/>
-    <br/>
-        <p:commandButton id="submit" value="Habilitar" action="#{paqueteMBean.habilitar()}" ajax="false"/>
+   
+        <p:commandButton id="submit" value="Habilitar" action="#{paqueteMBean.habilitar}" ajax="false"/>
 
      </h:form>
      </p:panel>
-</body>
-</html>
+         </h:panelGrid>
+    </ui:define>
+</ui:composition>
