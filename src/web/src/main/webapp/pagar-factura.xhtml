@@ -7,30 +7,111 @@
  <body>
 
     <p:panel header="Pagar Factura">
-    <h:form>
+        <h:form id="main">
 
-    <b>
-        Usar 2 combobox (quizas?):
-        <br/>
-        - Uno para seleccionar el cliente
-        <br/>
-        - Otro para seleccionar entre las facturas de ESE cliente
-        <br/>
-        <br/>
 
-        Este ejemplo muestra la idea de una lista
-        que afecta el contenido de la otra:
-        <br/>
-        <br/>
-        http://www.primefaces.org/showcase/ui/ajax/dropdown.xhtml
-    </b>
+        <p:dataTable id="factura" var="factura"
+            value="#{facturaMBean.facturasPendientes}"
+            widgetVar="facturasTable" emptyMessage="Facturas no encontrados con
+            ese criterio" filteredValue="#{facturaMBean.filteredFacturas}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{facturaMBean.facturaO}" rowKey="#{factura.id}">
 
-    <br/>
-        <p:outputLabel for="factura" value="Factura: " />
+            <p:ajax event="rowSelect"
+                listener="#{facturaMBean.onFacturaChangeT}"
+                update=":main:cliente :main:fecha :main:total :main:guias"/>
+
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Factura" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('facturasTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{factura.cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{factura.cliente.ruc_empresa}" />
+            </p:column>
+            <p:column filterBy="#{factura.cliente.nombre_empresa}" headerText="Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{factura.cliente.nombre_empresa}" />
+            </p:column>
+            <p:column filterBy="#{factura.valor}" headerText="Valor"  filterMatchMode="contains">
+                <h:outputText value="#{factura.valor}" />
+            </p:column>
+        </p:dataTable>
+
+
+
         <br/>
-        <p:selectOneMenu id="factura" value="#{facturaMBean.factura}" style="width:150px">
-            <f:selectItems value="#{facturaMBean.getUnpaidFacturas()}" />
-        </p:selectOneMenu>
+        <br/>
+        <hr/>
+        <br/>
+        <h2>Detalles de la Factura</h2>
+
+
+
+        <br/>
+        <br/>
+        <h:outputText value="Cliente: "></h:outputText>
+        <br/>
+        <h:outputText id="cliente" value="#{facturaMBean.empresa}"></h:outputText><br/>
+
+        <br/>
+        <br/>
+        <h:outputText value="Fecha: "></h:outputText>
+        <br/>
+        <h:outputText id="fecha" value="#{facturaMBean.fecha}"></h:outputText><br/>
+
+        <br/>
+        <br/>
+        <h:outputText value="Total: "></h:outputText>
+        <br/>
+        <h:outputText id="total" value="#{facturaMBean.valor}"></h:outputText><br/>
+
+
+        <br/>
+        <br/>
+        <p:dataTable id="guias" value="#{facturaMBean.guiasFactura}" var="guia" style="width: 100%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText value="#{guia.id}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Detalle" />
+                </f:facet>
+                <h:outputText value="#{guia.detalle}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Paquete" />
+                </f:facet>
+                <h:outputText value="#{guia.paquete.getDescripcion()}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Ruta" />
+                </f:facet>
+                <h:outputText value="#{guia.ruta.getDescripcion()}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Valor" />
+                </f:facet>
+                <h:outputText value="#{guia.getValor()}" />
+            </p:column>
+        </p:dataTable>
 
 
     <br/>

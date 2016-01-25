@@ -226,6 +226,7 @@ public class FacturaManagedBean implements Serializable
 
     public String pagar()
     {
+        this.setFactura(String.valueOf(this.getFacturaO().getId()));
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
