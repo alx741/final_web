@@ -38,6 +38,9 @@
                 </p:outputPanel>
             </f:facet>
 
+            <p:column filterBy="#{factura.cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{factura.cliente.ruc_empresa}" />
+            </p:column>
             <p:column filterBy="#{factura.cliente.nombre_empresa}" headerText="Empresa"  filterMatchMode="contains">
                     <h:outputText value="#{factura.cliente.nombre_empresa}" />
             </p:column>
