@@ -10,6 +10,9 @@ import java.util.Date;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 
 import hbm.Cliente;
 import hbm.Factura;
@@ -33,6 +36,28 @@ public class ClienteManagedBean implements Serializable
 
     private String cliente;
     private String isPass;
+
+    private Cliente clienteO;
+
+    private List<Cliente> filteredClientes;
+
+    public List<Cliente> getFilteredClientes() {
+        return filteredClientes;
+    }
+
+    public void setFilteredClientes(List<Cliente> filteredClientes) {
+        this.filteredClientes = filteredClientes;
+    }
+
+    public Cliente getClienteO()
+    {
+        return clienteO;
+    }
+
+    public void setClienteO(Cliente clienteO)
+    {
+        this.clienteO = clienteO;
+    }
 
     public String getCliente()
     {
@@ -303,6 +328,21 @@ public class ClienteManagedBean implements Serializable
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
+
+        this.setRuc_empresa(cliente.getRuc_empresa());
+        this.setNombre_empresa(cliente.getNombre_empresa());
+        this.setCedula_representante(cliente.getCedula_representante());
+        this.setNombre_representante(cliente.getNombre_representante());
+        this.setTelefono(cliente.getTelefono());
+        this.setDireccion(cliente.getDireccion());
+        this.setPassword(cliente.getPassword());
+    }
+
+    public void onClienteChangeT(SelectEvent event)
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Cliente cliente = (Cliente) session.load(Cliente.class,
+                this.getIdCliente(this.getClienteO().getRuc_empresa()));
 
         this.setRuc_empresa(cliente.getRuc_empresa());
         this.setNombre_empresa(cliente.getNombre_empresa());

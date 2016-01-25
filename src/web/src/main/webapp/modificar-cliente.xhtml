@@ -6,7 +6,7 @@
  <h:head><title>Paqueteria</title></h:head>
  <body>
         <p:panel header="Modificar cliente">
-        <h:form>
+        <h:form id="main">
 
 
         <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}"
@@ -17,7 +17,14 @@
             {LastPageLink} {RowsPerPageDropdown}"
             rowsPerPageTemplate="5,10,20,50"
             resizableColumns="false" liveResize="true" selectionMode="single"
-            selection="#{clienteMBean.cliente}" rowKey="#{cliente.id}">
+            selection="#{clienteMBean.clienteO}" rowKey="#{cliente.id}">
+
+            <p:ajax event="rowSelect"
+                listener="#{clienteMBean.onClienteChangeT}"
+                update=":main:ruc_empresa :main:nombre_empresa
+                :main:cedula_representante :main:nombre_representante
+                :main:telefono :main:direccion :main:password"/>
+
 
             <f:facet name="header">
                 <p:outputPanel>
@@ -44,12 +51,6 @@
                 <h:outputText value="#{cliente.nombre_representante}" />
             </p:column>
         </p:dataTable>
-
-
-
-
-
-
 
 
 
