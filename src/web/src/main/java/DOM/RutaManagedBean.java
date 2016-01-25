@@ -27,7 +27,27 @@ public class RutaManagedBean implements Serializable
     private String transporte;
     private boolean habilitado;
     private String ruta;
+    private Ruta rutaO;
 
+    private List<Ruta> filteredRutas;
+
+    public List<Ruta> getFilteredRutas() {
+        return filteredRutas;
+    }
+
+    public void setFilteredRutas(List<Ruta> filteredRutas) {
+        this.filteredRutas = filteredRutas;
+    }
+
+    public Ruta getRutaO()
+    {
+        return rutaO;
+   }
+
+    public void setRutaO(Ruta rutaO)
+   {
+        this.rutaO = rutaO;
+    }
     public float getTarifa()
     {
         return tarifa;
@@ -88,10 +108,11 @@ public class RutaManagedBean implements Serializable
     {
         this.ruta = ruta;
     }
-
+   
 
     public String save()
     {
+        this.setRuta(String.valueOf(this.getRutaO().getId()));
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -301,7 +322,11 @@ public class RutaManagedBean implements Serializable
         this.setDestino(ruta.getDestino());
         this.setTransporte(ruta.getTransporte());
     }
-
+    public void onRutaChangeT()
+     {
+         this.setRuta(String.valueOf(this.getRutaO().getId()));
+          this.onRutaChange();
+     }
     public String modificar()
     {
         String result = null;
@@ -320,7 +345,7 @@ public class RutaManagedBean implements Serializable
         try
         {
             tx = session.beginTransaction();
-            session.save(ruta);
+            session.update(ruta);
             tx.commit();
             log.debug("Nuevo registro : " + ruta + ", realizado : " +
                       tx.wasCommitted());

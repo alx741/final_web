@@ -40,6 +40,26 @@ public class ClienteManagedBean implements Serializable
     private String isPass;
     private List<Cliente> filteredClientes;
     private List<Cliente> cliente1;
+     private Cliente clienteO;
+
+    
+    public List<Cliente> getFilteredClientes() {
+        return filteredClientes;
+    }
+
+    public void setFilteredClientes(List<Cliente> filteredClientes) {
+        this.filteredClientes = filteredClientes;
+    }
+
+    public Cliente getClienteO()
+    {
+        return clienteO;
+    }
+
+    public void setClienteO(Cliente clienteO)
+    {
+        this.clienteO = clienteO;
+    }
 
     public List<Cliente> getCliente1() {
         return cliente1;
@@ -49,13 +69,8 @@ public class ClienteManagedBean implements Serializable
         this.cliente1 = cliente1;
     }
 
-    public List<Cliente> getFilteredClientes() {
-        return filteredClientes;
-    }
-
-    public void setFilteredClientes(List<Cliente> filteredClientes) {
-        this.filteredClientes = filteredClientes;
-    }
+   
+ 
 
     public String getCliente()
     {
@@ -340,10 +355,8 @@ public class ClienteManagedBean implements Serializable
             this.isPass = "no";
         }
     }
-
     public void onClienteChange()
     {
-        
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
@@ -356,60 +369,56 @@ public class ClienteManagedBean implements Serializable
         this.setDireccion(cliente.getDireccion());
         this.setPassword(cliente.getPassword());
     }
-     public void onRowSelect(SelectEvent event) {
-        FacesMessage msg = new FacesMessage("Cliente Seleccionado", ((Cliente) event.getObject()).getRuc_empresa());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
- 
-    public void onRowUnselect(UnselectEvent event) {
-        FacesMessage msg = new FacesMessage("Cliente Deseleccionado", ((Cliente) event.getObject()).getRuc_empresa());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
-    public void modificar()
+
+    public void onClienteChangeT(SelectEvent event)
     {
-     
+         this.setCliente(this.getClienteO().getRuc_empresa());
+        this.onClienteChange();
+    }
+
+    public String modificar()
+    {
+                this.setCliente(this.getClienteO().getRuc_empresa());
+
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
+
         cliente.setRuc_empresa(this.getRuc_empresa());
         cliente.setNombre_empresa(this.getNombre_empresa());
         cliente.setCedula_representante(this.getCedula_representante());
         cliente.setNombre_representante(this.getNombre_representante());
+        cliente.setTelefono(this.getTelefono());
         cliente.setDireccion(this.getDireccion());
-        cliente.setTelefono(this.telefono);
-  
-        
+        cliente.setPassword(this.getPassword());
+
         Transaction tx = null;
 
         try
         {
             tx = session.beginTransaction();
-            session.update(cliente);
+            session.save(cliente);
             tx.commit();
-           log.debug("Nuevo registro : " + cliente + ", realizado : " +
+            log.debug("Nuevo registro : " + cliente + ", realizado : " +
                       tx.wasCommitted());
             result = SUCCESS;
-            
         }
         catch (Exception e)
         {
             if (tx != null)
             {
                 tx.rollback();
-                FacesContext context = FacesContext.getCurrentInstance();
-         
-            context.addMessage(null, new FacesMessage("Fracaso","No se pudo Modificar") );
-               e.printStackTrace();
-               
+                result = ERROR;
+                e.printStackTrace();
             }
         }
         finally
         {
             session.close();
         }
-        reset();
-        //return result;
+        return result;
     }
+
+    
 }
