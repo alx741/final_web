@@ -38,6 +38,27 @@ public class GuiaManagedBean implements Serializable
     private String factura;
 
 
+
+
+
+    private Paquete paqueteO;
+
+    public Paquete getPaqueteO()
+    {
+        return paqueteO;
+    }
+
+    public void setPaqueteO(Paquete paqueteO)
+    {
+        this.paqueteO = paqueteO;
+    }
+
+
+
+
+
+
+
     public Date getFecha_creacion()
     {
         return fecha_creacion;
@@ -100,6 +121,7 @@ public class GuiaManagedBean implements Serializable
 
     public String save()
     {
+        this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 

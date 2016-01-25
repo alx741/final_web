@@ -9,19 +9,45 @@
     <p:panel header="Crear Guia">
     <h:form>
 
-    <br/>
-        <h:outputText value="Fecha de creación será la fecha actual"></h:outputText>
 
-    <br/>
-    <hr/>
-    <br/>
-        <p:outputLabel for="paquete" value="Tipo de paquete: " />
-        <br/>
-        <p:selectOneMenu id="paquete" value="#{guiaMBean.paquete}" style="width:150px">
-            <f:selectItems value="#{guiaMBean.getPaquetesDescripcion()}" />
-        </p:selectOneMenu>
-        <br/> <br/> <h:outputText value="paquete: "></h:outputText>
-        <h:outputText value="#{guiaMBean.paquete}"></h:outputText><br/>
+        <p:dataTable id="paquete" var="paquete" value="#{paqueteMBean.paquetes}"
+            widgetVar="paquetesTable" emptyMessage="Paquetes no encontrados con
+            ese criterio" filteredValue="#{paqueteMBean.filteredPaquetes}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{guiaMBean.paqueteO}" rowKey="#{paquete.id}"
+            style="width: 100%">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Paquete" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('paquetesTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{paquete.rawDesc}" headerText="Descripción"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.rawDesc}" />
+            </p:column>
+            <p:column filterBy="#{paquete.desde}" headerText="Desde"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.desde}" />
+            </p:column>
+            <p:column filterBy="#{paquete.hasta}" headerText="Hasta"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.hasta}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+
+
 
     <br/>
     <hr/>
