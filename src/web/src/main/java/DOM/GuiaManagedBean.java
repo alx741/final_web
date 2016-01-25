@@ -39,6 +39,17 @@ public class GuiaManagedBean implements Serializable
 
 
 
+    private Ruta rutaO;
+
+    public Ruta getRutaO()
+    {
+        return rutaO;
+    }
+
+    public void setRutaO(Ruta rutaO)
+    {
+        this.rutaO = rutaO;
+    }
 
 
     private Paquete paqueteO;
@@ -122,6 +133,7 @@ public class GuiaManagedBean implements Serializable
     public String save()
     {
         this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
+        this.setRuta(String.valueOf(this.getRutaO().getId()));
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
