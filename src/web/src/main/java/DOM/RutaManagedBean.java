@@ -28,6 +28,32 @@ public class RutaManagedBean implements Serializable
     private boolean habilitado;
     private String ruta;
 
+
+    private Ruta rutaO;
+
+    private List<Ruta> filteredRutas;
+
+    public List<Ruta> getFilteredRutas() {
+        return filteredRutas;
+    }
+
+    public void setFilteredRutas(List<Ruta> filteredRutas) {
+        this.filteredRutas = filteredRutas;
+    }
+
+    public Ruta getRutaO()
+    {
+        return rutaO;
+    }
+
+    public void setRutaO(Ruta rutaO)
+    {
+        this.rutaO = rutaO;
+    }
+
+
+
+
     public float getTarifa()
     {
         return tarifa;
@@ -295,6 +321,18 @@ public class RutaManagedBean implements Serializable
         Session session = HibernateUtil.getSessionFactory().openSession();
         Ruta ruta = (Ruta) session.load(Ruta.class,
                 Integer.parseInt(this.getRuta()));
+
+        this.setTarifa(ruta.getTarifa());
+        this.setOrigen(ruta.getOrigen());
+        this.setDestino(ruta.getDestino());
+        this.setTransporte(ruta.getTransporte());
+    }
+
+    public void onRutaChangeT()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Ruta ruta = (Ruta) session.load(Ruta.class,
+                this.getRutaO().getId());
 
         this.setTarifa(ruta.getTarifa());
         this.setOrigen(ruta.getOrigen());
