@@ -1,10 +1,12 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="indexAd.xhtml"
+                template="index.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">
-
- <h:head><title>Paqueteria</title></h:head>
- <body>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:define name="Modificar">
     <p:panel header="Modificar ruta">
         <h:form id="main">
 
@@ -50,32 +52,29 @@
 
         <br/>
         <br/>
-            <h:outputLabel for="tarifa" value="Tarifa:" />
-            <p:inputText id="tarifa" value="#{rutaMBean.tarifa}"/>
-
-        <br/>
-        <br/>
-            <h:outputLabel for="origen" value="Origen:" />
-            <p:inputText id="origen" value="#{rutaMBean.origen}"/>
-
-        <br/>
-        <br/>
-            <h:outputLabel for="destino" value="Destino:" />
-            <p:inputText id="destino" value="#{rutaMBean.destino}"/>
-
-        <br/>
-        <br/>
-            <h:outputLabel for="transporte" value="Transporte:" />
-            <p:inputText id="transporte" value="#{rutaMBean.transporte}"/>
-
-
-
-        <br/>
-        <br/>
-            <p:commandButton id="submit" value="Modificar" action="#{rutaMBean.modificar()}" ajax="false"/>
-            <p:commandButton id="reset" value="Resetear" action="#{rutaMBean.reset()}" ajax="false"/>
-
+        <table>
+            <tr>
+                <td><h:outputLabel for="tarifa" value="Tarifa:" /></td>
+                <td><p:inputText id="tarifa" value="#{rutaMBean.tarifa}"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="origen" value="Origen:" /></td>
+                <td><p:inputText id="origen" value="#{rutaMBean.origen}"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="destino" value="Destino:" /></td>
+                <td><p:inputText id="destino" value="#{rutaMBean.destino}"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="transporte" value="Transporte:" /></td>
+                <td><p:inputText id="transporte" value="#{rutaMBean.transporte}"/></td>
+            </tr>
+            <tr>
+                <td><p:commandButton id="submit" value="Modificar" action="#{rutaMBean.modificar()}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Resetear" action="#{rutaMBean.reset()}" ajax="false"/></td>
+            </tr>
+        </table>
      </h:form>
      </p:panel>
-</body>
-</html>
+    </ui:define>
+</ui:composition>

@@ -11,14 +11,12 @@ import org.hibernate.Transaction;
 import hbm.Empleado;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+//import javax.faces.bean.RequestScoped;
+//import javax.faces.context.FacesContext;
+//import javax.servlet.http.HttpServletRequest;
  
 import util.HibernateUtil;
 
-@ManagedBean
-@RequestScoped
 public class EmpleadoManagedBean implements Serializable
 {
 
@@ -33,11 +31,11 @@ public class EmpleadoManagedBean implements Serializable
     private List<Empleado> filteredEmpleado;
     private String isPass;
     private Empleado empleadoO;
-   /*private final HttpServletRequest httpServletRequest;
+  /* private final HttpServletRequest httpServletRequest;
     private final FacesContext faceContext;
-    private FacesMessage facesMessage;*/
+    private FacesMessage facesMessage;
 
-    /*public EmpleadoManagedBean() {
+    public EmpleadoManagedBean() {
        faceContext=FacesContext.getCurrentInstance();
        httpServletRequest=(HttpServletRequest)faceContext.getExternalContext().getRequest();
     }*/
@@ -163,7 +161,7 @@ public class EmpleadoManagedBean implements Serializable
         this.setPassword("");
     }
 
-   /* public String login()
+    /*public String login()
     {
          Session session = HibernateUtil.getSessionFactory().openSession();
          Empleado empleado = (Empleado) session.load(Empleado.class,

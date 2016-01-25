@@ -18,7 +18,7 @@
       <p:layout fullPage="true">
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    hola
+                    <h6>SERVICIO DE PAQUETERIA</h6>
                 </p:layoutUnit>
 
               
@@ -64,16 +64,17 @@
                         </p:submenu>
                     <p:submenu label="Guia" >
                             <p:menuitem value="Crear" url="agregar-guia.faces" icon="ui-icon-plus" />
-                            <p:menuitem value="Agregar Evento" url="modificar-empleado.faces" icon="ui-icon-circle-plus" />
+                            <p:menuitem value="Agregar Evento" url="agregar-evento.faces" icon="ui-icon-circle-plus" />
                            
-                            <p:menuitem value="Listar" url="listar-empleados.faces" icon="ui-icon-script"/>
-                            <p:menuitem value="Buscar" url="buscar-empleado.faces" icon="ui-icon-search" />
+                            <p:menuitem value="Listar" url="listar-guias.faces" icon="ui-icon-script"/>
+                           
 
                         </p:submenu>
                    <p:submenu label="Factura" >
-                            <p:menuitem value="Crear" url="agregar-guia.faces" icon="ui-icon-plus" />
-                            <p:menuitem value="Listar" url="listar-empleados.faces" icon="ui-icon-script"/>
-                            <p:menuitem value="Buscar" url="buscar-empleado.faces" icon="ui-icon-search" />
+                            
+                            <p:menuitem value="Pagar" url="pagar-factura.faces" icon="ui-icon-script"/>
+                            <p:menuitem value="Listar" url="listar-facturas.faces" icon="ui-icon-script"/>
+                           
 
                         </p:submenu>
                    
@@ -90,6 +91,7 @@
                     <ui:insert name="Buscar" />
                     <ui:insert name="Deshabilitar"/>
                     <ui:insert name="Habilitar"/>
+                    <ui:insert name="Pagar"/>
 
                 </p:layoutUnit>
 
