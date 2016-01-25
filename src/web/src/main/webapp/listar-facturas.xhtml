@@ -10,7 +10,8 @@
         <h:form id="main">
 
 
-        <p:dataTable id="factura" var="factura" value="#{facturaMBean.facturas}"
+        <p:dataTable id="factura" var="factura"
+            value="#{facturaMBean.facturasPendientes}"
             widgetVar="facturasTable" emptyMessage="Facturas no encontrados con
             ese criterio" filteredValue="#{facturaMBean.filteredFacturas}"
             rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
@@ -22,8 +23,7 @@
 
             <p:ajax event="rowSelect"
                 listener="#{facturaMBean.onFacturaChangeT}"
-                update=":main:cliente :main:fecha :main:total :main:pagado
-                :main:guias"/>
+                update=":main:cliente :main:fecha :main:total :main:guias"/>
 
 
             <f:facet name="header">
@@ -50,6 +50,14 @@
 
         <br/>
         <br/>
+        <hr/>
+        <br/>
+        <h2>Detalles de la Factura</h2>
+
+
+
+        <br/>
+        <br/>
         <h:outputText value="Cliente: "></h:outputText>
         <br/>
         <h:outputText id="cliente" value="#{facturaMBean.empresa}"></h:outputText><br/>
@@ -66,15 +74,8 @@
         <br/>
         <h:outputText id="total" value="#{facturaMBean.valor}"></h:outputText><br/>
 
-        <br/>
-        <br/>
-        <h:outputText value="Pagado?: "></h:outputText>
-        <br/>
-        <h:outputText id="pagado" value="#{facturaMBean.pagado}"></h:outputText><br/>
-
 
         <br/>
-        <hr/>
         <br/>
         <p:dataTable id="guias" value="#{facturaMBean.guiasFactura}" var="guia" style="width: 100%">
             <p:column>

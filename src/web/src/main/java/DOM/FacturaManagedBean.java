@@ -194,6 +194,21 @@ public class FacturaManagedBean implements Serializable
         return facturaList;
     }
 
+    public List<Factura> getFacturasPendientes()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Factura>  facturaList = session.createCriteria(Factura.class).list();
+        List<Factura> facturaPendList = new ArrayList<Factura>();
+        for (Factura f : facturaList)
+        {
+            if (!f.isPagado())
+            {
+                facturaPendList.add(f);
+            }
+        }
+        return facturaPendList;
+    }
+
     public void reset()
     {
         this.setFecha(new Date());
