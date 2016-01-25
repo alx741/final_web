@@ -16,7 +16,6 @@ import hbm.Paquete;
 import hbm.Factura;
 import hbm.Ruta;
 import hbm.Cliente;
-import java.util.ArrayList;
 import util.HibernateUtil;
 
 public class GuiaManagedBean implements Serializable
@@ -142,7 +141,7 @@ public class GuiaManagedBean implements Serializable
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        
+
         // Paquete
         Paquete paquete = pmb.getPaqueteByID(this.getPaquete());
         // Ruta
@@ -164,7 +163,7 @@ public class GuiaManagedBean implements Serializable
         factura_h.setValor(factura.getValor() + nuevoValor);
 
         Guia guia = new Guia();
-        guia.setFecha_creacion(this.getFecha_creacion());
+        guia.setFecha_creacion(new Date());
         guia.setDetalle(this.getDetalle());
         guia.setPaquete(paquete);
         guia.setRuta(ruta);
@@ -221,14 +220,7 @@ public class GuiaManagedBean implements Serializable
 
 
 
-    public List<String> getClientesRuc(){
-        List<Cliente> clienteList=cmb.getClientes();
-        List<String> descripciones = new  ArrayList<String>() {};
-        for(Cliente c :clienteList){
-            descripciones.add(c.getRuc_empresa());
-        }
-        return descripciones;
-    }
+
 
     public Map<String, String> getPaquetesDescripcion()
     {

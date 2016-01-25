@@ -1,32 +1,33 @@
+<<<<<<< HEAD
 <ui:composition template="indexAd.xhtml"
                 template="index.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
+=======
+<html xmlns="http://www.w3.org/1999/xhtml"
+>>>>>>> parent of 69e0b54... Completar Rutas y Paquetes
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="Deshabilitar">
-        <h:panelGrid columns="3" cellpadding="100">
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
     <p:panel header="Deshabilitar ruta">
     <h:form>
 
-        <table>
-            <tr>
-                <td><p:outputLabel for="ruta" value="Tipo de ruta: " /></td>
-        
-                <td><p:selectOneMenu id="ruta" value="#{rutaMBean.ruta}" style="width:550px">
+    <br/>
+        <p:outputLabel for="ruta" value="Tipo de ruta: " />
+        <br/>
+        <p:selectOneMenu id="ruta" value="#{rutaMBean.ruta}" style="width:150px">
             <f:selectItems value="#{rutaMBean.getRutasHabilitados()}" />
-                    </p:selectOneMenu></td>
-            </tr>
-        </table>
+        </p:selectOneMenu>
 
-    
+
+    <br/>
     <hr/>
     <br/>
         <p:commandButton id="submit" value="Deshabilitar" action="#{rutaMBean.deshabilitar()}" ajax="false"/>
 
      </h:form>
      </p:panel>
-        </h:panelGrid>
-    </ui:define>
-</ui:composition>
+</body>
+</html>
