@@ -1,61 +1,21 @@
-<ui:composition template="indexAd.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="Nuevo">
- <h:panelGrid columns="2" cellpadding="15" >
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
     <p:panel header="Agregar Evento">
-        <h:form id="main">
+    <h:form>
 
-
-        <p:dataTable id="guia" var="guia"
-            value="#{guiaMBean.guias}"
-            widgetVar="guiasTable" emptyMessage="Guias no encontrados con
-            ese criterio" filteredValue="#{eventoMBean.filteredGuias}"
-            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
-            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
-            {LastPageLink} {RowsPerPageDropdown}"
-            rowsPerPageTemplate="5,10,20,50"
-            resizableColumns="false" liveResize="true" selectionMode="single"
-            selection="#{eventoMBean.guiaO}" rowKey="#{guia.id}">
-
-            <f:facet name="header">
-                <p:outputPanel>
-                    <h:outputText value="Guia" />
-                    <br/>
-                    <br/>
-                    <h:outputText value="Buscar en todos los campos:  " />
-                    <p:inputText id="globalFilter"
-                        onkeyup="PF('guiasTable').filter()"
-                        style="width:150px" placeholder="Ingrese palabara"/>
-                </p:outputPanel>
-            </f:facet>
-
-            <p:column filterBy="#{guia.cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
-                    <h:outputText value="#{guia.cliente.ruc_empresa}" />
-            </p:column>
-            <p:column filterBy="#{guia.cliente.nombre_empresa}" headerText="Empresa"  filterMatchMode="contains">
-                    <h:outputText value="#{guia.cliente.nombre_empresa}" />
-            </p:column>
-            <p:column filterBy="#{guia.ruta.getDescripcion()}" headerText="Ruta"  filterMatchMode="contains">
-                <h:outputText value="#{guia.ruta.getDescripcion()}" />
-            </p:column>
-            <p:column filterBy="#{guia.paquete.getDescripcion()}" headerText="Paquete"  filterMatchMode="contains">
-                <h:outputText value="#{guia.paquete.getDescripcion()}" />
-            </p:column>
-        </p:dataTable>
-
-
+            <br/>
+            La fecha será la fecha actual<br/>
 
             <br/>
             <hr/>
             <br/>
-            <table>
-                <tr>
-                    <td><p:outputLabel for="evento" value="Evento:" /></td>
-                    <td> <p:selectOneRadio id="evento" value="#{eventoMBean.evento}">
+            <p:outputLabel for="evento" value="Evento:" />
+            <p:selectOneRadio id="evento" value="#{eventoMBean.evento}">
                 <br/>
                 <f:selectItem itemLabel="Salida" itemValue="Salida"/>
                 <br/>
@@ -64,29 +24,44 @@
                 <f:selectItem itemLabel="Entregado" itemValue="Entregado"/>
                 <br/>
                 <f:selectItem itemLabel="Aprobado" itemValue="Aprobado"/>
-                <br/>
-                <f:selectItem itemLabel="Rechazado" itemValue="Rechazado"/>
-                <br/>
-                <f:selectItem itemLabel="Retornado" itemValue="Retornado"/>
-                <br/>
-                <f:selectItem itemLabel="Punto de control" itemValue="Punto de
-                control"/>
-                        </p:selectOneRadio></td>
-                </tr>
+            </p:selectOneRadio>
 
-            
-                <tr>
-                    <td><h:outputLabel for="descripcion" value="Descripci�n [opcional]:" /></td>
-                    <td><p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/></td>
-                </tr>
-                <tr>
-                    <td><p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save()}" ajax="false"/></td>
-                    <td><p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset()}" ajax="false"/></td>
-                </tr>
-            </table>
-            
+            <br/>
+            <hr/>
+            <br/>
+            <h:outputLabel for="descripcion" value="Descripción [opcional]:" />
+            <p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/>
+
+            <br/>
+            <hr/>
+            <br/>
+            <b>
+                Cambiar esto con una forma más amigable y comprensible de
+                seleccionar la guia a la cual corresponde el evento!!
+
+                Filtrar las guias por clientes!
+
+                Cliente + fecha ?
+                Cliente + tipo de paquete?
+            </b>
+            <br/>
+            <br/>
+                <p:outputLabel for="guia" value="Guia: " />
+                <br/>
+                <p:selectOneMenu id="guia" value="#{eventoMBean.guia}" style="width:150px">
+                    <f:selectItems value="#{eventoMBean.guiasDescripcion}" />
+                </p:selectOneMenu>
+                <br/> <br/> <h:outputText value="guia: "></h:outputText>
+                <h:outputText value="#{eventoMBean.guia}"></h:outputText><br/>
+
+
+            <br/>
+            <hr/>
+            <br/>
+            <p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save}" ajax="false"/>
+            <p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset}" ajax="false"/>
+
      </h:form>
      </p:panel>
- </h:panelGrid>
-    </ui:define>
-</ui:composition>
+</body>
+</html>
