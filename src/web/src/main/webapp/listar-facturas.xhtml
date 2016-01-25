@@ -7,16 +7,46 @@
     <title>Paqueteria</title>
 </h:head>
 <body>
-    <h:form>
+        <h:form id="main">
 
-    <br/>
-        <p:outputLabel for="factura" value="Factura: " />
-        <br/>
-        <p:selectOneMenu id="factura" value="#{facturaMBean.factura}" style="width:150px">
-            <p:ajax listener="#{facturaMBean.onFacturaChange()}" update="cliente fecha total pagado guias"/>
-            <f:selectItem itemLabel="Seleccionar factura" itemValue="" noSelectionOption="true" />
-            <f:selectItems value="#{facturaMBean.getFacturasDescripcion()}" />
-        </p:selectOneMenu>
+
+        <p:dataTable id="factura" var="factura" value="#{facturaMBean.facturas}"
+            widgetVar="facturasTable" emptyMessage="Facturas no encontrados con
+            ese criterio" filteredValue="#{facturaMBean.filteredFacturas}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{facturaMBean.facturaO}" rowKey="#{factura.id}">
+
+            <p:ajax event="rowSelect"
+                listener="#{facturaMBean.onFacturaChangeT}"
+                update=":main:cliente :main:fecha :main:total :main:pagado
+                :main:guias"/>
+
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Factura" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('facturasTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{factura.cliente.nombre_empresa}" headerText="Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{factura.cliente.nombre_empresa}" />
+            </p:column>
+            <p:column filterBy="#{factura.valor}" headerText="Valor"  filterMatchMode="contains">
+                <h:outputText value="#{factura.valor}" />
+            </p:column>
+        </p:dataTable>
+
+
 
         <br/>
         <br/>

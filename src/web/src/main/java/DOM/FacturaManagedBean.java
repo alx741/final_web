@@ -35,6 +35,31 @@ public class FacturaManagedBean implements Serializable
     private List<Guia> guiasFactura = new ArrayList<Guia>();
 
 
+
+    private Factura facturaO;
+
+    private List<Factura> filteredFacturas;
+
+    public List<Factura> getFilteredFacturas() {
+        return filteredFacturas;
+    }
+
+    public void setFilteredFacturas(List<Factura> filteredFacturas) {
+        this.filteredFacturas = filteredFacturas;
+    }
+
+    public Factura getFacturaO()
+    {
+        return facturaO;
+    }
+
+    public void setFacturaO(Factura facturaO)
+    {
+        this.facturaO = facturaO;
+    }
+
+
+
     public String getRuc_empresa()
     {
         return this.ruc_empresa;
@@ -268,5 +293,11 @@ public class FacturaManagedBean implements Serializable
         this.setValor(factura.getValor());
         this.setPagado(factura.isPagado());
         this.setGuiasFactura(guias);
+    }
+
+    public void onFacturaChangeT()
+    {
+        this.setFactura(String.valueOf(this.getFacturaO().getId()));
+        this.onFacturaChange();
     }
 }
