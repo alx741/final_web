@@ -3,74 +3,49 @@
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="Modificar">
- 
-        <p:panel header="Modificar Empleados">
-        <h:form id="main">
+ <h:panelGrid columns="2" cellpadding="10">
+                <p:panel header="Modificar cliente">
+        
+        <h:form>
 
- <p:tab title="Modificar Cliente">
-        <p:dataTable id="empleado" var="empleado" value="#{empleadoMBean.empleados}"
-            widgetVar="empleadosTable" emptyMessage="Empleados no encontrados con
-            ese criterio" filteredValue="#{empleadoMBean.filteredEmpleados}"
-            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
-            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
-            {LastPageLink} {RowsPerPageDropdown}"
-            rowsPerPageTemplate="5,10,20,50"
-            resizableColumns="false" liveResize="true" selectionMode="single"
-            selection="#{empleadoMBean.empleadoO}" rowKey="#{empleado.id}">
-
-            <p:ajax event="rowSelect"
-                listener="#{empleadoMBean.onEmpleadoChangeT}"
-                update=":main:cedula :main:nombre :main:password"/>
-
-
-            <f:facet name="header">
-                <p:outputPanel>
-                    <h:outputText value="Empleado" />
-                    <br/>
-                    <br/>
-                    <h:outputText value="Buscar en todos los campos:  " />
-                    <p:inputText id="globalFilter"
-                        onkeyup="PF('empleadosTable').filter()"
-                        style="width:150px" placeholder="Ingrese palabara"/>
-                </p:outputPanel>
-            </f:facet>
-
-            <p:column filterBy="#{empleado.cedula}" headerText="Cedula"  filterMatchMode="contains">
-                    <h:outputText value="#{empleado.cedula}" />
-            </p:column>
-            <p:column filterBy="#{empleado.nombre}" headerText="Nombre"  filterMatchMode="contains">
-                <h:outputText value="#{empleado.nombre}" />
-            </p:column>
-        </p:dataTable>
- 
-
-
-
-
-                <table>
-                    <tr>            
-                        <td><h:outputLabel for="cedula" value="Cedula:" /></td>
-                        <td><p:inputText id="cedula" value="#{empleadoMBean.cedula}"/></td>
-
+             <table>
+             <tr>
+                 <td><h:outputLabel for="empleado" value="Empleado (cedula):" /></td>
+                 <td><p:inputText id="empleado" value="#{empleadoMBean.empleado}"/></td>
+             </tr>
+                 <tr>    
+                     <td><p:commandButton id="obtener" value="Obtener" action="#{empleadoMBean.onEmpleadoChange}" ajax="false"/></td>
+                 </tr>
+                 
+             </table>
+            
+            <br />
+            <hr/>
+            <br />
+            <table>
+                <tr>
+                    <td><h:outputLabel for="cedula" value="Cedula:" /></td>
+                    <td><p:inputText id="cedula" value="#{empleadoMBean.cedula}"/></td>
                 </tr>
-                    <tr>
-                        <td><h:outputLabel for="nombre" value="Nombre:" /></td>
-                        <td><p:inputText id="nombre" value="#{empleadoMBean.nombre}"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLabel for="password" value="Contraseña:" /></td>
-                        <td><p:inputText id="password" value="#{empleadoMBean.password}"/></td>
-                    </tr>
-               
-                </table>
-                  <p:commandButton id="submit" value="Modificar" action="#{empleadoMBean.modificar}" ajax="false"/>
-                <p:commandButton id="reset" value="Resetear" action="#{empleadoMBean.reset}" ajax="false"/>
- </p:tab>
+                
+                <tr>
+                    <td><h:outputLabel for="nombre" value="Nombre:" /></td>
+                    <td><p:inputText id="nombre" value="#{empleadoMBean.nombre}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="password" value="Contraseña:" /></td>
+                    <td><p:inputText disabled="true" id="password" value="#{empleadoMBean.password}"/></td>
+                </tr>
+                <tr>
+                    <td><p:commandButton id="submit" value="Modificar" action="#{empleadoMBean.modificar}" ajax="false"/></td>
+                    <td><p:commandButton id="reset" value="Resetear" action="#{empleadoMBean.reset}" ajax="false"/></td>
+                </tr>
+            </table>
         </h:form>
         </p:panel>
-        
+
+ </h:panelGrid>
     </ui:define>
 </ui:composition>

@@ -6,47 +6,16 @@
  <h:head><title>Paqueteria</title></h:head>
  <body>
     <p:panel header="Modificar ruta">
-        <h:form id="main">
+    <h:form>
 
-
-        <p:dataTable id="ruta" var="ruta" value="#{rutaMBean.rutas}"
-            widgetVar="rutasTable" emptyMessage="Rutas no encontrados con
-            ese criterio" filteredValue="#{rutaMBean.filteredRutas}"
-            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
-            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
-            {LastPageLink} {RowsPerPageDropdown}"
-            rowsPerPageTemplate="5,10,20,50"
-            resizableColumns="false" liveResize="true" selectionMode="single"
-            selection="#{rutaMBean.rutaO}" rowKey="#{ruta.id}">
-
-            <p:ajax event="rowSelect"
-                listener="#{rutaMBean.onRutaChangeT}"
-                update=":main:tarifa :main:origen :main:destino
-                :main:transporte"/>
-
-
-            <f:facet name="header">
-                <p:outputPanel>
-                    <h:outputText value="Ruta" />
-                    <br/>
-                    <br/>
-                    <h:outputText value="Buscar en todos los campos:  " />
-                    <p:inputText id="globalFilter"
-                        onkeyup="PF('rutasTable').filter()"
-                        style="width:150px" placeholder="Ingrese palabara"/>
-                </p:outputPanel>
-            </f:facet>
-
-            <p:column filterBy="#{ruta.origen}" headerText="Origen"  filterMatchMode="contains">
-                <h:outputText value="#{ruta.origen}" />
-            </p:column>
-            <p:column filterBy="#{ruta.destino}" headerText="Destino"  filterMatchMode="contains">
-                <h:outputText value="#{ruta.destino}" />
-            </p:column>
-            <p:column filterBy="#{ruta.transporte}" headerText="Transporte"  filterMatchMode="contains">
-                <h:outputText value="#{ruta.transporte}" />
-            </p:column>
-        </p:dataTable>
+        <br/>
+            <p:outputLabel for="ruta" value="Tipo de ruta: " />
+            <br/>
+            <p:selectOneMenu id="ruta" value="#{rutaMBean.ruta}" style="width:150px">
+                <p:ajax listener="#{rutaMBean.onRutaChange()}" update="tarifa origen destino transporte"/>
+                <f:selectItem itemLabel="Seleccionar ruta" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{rutaMBean.getRutasDescripcion()}" />
+            </p:selectOneMenu>
 
         <br/>
         <br/>

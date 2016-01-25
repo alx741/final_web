@@ -40,26 +40,6 @@ public class ClienteManagedBean implements Serializable
     private String isPass;
     private List<Cliente> filteredClientes;
     private List<Cliente> cliente1;
-     private Cliente clienteO;
-
-    
-    public List<Cliente> getFilteredClientes() {
-        return filteredClientes;
-    }
-
-    public void setFilteredClientes(List<Cliente> filteredClientes) {
-        this.filteredClientes = filteredClientes;
-    }
-
-    public Cliente getClienteO()
-    {
-        return clienteO;
-    }
-
-    public void setClienteO(Cliente clienteO)
-    {
-        this.clienteO = clienteO;
-    }
 
     public List<Cliente> getCliente1() {
         return cliente1;
@@ -69,8 +49,13 @@ public class ClienteManagedBean implements Serializable
         this.cliente1 = cliente1;
     }
 
-   
- 
+    public List<Cliente> getFilteredClientes() {
+        return filteredClientes;
+    }
+
+    public void setFilteredClientes(List<Cliente> filteredClientes) {
+        this.filteredClientes = filteredClientes;
+    }
 
     public String getCliente()
     {
@@ -372,14 +357,21 @@ public class ClienteManagedBean implements Serializable
 
     public void onClienteChangeT(SelectEvent event)
     {
-         this.setCliente(this.getClienteO().getRuc_empresa());
-        this.onClienteChange();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Cliente cliente = (Cliente) session.load(Cliente.class,
+                this.getIdCliente(this.getClienteO().getRuc_empresa()));
+
+        this.setRuc_empresa(cliente.getRuc_empresa());
+        this.setNombre_empresa(cliente.getNombre_empresa());
+        this.setCedula_representante(cliente.getCedula_representante());
+        this.setNombre_representante(cliente.getNombre_representante());
+        this.setTelefono(cliente.getTelefono());
+        this.setDireccion(cliente.getDireccion());
+        this.setPassword(cliente.getPassword());
     }
 
     public String modificar()
     {
-                this.setCliente(this.getClienteO().getRuc_empresa());
-
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,

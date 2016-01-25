@@ -22,12 +22,12 @@
             <p:inputText id="cedula" value="#{empleadoMBean.cedula}"/>
             <h:outputLabel for="password" value="Contraseña:"/>
             <p:password id="password" value="#{empleadoMBean.password}"/>
-           
+            <h:outputText value="Es correcto?: " />
             <h:outputText value="#{empleadoMBean.isPass}" />
            
         </h:panelGrid>
             
-            <p:commandButton id="submit" icon="ui-icon-star" value="Verificar" action="#{empleadoMBean.login}" ajax="false"/>
+             <p:commandButton id="submit" icon="ui-icon-star" value="Verificar" action="#{empleadoMBean.checkEmpleadoPassword}" ajax="false"/>
                     
               </p:panel>
         </div>

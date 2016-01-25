@@ -1,15 +1,13 @@
-<ui:composition template="indexAd.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <ui:define name="Modificar">
-        
+     xmlns:p="http://primefaces.org/ui">
+
+ <h:head><title>Paqueteria</title></h:head>
+ <body>
         <p:panel header="Modificar cliente">
         <h:form id="main">
-            <p:tab title="Modificar Cliente">
+
 
         <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}"
             widgetVar="clientesTable" emptyMessage="Clientes no encontrados con
@@ -50,51 +48,55 @@
                 <h:outputText value="#{cliente.nombre_representante}" />
             </p:column>
         </p:dataTable>
-            </p:tab>
-<h:panelGrid columns="2" cellpadding="10">
-             <p:tab title="Modificar Cliente">
 
-                <table>
-                    <tr>
-                        <td><h:outputLabel for="ruc_empresa" value="Ruc empresa:" /></td>
-                        <td><p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLabel for="nombre_empresa" value="Nombre empresa:" /></td>
-                        <td><p:inputText id="nombre_empresa" value="#{clienteMBean.nombre_empresa}"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLabel for="cedula_representante" value="Cedula representante:" /></td>
-                        <td><p:inputText id="cedula_representante" value="#{clienteMBean.cedula_representante}"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLabel for="nombre_representante" value="Nombre representante:" /></td>
-                        <td><p:inputText id="nombre_representante" value="#{clienteMBean.nombre_representante}"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLabel for="telefono" value="Telefono:" /></td>
-                        <td><p:inputText id="telefono" value="#{clienteMBean.telefono}"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLabel for="direccion" value="Dirección:" /></td>
-                        <td><p:inputText id="direccion" value="#{clienteMBean.direccion}"/></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputLabel for="password" value="Contraseña:" /></td>
-                        <td><p:inputText id="password" value="#{clienteMBean.password}"/></td>
-                        
-                    </tr>
-                </table>
+
+
+            <br/>
+            <hr/>
+            <br/>
+                <h:outputLabel for="ruc_empresa" value="Ruc empresa:" />
+                <p:inputText id="ruc_empresa" value="#{clienteMBean.ruc_empresa}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="nombre_empresa" value="Nombre empresa:" />
+                <p:inputText id="nombre_empresa" value="#{clienteMBean.nombre_empresa}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="cedula_representante" value="Cedula representante:" />
+                <p:inputText id="cedula_representante" value="#{clienteMBean.cedula_representante}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="nombre_representante" value="Nombre representante:" />
+                <p:inputText id="nombre_representante" value="#{clienteMBean.nombre_representante}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="telefono" value="Telefono:" />
+                <p:inputText id="telefono" value="#{clienteMBean.telefono}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="direccion" value="Dirección:" />
+                <p:inputText id="direccion" value="#{clienteMBean.direccion}"/>
+
+            <br/>
+            <br/>
+                <h:outputLabel for="password" value="Contraseña:" />
+                <p:inputText id="password" value="#{clienteMBean.password}"/>
+
+
 
 
 
             <br/>
             <br/>
-                <p:commandButton id="submit" value="Modificar" action="#{clienteMBean.modificar}" ajax="false"/>
-                <p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset}" ajax="false"/>
-             </p:tab>
-</h:panelGrid>
+                <p:commandButton id="submit" value="Modificar" action="#{clienteMBean.modificar()}" ajax="false"/>
+                <p:commandButton id="reset" value="Resetear" action="#{clienteMBean.reset()}" ajax="false"/>
+
         </h:form>
         </p:panel>
-    </ui:define>
-</ui:composition>
+</body>
+</html>
