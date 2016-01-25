@@ -16,6 +16,8 @@ import hbm.Factura;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import util.HibernateUtil;
 
 public class ClienteManagedBean implements Serializable
@@ -205,6 +207,16 @@ public class ClienteManagedBean implements Serializable
         return clienteList;
     }
     
+    public List<String> getRucs(){
+        List<Cliente> lista=getClientes();
+        List<String> rucs = null;
+        for (int i=0;i<=lista.size();i++){
+            rucs.add(lista.get(i).getRuc_empresa());
+        }
+        return rucs;
+        
+    }
+    
     public void reset()
     {
         this.setRuc_empresa("");
@@ -219,11 +231,7 @@ public class ClienteManagedBean implements Serializable
 
 
      
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edicion Cancelada", Integer.toString(((Cliente) event.getObject()).getId()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
+   
 
 
 
@@ -348,28 +356,41 @@ public class ClienteManagedBean implements Serializable
         this.setDireccion(cliente.getDireccion());
         this.setPassword(cliente.getPassword());
     }
-
-    public void onRowEdit(RowEditEvent event)
+     public void onRowSelect(SelectEvent event) {
+        FacesMessage msg = new FacesMessage("Cliente Seleccionado", ((Cliente) event.getObject()).getRuc_empresa());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+ 
+    public void onRowUnselect(UnselectEvent event) {
+        FacesMessage msg = new FacesMessage("Cliente Deseleccionado", ((Cliente) event.getObject()).getRuc_empresa());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public void modificar()
     {
-       Cliente edittedObject = (Cliente) event.getObject();
+     
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Cliente cliente = (Cliente) session.load(Cliente.class,
                 this.getIdCliente(this.getCliente()));
-
+        cliente.setRuc_empresa(this.getRuc_empresa());
+        cliente.setNombre_empresa(this.getNombre_empresa());
+        cliente.setCedula_representante(this.getCedula_representante());
+        cliente.setNombre_representante(this.getNombre_representante());
+        cliente.setDireccion(this.getDireccion());
+        cliente.setTelefono(this.telefono);
+  
         
         Transaction tx = null;
 
         try
         {
             tx = session.beginTransaction();
-            session.update(edittedObject);
+            session.update(cliente);
             tx.commit();
-            log.debug("Nuevo registro : " + cliente + ", realizado : " +
+           log.debug("Nuevo registro : " + cliente + ", realizado : " +
                       tx.wasCommitted());
-           
-            FacesMessage msg = new FacesMessage("Cliete Editado", Integer.toString(((Cliente) event.getObject()).getId()));
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            result = SUCCESS;
             
         }
         catch (Exception e)

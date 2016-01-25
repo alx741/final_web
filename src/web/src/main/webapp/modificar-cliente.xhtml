@@ -8,30 +8,99 @@
  <h:form id="form">
    <p:growl id="msgs" showDetail="true"/>
  
-   <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}" editable="true" style="margin-bottom:20px">
-       <f:facet name="header">
-           Modificar Celdas
-       </f:facet>
- 
-       <p:ajax event="rowEdit" listener="#{clienteMBean.onRowEdit}" update=":form:msgs" />
-       <p:ajax event="rowEditCancel" listener="#{clienteMBean.onRowCancel}" update=":form:msgs" />
- 
-       <p:column headerText="Id">
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{cliente.ruc_empresa}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput" value="#{cliente.ruc_empresa}" style="width:100%"/></f:facet>
-           </p:cellEditor>
-       </p:column>
+   <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}" editable="true" style="margin-bottom:10px">
+    
+      <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}" update=":form:msgs" />
+        <p:ajax event="rowUnselect" listener="#{dtSelectionView.onRowUnselect}" update=":form:msgs" />
+       <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Id" />
+                </f:facet>
+                     <h:outputText value="#{cliente.id}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Ruc empresa" />
+                </f:facet>
+                <h:outputText value="#{cliente.ruc_empresa}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nombre Empresa" />
+                </f:facet>
+                <h:outputText value="#{cliente.ruc_empresa}" />
+            </p:column>
+          <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nombre Representante" />
+                </f:facet>
+              <h:outputText value="#{cliente.nombre_representante}" />
+            </p:column>
+                <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Cedula Representante" />
+                </f:facet>
+                    <h:outputText value="#{cliente.cedula_representante}" />
+            </p:column>
+                 <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Direccion" />
+                </f:facet>
+                     <h:outputText value="#{cliente.direccion}" />
+            </p:column>
+                 <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Telefono" />
+                </f:facet>
+                    <h:outputText value="#{cliente.telefono}" />
+            </p:column>
+       
  
        
  
      
  
-       <p:column style="width:32px">
-           <p:rowEditor />
-       </p:column>
+       
    </p:dataTable>
- 
+ <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+   <h:form>
+
+             <table>
+             <tr>
+                 <td><h:outputLabel for="empleado" value="Empleado (cedula):" /></td>
+                 <td><p:inputText id="empleado" value="#{empleadoMBean.empleado}"/></td>
+             </tr>
+                 <tr>    
+                     <td><p:commandButton id="obtener" value="Obtener" action="#{empleadoMBean.onEmpleadoChange}" ajax="false"/></td>
+                 </tr>
+                 
+             </table>
+            
+            <br />
+            <hr/>
+            <br />
+            <table>
+                <tr>
+                    <td><h:outputLabel for="cedula" value="Cedula:" /></td>
+                    <td><p:inputText id="cedula" value="#{empleadoMBean.cedula}"/></td>
+                </tr>
+                
+                <tr>
+                    <td><h:outputLabel for="nombre" value="Nombre:" /></td>
+                    <td><p:inputText id="nombre" value="#{empleadoMBean.nombre}"/></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel for="password" value="Contraseña:" /></td>
+                    <td><p:inputText disabled="true" id="password" value="#{empleadoMBean.password}"/></td>
+                </tr>
+                <tr>
+                    <td><p:commandButton id="submit" value="Modificar" action="#{empleadoMBean.modificar}" ajax="false"/></td>
+                    <td><p:commandButton id="reset" value="Resetear" action="#{empleadoMBean.reset}" ajax="false"/></td>
+                </tr>
+            </table>
+        </h:form>
+    
+</p:dialog>
    
  </h:form>
      

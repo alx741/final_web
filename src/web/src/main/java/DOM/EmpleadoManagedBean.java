@@ -24,10 +24,14 @@ public class EmpleadoManagedBean implements Serializable
     private String cedula;
     private String nombre;
     private String password;
-
+  private List<Empleado> filteredEmpleado;
     private String isPass;
-
-
+  public List<Empleado> getFilteredEmpleado() {
+        return filteredEmpleado;
+    }
+     public void setFilteredEmpleado(List<Empleado> filteredEmpleado) {
+        this.filteredEmpleado = filteredEmpleado;
+    }
     public String getEmpleado()
     {
         return this.empleado;

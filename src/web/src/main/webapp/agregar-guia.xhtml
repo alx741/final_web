@@ -1,67 +1,69 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-     xmlns:p="http://primefaces.org/ui">
-
-<h:head><title>Paqueteria</title></h:head>
-<body>
-
+<ui:composition template="indexAd.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="Nuevo">
+ <h:panelGrid columns="3" cellpadding="100">
+                   
     <p:panel header="Crear Guia">
     <h:form>
 
-    <br/>
-        <h:outputText value="Fecha de creación será la fecha actual"></h:outputText>
+        <table>
+            <tr>
+                <td><p:outputLabel for="popup" value="Seleccione Fecha" /></td>
+                <td><p:calendar id="popup" value="#{guiaMBean.fecha_creacion}" /></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel for="paquete" value="Tipo de paquete: " /></td>
+        
+                <td><p:selectOneMenu id="paquete" value="#{guiaMBean.paquete}" style="width:200px">
+                    <f:selectItems value="#{guiaMBean.paquetesDescripcion}" />
+            
+                    </p:selectOneMenu></td>
+        
+            </tr>
+            <tr>
+                <td><p:outputLabel for="ruta" value="Tipo de ruta: " /></td>
+       
+                <td><p:selectOneMenu id="ruta" value="#{guiaMBean.ruta}" style="width:200px">
+            <f:selectItems value="#{guiaMBean.rutasDescripcion}" />
+                    </p:selectOneMenu></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel for="cliente" value="Ruc Cliente: " /></td>
+       
+                <td><p:selectOneMenu id="cliente" value="#{guiaMBean.cliente}" style="width:200px">
+                        <f:selectItems value="#{guiaMBean.clientesRuc}" />
+                    </p:selectOneMenu></td>
+            </tr>
+            <tr>
+                <td><p:outputLabel for="detalle" value="Detalle: " /></td>
+        
+                <td><p:inputTextarea rows="6" cols="33" id="detalle" value="#{guiaMBean.detalle}"/></td>
+       
+                
+                
+            </tr>
+                
+        </table>
+  
+        
+    
+       
+
+
 
     <br/>
     <hr/>
     <br/>
-        <p:outputLabel for="paquete" value="Tipo de paquete: " />
-        <br/>
-        <p:selectOneMenu id="paquete" value="#{guiaMBean.paquete}" style="width:150px">
-            <f:selectItems value="#{guiaMBean.getPaquetesDescripcion()}" />
-        </p:selectOneMenu>
-        <br/> <br/> <h:outputText value="paquete: "></h:outputText>
-        <h:outputText value="#{guiaMBean.paquete}"></h:outputText><br/>
-
-    <br/>
-    <hr/>
-    <br/>
-        <p:outputLabel for="ruta" value="Tipo de ruta: " />
-        <br/>
-        <p:selectOneMenu id="ruta" value="#{guiaMBean.ruta}" style="width:150px">
-            <f:selectItems value="#{guiaMBean.getRutasDescripcion()}" />
-        </p:selectOneMenu>
-        <br/> <br/> <h:outputText value="ruta: "></h:outputText>
-        <h:outputText value="#{guiaMBean.ruta}"></h:outputText><br/>
-
-    <br/>
-    <hr/>
-    <br/>
-        <p:outputLabel for="ruc_empresa" value="Ruc empresarial cliente: " />
-        <br/>
-        <p:inputText id="ruc_empresa" value="#{guiaMBean.cliente}"/>
-        <br/> <br/> <h:outputText value="cliente: "></h:outputText>
-        <h:outputText value="#{guiaMBean.cliente}"></h:outputText><br/>
-
-    <br/>
-    <hr/>
-    <br/>
-        <p:outputLabel for="detalle" value="Detalle: " />
-        <br/>
-        <p:inputText id="detalle" value="#{guiaMBean.detalle}"/>
-        <br/> <br/> <h:outputText value="detalle: "></h:outputText>
-        <h:outputText value="#{guiaMBean.detalle}"></h:outputText><br/>
-
-
-
-    <br/>
-    <hr/>
-    <br/>
-        <p:commandButton id="submit" value="Guardar" action="#{guiaMBean.save()}" ajax="false"/>
-        <p:commandButton id="reset" value="Resetear" action="#{guiaMBean.reset()}" ajax="false"/>
+        <p:commandButton id="submit" value="Guardar" action="#{guiaMBean.save}" ajax="false"/>
+        <p:commandButton id="reset" value="Resetear" action="#{guiaMBean.reset}" ajax="false"/>
 
      </h:form>
      </p:panel>
-
-</body>
-</html>
+ </h:panelGrid>
+        
+    </ui:define>
+</ui:composition>
