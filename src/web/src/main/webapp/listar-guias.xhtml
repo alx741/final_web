@@ -12,17 +12,17 @@
         <p:dataTable id="guia" var="guia"
             value="#{guiaMBean.guias}"
             widgetVar="guiasTable" emptyMessage="Guias no encontrados con
-            ese criterio" filteredValue="#{eventoMBean.filteredGuias}"
+            ese criterio" filteredValue="#{guiaMBean.filteredGuias}"
             rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
             {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
             {LastPageLink} {RowsPerPageDropdown}"
             rowsPerPageTemplate="5,10,20,50"
             resizableColumns="false" liveResize="true" selectionMode="single"
-            selection="#{eventoMBean.guiaO}" rowKey="#{guia.id}">
+            selection="#{guiaMBean.guiaO}" rowKey="#{guia.id}">
 
             <p:ajax event="rowSelect"
-                listener="#{facturaMBean.onFacturaChangeT}"
-                update=":main:cliente :main:fecha :main:total :main:guias"/>
+                listener="#{guiaMBean.getEventosGuia}"
+                update=":main:eventos"/>
 
             <f:facet name="header">
                 <p:outputPanel>
@@ -48,42 +48,33 @@
             <p:column filterBy="#{guia.paquete.getDescripcion()}" headerText="Paquete"  filterMatchMode="contains">
                 <h:outputText value="#{guia.paquete.getDescripcion()}" />
             </p:column>
+            <p:column filterBy="#{guia.detalle}" headerText="Detalle"  filterMatchMode="contains">
+                <h:outputText value="#{guia.detalle}" />
+            </p:column>
         </p:dataTable>
 
 
+        <br/>
+        <hr/>
+        <br/>
+        <h3>Eventos de guia</h3>
+
 
         <br/>
         <br/>
-        <p:dataTable id="guias" value="#{facturaMBean.guiasFactura}" var="guia" style="width: 100%">
+        <!-- <p:dataTable id="eventos" value="#{guiaMBean.guiasFactura}" var="evento" style="width: 100%"> -->
+        <p:dataTable id="eventos" value="#{guiaMBean.eventos}" var="evento" style="width: 100%">
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="ID" />
+                    <h:outputText value="Fecha" />
                 </f:facet>
-                <h:outputText value="#{guia.id}" />
+                <h:outputText value="#{evento.fecha}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Detalle" />
+                    <h:outputText value="Descripción" />
                 </f:facet>
-                <h:outputText value="#{guia.detalle}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Paquete" />
-                </f:facet>
-                <h:outputText value="#{guia.paquete.getDescripcion()}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Ruta" />
-                </f:facet>
-                <h:outputText value="#{guia.ruta.getDescripcion()}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Valor" />
-                </f:facet>
-                <h:outputText value="#{guia.getValor()}" />
+                <h:outputText value="#{evento.descripcion}" />
             </p:column>
         </p:dataTable>
 

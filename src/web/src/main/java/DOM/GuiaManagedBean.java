@@ -2,6 +2,7 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Date;
@@ -14,6 +15,7 @@ import hbm.Guia;
 import hbm.Recurso;
 import hbm.Paquete;
 import hbm.Factura;
+import hbm.Evento;
 import hbm.Ruta;
 import hbm.Cliente;
 import util.HibernateUtil;
@@ -37,6 +39,36 @@ public class GuiaManagedBean implements Serializable
     // private Empleado empleado;
     private String factura;
 
+    private Guia guiaO;
+
+    private List<Guia> filteredGuias;
+    private List<Evento> eventos = new ArrayList<Evento>();
+
+    public List<Guia> getFilteredGuias() {
+        return filteredGuias;
+    }
+
+    public void setFilteredGuias(List<Guia> filteredGuias) {
+        this.filteredGuias = filteredGuias;
+    }
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
+
+    public Guia getGuiaO()
+    {
+        return guiaO;
+    }
+
+    public void setGuiaO(Guia guiaO)
+    {
+        this.guiaO = guiaO;
+    }
 
     private Cliente clienteO;
 
@@ -77,7 +109,15 @@ public class GuiaManagedBean implements Serializable
 
 
 
+    public void getEventosGuia()
+    {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Guia guia = (Guia) session.load(Guia.class,
+                    this.getGuiaO().getId());
 
+            this.eventos = new ArrayList<Evento>();
+            this.eventos.addAll(guia.getEventos());
+    }
 
 
 
@@ -220,8 +260,6 @@ public class GuiaManagedBean implements Serializable
     {
         this.setFecha_creacion(new Date());
     }
-
-
 
 
 
