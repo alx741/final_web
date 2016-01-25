@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="Nuevo">
+    <ui:define name="Agregar">
  <h:panelGrid columns="2" cellpadding="15" >
     <p:panel header="Agregar Evento">
         <h:form id="main">
@@ -25,8 +25,7 @@
             <f:facet name="header">
                 <p:outputPanel>
                     <h:outputText value="Guia" />
-                    <br/>
-                    <br/>
+                    
                     <h:outputText value="Buscar en todos los campos:  " />
                     <p:inputText id="globalFilter"
                         onkeyup="PF('guiasTable').filter()"
@@ -40,11 +39,11 @@
             <p:column filterBy="#{guia.cliente.nombre_empresa}" headerText="Empresa"  filterMatchMode="contains">
                     <h:outputText value="#{guia.cliente.nombre_empresa}" />
             </p:column>
-            <p:column filterBy="#{guia.ruta.getDescripcion()}" headerText="Ruta"  filterMatchMode="contains">
-                <h:outputText value="#{guia.ruta.getDescripcion()}" />
+            <p:column filterBy="#{guia.ruta.descripcion}" headerText="Ruta"  filterMatchMode="contains">
+                <h:outputText value="#{guia.ruta.descripcion}" />
             </p:column>
-            <p:column filterBy="#{guia.paquete.getDescripcion()}" headerText="Paquete"  filterMatchMode="contains">
-                <h:outputText value="#{guia.paquete.getDescripcion()}" />
+            <p:column filterBy="#{guia.paquete.descripcion}" headerText="Paquete"  filterMatchMode="contains">
+                <h:outputText value="#{guia.paquete.descripcion}" />
             </p:column>
         </p:dataTable>
 
@@ -80,11 +79,11 @@
                     <td><h:outputLabel for="descripcion" value="Descripción [opcional]:" /></td>
                     <td><p:inputText id="descripcion" value="#{eventoMBean.descripcion}"/></td>
                 </tr>
-                <tr>
-                    <td><p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save()}" ajax="false"/></td>
-                    <td><p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset()}" ajax="false"/></td>
-                </tr>
             </table>
+                    <td><p:commandButton id="submit" value="Guardar" action="#{eventoMBean.save}" ajax="false"/></td>
+                    <td><p:commandButton id="reset" value="Resetear" action="#{eventoMBean.reset}" ajax="false"/></td>
+                
+           
             
      </h:form>
      </p:panel>

@@ -139,66 +139,66 @@ public class GuiaManagedBean implements Serializable
         this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
         this.setRuta(String.valueOf(this.getRutaO().getId()));
         this.setCliente(this.getClienteO().getRuc_empresa());
-        String result = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-
-        
-        // Paquete
-        Paquete paquete = pmb.getPaqueteByID(this.getPaquete());
-        // Ruta
-        Ruta ruta = rmb.getRutaByID(this.getRuta());
-
-        // Factura
-        Factura factura =
-            cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
-        if (factura.getId() == 0)
-        {
-            factura =
-                cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
-        }
-
-        Factura factura_h = (Factura) session.load(Factura.class,
-                factura.getId());
-
-        float nuevoValor = paquete.getTarifa() + ruta.getTarifa();
-        factura_h.setValor(factura.getValor() + nuevoValor);
-
-        Guia guia = new Guia();
-        guia.setFecha_creacion(this.getFecha_creacion());
-        guia.setDetalle(this.getDetalle());
-        guia.setPaquete(paquete);
-        guia.setRuta(ruta);
-        guia.setCliente(cmb.getClienteByRuc(this.getCliente()));
-        guia.setFactura(factura);
-
-        // Agregar guia a la factura
-        factura_h.getGuias().add(guia);
-
-
-        Transaction tx = null;
-
-        try
-        {
-            tx = session.beginTransaction();
-            session.save(guia);
-            tx.commit();
-            log.debug("Nuevo registro : " + guia + ", realizado : " + tx.wasCommitted());
-            result = SUCCESS;
-        }
-        catch (Exception e)
-        {
-            if (tx != null)
-            {
-                tx.rollback();
-                result = ERROR;
-                e.printStackTrace();
-            }
-        }
-        finally
-        {
-            session.close();
-        }
-        return result;
+         String result = null;
+         Session session = HibernateUtil.getSessionFactory().openSession();
+ 
+ 
+         // Paquete
+         Paquete paquete = pmb.getPaqueteByID(this.getPaquete());
+         // Ruta
+         Ruta ruta = rmb.getRutaByID(this.getRuta());
+ 
+         // Factura
+         Factura factura =
+             cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
+         if (factura.getId() == 0)
+         {
+             factura =
+                 cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
+         }
+ 
+         Factura factura_h = (Factura) session.load(Factura.class,
+                 factura.getId());
+ 
+         float nuevoValor = paquete.getTarifa() + ruta.getTarifa();
+         factura_h.setValor(factura.getValor() + nuevoValor);
+ 
+         Guia guia = new Guia();
+         guia.setFecha_creacion(new Date());
+         guia.setDetalle(this.getDetalle());
+         guia.setPaquete(paquete);
+         guia.setRuta(ruta);
+         guia.setCliente(cmb.getClienteByRuc(this.getCliente()));
+         guia.setFactura(factura);
+ 
+         // Agregar guia a la factura
+         factura_h.getGuias().add(guia);
+ 
+ 
+         Transaction tx = null;
+ 
+         try
+         {
+             tx = session.beginTransaction();
+             session.save(guia);
+             tx.commit();
+             log.debug("Nuevo registro : " + guia + ", realizado : " + tx.wasCommitted());
+             result = SUCCESS;
+         }
+         catch (Exception e)
+         {
+             if (tx != null)
+             {
+                 tx.rollback();
+                 result = ERROR;
+                 e.printStackTrace();
+             }
+         }
+         finally
+         {
+             session.close();
+         }
+         return result;
     }
 
 

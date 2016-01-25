@@ -92,19 +92,19 @@
                 <f:facet name="header">
                     <h:outputText value="Paquete" />
                 </f:facet>
-                <h:outputText value="#{guia.paquete.getDescripcion()}" />
+                <h:outputText value="#{guia.paquete.getDescripcion}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Ruta" />
                 </f:facet>
-                <h:outputText value="#{guia.ruta.getDescripcion()}" />
+                <h:outputText value="#{guia.ruta.getDescripcion}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Valor" />
                 </f:facet>
-                <h:outputText value="#{guia.getValor()}" />
+                <h:outputText value="#{guia.getValor}" />
             </p:column>
         </p:dataTable>
 
@@ -112,7 +112,7 @@
     <br/>
     <hr/>
     <br/>
-        <p:commandButton id="submit" value="Pagar" action="#{facturaMBean.pagar()}" ajax="false"/>
+        <p:commandButton id="submit" value="Pagar" action="#{facturaMBean.pagar}" ajax="false"/>
 
      </h:form>
      </p:panel>
