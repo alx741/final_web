@@ -1,57 +1,139 @@
 <ui:composition template="indexAd.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="Nuevo">
- <h:panelGrid columns="3" cellpadding="100">
-                   
+ <h:panelGrid columns="2" cellpadding="15" >
     <p:panel header="Crear Guia">
     <h:form>
 
-        <table>
-            <tr>
-                <td><p:outputLabel for="popup" value="Seleccione Fecha" /></td>
-                <td><p:calendar id="popup" value="#{guiaMBean.fecha_creacion}" /></td>
-            </tr>
-            <tr>
-                <td><p:outputLabel for="paquete" value="Tipo de paquete: " /></td>
-        
-                <td><p:selectOneMenu id="paquete" value="#{guiaMBean.paquete}" style="width:200px">
-                    <f:selectItems value="#{guiaMBean.paquetesDescripcion}" />
-            
-                    </p:selectOneMenu></td>
-        
-            </tr>
-            <tr>
-                <td><p:outputLabel for="ruta" value="Tipo de ruta: " /></td>
+
+        <p:dataTable id="paquete" var="paquete" value="#{paqueteMBean.paquetes}"
+            widgetVar="paquetesTable" emptyMessage="Paquetes no encontrados con
+            ese criterio" filteredValue="#{paqueteMBean.filteredPaquetes}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{guiaMBean.paqueteO}" rowKey="#{paquete.id}"
+            style="width: 100%">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Paquete" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('paquetesTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{paquete.rawDesc}" headerText="Descripción"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.rawDesc}" />
+            </p:column>
+            <p:column filterBy="#{paquete.desde}" headerText="Desde"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.desde}" />
+            </p:column>
+            <p:column filterBy="#{paquete.hasta}" headerText="Hasta"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.hasta}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+
+
+
+    <br/>
+    <hr/>
+    <br/>
+        <p:dataTable id="ruta" var="ruta" value="#{rutaMBean.rutas}"
+            widgetVar="rutasTable" emptyMessage="Rutas no encontrados con
+            ese criterio" filteredValue="#{rutaMBean.filteredRutas}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{guiaMBean.rutaO}" rowKey="#{ruta.id}">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Ruta" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('rutasTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{ruta.origen}" headerText="Origen"  filterMatchMode="contains">
+                <h:outputText value="#{ruta.origen}" />
+            </p:column>
+            <p:column filterBy="#{ruta.destino}" headerText="Destino"  filterMatchMode="contains">
+                <h:outputText value="#{ruta.destino}" />
+            </p:column>
+            <p:column filterBy="#{ruta.transporte}" headerText="Transporte"  filterMatchMode="contains">
+                <h:outputText value="#{ruta.transporte}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+
+    <br/>
+    <hr/>
+    <br/>
+        <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}"
+            widgetVar="clientesTable" emptyMessage="Clientes no encontrados con
+            ese criterio" filteredValue="#{clienteMBean.filteredClientes}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{guiaMBean.clienteO}" rowKey="#{cliente.id}">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Cliente" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('clientesTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{cliente.ruc_empresa}" />
+            </p:column>
+            <p:column filterBy="#{cliente.nombre_empresa}" headerText="Nombre Empresa"  filterMatchMode="contains">
+                <h:outputText value="#{cliente.nombre_empresa}" />
+            </p:column>
+            <p:column filterBy="#{cliente.nombre_representante}" headerText="Nombre Representante"  filterMatchMode="contains">
+                <h:outputText value="#{cliente.nombre_representante}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+
+    <table>
+        <tr>
+            <td><p:outputLabel for="detalle" value="Detalle: " /></td>
        
-                <td><p:selectOneMenu id="ruta" value="#{guiaMBean.ruta}" style="width:200px">
-            <f:selectItems value="#{guiaMBean.rutasDescripcion}" />
-                    </p:selectOneMenu></td>
-            </tr>
-            <tr>
-                <td><p:outputLabel for="cliente" value="Ruc Cliente: " /></td>
-       
-                <td><p:selectOneMenu id="cliente" value="#{guiaMBean.cliente}" style="width:200px">
-                        <f:selectItems value="#{guiaMBean.clientesRuc}" />
-                    </p:selectOneMenu></td>
-            </tr>
-            <tr>
-                <td><p:outputLabel for="detalle" value="Detalle: " /></td>
-        
-                <td><p:inputTextarea rows="6" cols="33" id="detalle" value="#{guiaMBean.detalle}"/></td>
-       
-                
-                
-            </tr>
-                
-        </table>
-  
-        
-    
-       
+            <td><p:inputTextarea rows="6" cols="33" id="detalle" value="#{guiaMBean.detalle}"/></td>
+        </tr>
+    </table>
 
 
 
@@ -64,6 +146,5 @@
      </h:form>
      </p:panel>
  </h:panelGrid>
-        
     </ui:define>
 </ui:composition>

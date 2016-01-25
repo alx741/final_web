@@ -34,7 +34,27 @@ public class FacturaManagedBean implements Serializable
     private String empresa;
     private List<Guia> guiasFactura = new ArrayList<Guia>();
 
+    private Factura facturaO;
 
+    private List<Factura> filteredFacturas;
+
+    public List<Factura> getFilteredFacturas() {
+        return filteredFacturas;
+    }
+
+    public void setFilteredFacturas(List<Factura> filteredFacturas) {
+        this.filteredFacturas = filteredFacturas;
+    }
+
+    public Factura getFacturaO()
+    {
+        return facturaO;
+    }
+
+    public void setFacturaO(Factura facturaO)
+    {
+        this.facturaO = facturaO;
+    }
     public String getRuc_empresa()
     {
         return this.ruc_empresa;
@@ -115,7 +135,20 @@ public class FacturaManagedBean implements Serializable
         return guiasFactura;
     }
 
-
+ public List<Factura> getFacturasPendientes()
+    {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Factura>  facturaList = session.createCriteria(Factura.class).list();
+        List<Factura> facturaPendList = new ArrayList<Factura>();
+        for (Factura f : facturaList)
+        {
+            if (!f.isPagado())
+            {
+                facturaPendList.add(f);
+            }
+        }
+        return facturaPendList;
+    }
     public String save()
     {
         String result = null;
@@ -186,6 +219,7 @@ public class FacturaManagedBean implements Serializable
 
     public String pagar()
     {
+         this.setFactura(String.valueOf(this.getFacturaO().getId()));
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
@@ -268,5 +302,10 @@ public class FacturaManagedBean implements Serializable
         this.setValor(factura.getValor());
         this.setPagado(factura.isPagado());
         this.setGuiasFactura(guias);
+    }
+    public void onFacturaChangeT()
+    {
+        this.setFactura(String.valueOf(this.getFacturaO().getId()));
+        this.onFacturaChange();
     }
 }

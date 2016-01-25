@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 
 import hbm.Evento;
 import hbm.Cliente;
+import hbm.Factura;
 import hbm.Guia;
 import util.HibernateUtil;
 
@@ -29,7 +30,27 @@ public class EventoManagedBean implements Serializable
     private String evento;
     private String descripcion;
     private String guia;
+    private Guia guiaO;
 
+    private List<Guia> filteredGuias;
+
+    public List<Guia> getFilteredGuias() {
+        return filteredGuias;
+    }
+
+    public void setFilteredGuias(List<Guia> filteredGuias) {
+        this.filteredGuias = filteredGuias;
+    }
+
+    public Guia getGuiaO()
+    {
+        return guiaO;
+    }
+
+    public void setGuiaO(Guia guiaO)
+    {
+        this.guiaO = guiaO;
+    }
     public int getId()
     {
         return id;
@@ -83,6 +104,7 @@ public class EventoManagedBean implements Serializable
 
     public String save()
     {
+        this.setGuia(String.valueOf(this.getGuiaO().getId()));
         String result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
 
