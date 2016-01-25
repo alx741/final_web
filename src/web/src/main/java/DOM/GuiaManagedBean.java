@@ -2,6 +2,7 @@ package DOM;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Date;
@@ -14,9 +15,9 @@ import hbm.Guia;
 import hbm.Recurso;
 import hbm.Paquete;
 import hbm.Factura;
+import hbm.Evento;
 import hbm.Ruta;
 import hbm.Cliente;
-import java.util.ArrayList;
 import util.HibernateUtil;
 
 public class GuiaManagedBean implements Serializable
@@ -37,6 +38,38 @@ public class GuiaManagedBean implements Serializable
     private String cliente;
     // private Empleado empleado;
     private String factura;
+
+    private Guia guiaO;
+
+    private List<Guia> filteredGuias;
+    private List<Evento> eventos = new ArrayList<Evento>();
+
+    public List<Guia> getFilteredGuias() {
+        return filteredGuias;
+    }
+
+    public void setFilteredGuias(List<Guia> filteredGuias) {
+        this.filteredGuias = filteredGuias;
+    }
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
+
+    public Guia getGuiaO()
+    {
+        return guiaO;
+    }
+
+    public void setGuiaO(Guia guiaO)
+    {
+        this.guiaO = guiaO;
+    }
+
     private Cliente clienteO;
 
     public Cliente getClienteO()
@@ -73,6 +106,20 @@ public class GuiaManagedBean implements Serializable
     {
         this.paqueteO = paqueteO;
     }
+
+
+
+    public void getEventosGuia()
+    {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Guia guia = (Guia) session.load(Guia.class,
+                    this.getGuiaO().getId());
+
+            this.eventos = new ArrayList<Evento>();
+            this.eventos.addAll(guia.getEventos());
+    }
+
+
 
     public Date getFecha_creacion()
     {
@@ -139,66 +186,66 @@ public class GuiaManagedBean implements Serializable
         this.setPaquete(String.valueOf(this.getPaqueteO().getId()));
         this.setRuta(String.valueOf(this.getRutaO().getId()));
         this.setCliente(this.getClienteO().getRuc_empresa());
-         String result = null;
-         Session session = HibernateUtil.getSessionFactory().openSession();
- 
- 
-         // Paquete
-         Paquete paquete = pmb.getPaqueteByID(this.getPaquete());
-         // Ruta
-         Ruta ruta = rmb.getRutaByID(this.getRuta());
- 
-         // Factura
-         Factura factura =
-             cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
-         if (factura.getId() == 0)
-         {
-             factura =
-                 cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
-         }
- 
-         Factura factura_h = (Factura) session.load(Factura.class,
-                 factura.getId());
- 
-         float nuevoValor = paquete.getTarifa() + ruta.getTarifa();
-         factura_h.setValor(factura.getValor() + nuevoValor);
- 
-         Guia guia = new Guia();
-         guia.setFecha_creacion(new Date());
-         guia.setDetalle(this.getDetalle());
-         guia.setPaquete(paquete);
-         guia.setRuta(ruta);
-         guia.setCliente(cmb.getClienteByRuc(this.getCliente()));
-         guia.setFactura(factura);
- 
-         // Agregar guia a la factura
-         factura_h.getGuias().add(guia);
- 
- 
-         Transaction tx = null;
- 
-         try
-         {
-             tx = session.beginTransaction();
-             session.save(guia);
-             tx.commit();
-             log.debug("Nuevo registro : " + guia + ", realizado : " + tx.wasCommitted());
-             result = SUCCESS;
-         }
-         catch (Exception e)
-         {
-             if (tx != null)
-             {
-                 tx.rollback();
-                 result = ERROR;
-                 e.printStackTrace();
-             }
-         }
-         finally
-         {
-             session.close();
-         }
-         return result;
+        String result = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+
+        // Paquete
+        Paquete paquete = pmb.getPaqueteByID(this.getPaquete());
+        // Ruta
+        Ruta ruta = rmb.getRutaByID(this.getRuta());
+
+        // Factura
+        Factura factura =
+            cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
+        if (factura.getId() == 0)
+        {
+            factura =
+                cmb.createUnpaidFactura(cmb.getClienteByRuc(this.getCliente()));
+        }
+
+        Factura factura_h = (Factura) session.load(Factura.class,
+                factura.getId());
+
+        float nuevoValor = paquete.getTarifa() + ruta.getTarifa();
+        factura_h.setValor(factura.getValor() + nuevoValor);
+
+        Guia guia = new Guia();
+        guia.setFecha_creacion(new Date());
+        guia.setDetalle(this.getDetalle());
+        guia.setPaquete(paquete);
+        guia.setRuta(ruta);
+        guia.setCliente(cmb.getClienteByRuc(this.getCliente()));
+        guia.setFactura(factura);
+
+        // Agregar guia a la factura
+        factura_h.getGuias().add(guia);
+
+
+        Transaction tx = null;
+
+        try
+        {
+            tx = session.beginTransaction();
+            session.save(guia);
+            tx.commit();
+            log.debug("Nuevo registro : " + guia + ", realizado : " + tx.wasCommitted());
+            result = SUCCESS;
+        }
+        catch (Exception e)
+        {
+            if (tx != null)
+            {
+                tx.rollback();
+                result = ERROR;
+                e.printStackTrace();
+            }
+        }
+        finally
+        {
+            session.close();
+        }
+        return result;
     }
 
 
@@ -220,15 +267,6 @@ public class GuiaManagedBean implements Serializable
 
 
 
-
-    public List<String> getClientesRuc(){
-        List<Cliente> clienteList=cmb.getClientes();
-        List<String> descripciones = new  ArrayList<String>() {};
-        for(Cliente c :clienteList){
-            descripciones.add(c.getRuc_empresa());
-        }
-        return descripciones;
-    }
 
     public Map<String, String> getPaquetesDescripcion()
     {

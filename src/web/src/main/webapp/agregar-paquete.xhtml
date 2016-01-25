@@ -1,43 +1,151 @@
-<ui:composition template="index.xhtml"
-                
-                xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="Nuevo">
-  <h:panelGrid columns="3" cellpadding="100">
-                <p:panel header="Nuevo Paquete">      
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+<h:head><title>Paqueteria</title></h:head>
+<body>
+
+    <p:panel header="Crear Guia">
     <h:form>
-         <table>
-             <tr>
-                <td><h:outputLabel for="tarifa" value="Tarifa:" /></td>
-                <td><p:inputText id="tarifa" value="#{paqueteMBean.tarifa}"/></td>
-             </tr>
-             <tr>
-                <td><h:outputLabel for="descripcion" value="Descripción:" /></td>
-                <td><p:inputText id="descripcion" value="#{paqueteMBean.descripcion}"/></td>
-             </tr>
-             <tr>
-                 <td><hr/><br/><h3>Peso (Kg):</h3></td>
-             </tr>
-             <tr>
-                <td><h:outputLabel for="desde" value="Desde:" /></td>
-                <td><p:inputText id="desde" value="#{paqueteMBean.desde}"/></td>
-             </tr>
-             <tr>
-                <td><h:outputLabel for="hasta" value="Hasta:" /></td>
-                <td><p:inputText id="hasta" value="#{paqueteMBean.hasta}"/></td>
-             </tr>
 
 
-             <tr>
-                <td><p:commandButton id="submit" value="Guardar" action="#{paqueteMBean.save}" ajax="false"/></td>
-                <td><p:commandButton id="reset" value="Resetear" action="#{paqueteMBean.reset}" ajax="false"/></td>
-             </tr>
-         </table>
+        <p:dataTable id="paquete" var="paquete" value="#{paqueteMBean.paquetes}"
+            widgetVar="paquetesTable" emptyMessage="Paquetes no encontrados con
+            ese criterio" filteredValue="#{paqueteMBean.filteredPaquetes}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{guiaMBean.paqueteO}" rowKey="#{paquete.id}"
+            style="width: 100%">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Paquete" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('paquetesTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{paquete.rawDesc}" headerText="Descripción"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.rawDesc}" />
+            </p:column>
+            <p:column filterBy="#{paquete.desde}" headerText="Desde"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.desde}" />
+            </p:column>
+            <p:column filterBy="#{paquete.hasta}" headerText="Hasta"  filterMatchMode="contains">
+                <h:outputText value="#{paquete.hasta}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+
+
+
+    <br/>
+    <hr/>
+    <br/>
+        <p:dataTable id="ruta" var="ruta" value="#{rutaMBean.rutas}"
+            widgetVar="rutasTable" emptyMessage="Rutas no encontrados con
+            ese criterio" filteredValue="#{rutaMBean.filteredRutas}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{guiaMBean.rutaO}" rowKey="#{ruta.id}">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Ruta" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('rutasTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{ruta.origen}" headerText="Origen"  filterMatchMode="contains">
+                <h:outputText value="#{ruta.origen}" />
+            </p:column>
+            <p:column filterBy="#{ruta.destino}" headerText="Destino"  filterMatchMode="contains">
+                <h:outputText value="#{ruta.destino}" />
+            </p:column>
+            <p:column filterBy="#{ruta.transporte}" headerText="Transporte"  filterMatchMode="contains">
+                <h:outputText value="#{ruta.transporte}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+
+    <br/>
+    <hr/>
+    <br/>
+        <p:dataTable id="cliente" var="cliente" value="#{clienteMBean.clientes}"
+            widgetVar="clientesTable" emptyMessage="Clientes no encontrados con
+            ese criterio" filteredValue="#{clienteMBean.filteredClientes}"
+            rows="20" paginator="true" paginatorTemplate="{CurrentPageReport}
+            {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+            {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,20,50"
+            resizableColumns="false" liveResize="true" selectionMode="single"
+            selection="#{guiaMBean.clienteO}" rowKey="#{cliente.id}">
+
+            <f:facet name="header">
+                <p:outputPanel>
+                    <h:outputText value="Cliente" />
+                    <br/>
+                    <br/>
+                    <h:outputText value="Buscar en todos los campos:  " />
+                    <p:inputText id="globalFilter"
+                        onkeyup="PF('clientesTable').filter()"
+                        style="width:150px" placeholder="Ingrese palabara"/>
+                </p:outputPanel>
+            </f:facet>
+
+            <p:column filterBy="#{cliente.ruc_empresa}" headerText="Ruc Empresa"  filterMatchMode="contains">
+                    <h:outputText value="#{cliente.ruc_empresa}" />
+            </p:column>
+            <p:column filterBy="#{cliente.nombre_empresa}" headerText="Nombre Empresa"  filterMatchMode="contains">
+                <h:outputText value="#{cliente.nombre_empresa}" />
+            </p:column>
+            <p:column filterBy="#{cliente.nombre_representante}" headerText="Nombre Representante"  filterMatchMode="contains">
+                <h:outputText value="#{cliente.nombre_representante}" />
+            </p:column>
+        </p:dataTable>
+
+
+
+
+    <br/>
+    <hr/>
+    <br/>
+        <p:outputLabel for="detalle" value="Detalle: " />
+        <br/>
+        <p:inputText id="detalle" value="#{guiaMBean.detalle}"/>
+        <br/> <br/> <h:outputText value="detalle: "></h:outputText>
+        <h:outputText value="#{guiaMBean.detalle}"></h:outputText><br/>
+
+
+
+    <br/>
+    <hr/>
+    <br/>
+        <p:commandButton id="submit" value="Guardar" action="#{guiaMBean.save}" ajax="false"/>
+        <p:commandButton id="reset" value="Resetear" action="#{guiaMBean.reset}" ajax="false"/>
+
      </h:form>
      </p:panel>
-  </h:panelGrid>
-    </ui:define>
-</ui:composition>
+
+</body>
+</html>
