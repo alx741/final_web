@@ -44,6 +44,9 @@
             <p:column filterBy="#{guia.paquete.getDescripcion()}" headerText="Paquete"  filterMatchMode="contains">
                 <h:outputText value="#{guia.paquete.getDescripcion()}" />
             </p:column>
+            <p:column filterBy="#{guia.detalle}" headerText="Detalle"  filterMatchMode="contains">
+                <h:outputText value="#{guia.detalle}" />
+            </p:column>
         </p:dataTable>
 
 
